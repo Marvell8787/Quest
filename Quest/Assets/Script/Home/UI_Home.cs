@@ -17,7 +17,7 @@ public class UI_Home : MonoBehaviour {
     public Image[] HomeIcon = new Image[9];
     #endregion
 
-    #region TaskInfo_obj
+    #region Info_obj
     public Text Info_text;
     #endregion
 
@@ -138,6 +138,7 @@ public class UI_Home : MonoBehaviour {
     public void Click_Learn(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Learn");
     }
     public void Click_Battle(BaseEventData data)
     {
