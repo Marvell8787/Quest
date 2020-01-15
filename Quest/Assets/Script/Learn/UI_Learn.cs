@@ -12,6 +12,8 @@ public class UI_Learn : MonoBehaviour {
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
+    public Button Back_btn;
+
     #region MaterialOrLevel_obj
     public GameObject MaterialOrLevel_obj;
     public Button Material_btn, Level_btn;
@@ -38,6 +40,8 @@ public class UI_Learn : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Back_btn.onClick.AddListener(Back);
+
         #region MaterialOrLevel_obj
         Material_btn.onClick.AddListener(GoMaterial);
         Level_btn.onClick.AddListener(OpenLevel);

@@ -29,6 +29,7 @@ public class UI_Main : MonoBehaviour {
         ok.Play();
         user = Usename_input.text;
         pwd = Password_input.text;
+        SceneManager.LoadScene("Home");
     }
     void Setting()
     {

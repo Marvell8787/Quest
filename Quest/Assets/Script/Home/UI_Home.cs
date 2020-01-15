@@ -143,7 +143,7 @@ public class UI_Home : MonoBehaviour {
     public void Click_Battle(BaseEventData data)
     {
         ok.Play();
-        SceneManager.LoadScene("Select_Battle");
+        SceneManager.LoadScene("Battle");
     }
     public void Click_Guide(BaseEventData data)
     {
