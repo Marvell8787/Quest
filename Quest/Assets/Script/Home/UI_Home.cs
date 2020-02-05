@@ -134,6 +134,7 @@ public class UI_Home : MonoBehaviour {
     public void Click_Task(BaseEventData data)
     {
         ok.Play();
+        SceneManager.LoadScene("Task");
     }
     public void Click_Learn(BaseEventData data)
     {
