@@ -9,12 +9,11 @@ public class UI_Home : MonoBehaviour {
     #region Variable Events
     EventTriggerType EPEnter = EventTriggerType.PointerEnter;
     EventTriggerType EPExit = EventTriggerType.PointerExit;
-    EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
     #region Home_obj
     public GameObject Home_obj;
-    public Image[] HomeIcon = new Image[9];
+    public Button[] HomeIcon = new Button[9];
     #endregion
 
     #region Info_obj
@@ -26,6 +25,7 @@ public class UI_Home : MonoBehaviour {
     public Text TaskContent_text;
     #endregion
 
+    public GameObject Badges_obj;
     public AudioSource ok, cancel, choose;
 
     // Use this for initialization
@@ -58,15 +58,15 @@ public class UI_Home : MonoBehaviour {
         #endregion
 
         #region Home PointerClick
-        AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPClick, Click_Task);
-        AddEvents.AddTriggersListener(HomeIcon[1].gameObject, EPClick, Click_Learn);
-        AddEvents.AddTriggersListener(HomeIcon[2].gameObject, EPClick, Click_Battle);
-        AddEvents.AddTriggersListener(HomeIcon[3].gameObject, EPClick, Click_Guide);
-        AddEvents.AddTriggersListener(HomeIcon[4].gameObject, EPClick, Click_Profile);
-        AddEvents.AddTriggersListener(HomeIcon[5].gameObject, EPClick, Click_Shop);
-        AddEvents.AddTriggersListener(HomeIcon[6].gameObject, EPClick, Click_Deck);
-        AddEvents.AddTriggersListener(HomeIcon[7].gameObject, EPClick, Click_Badges);
-        AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPClick, Click_Rank);
+        HomeIcon[0].onClick.AddListener(Click_Task);
+        HomeIcon[1].onClick.AddListener(Click_Learn);
+        HomeIcon[2].onClick.AddListener(Click_Battle);
+        HomeIcon[3].onClick.AddListener(Click_Guide);
+        HomeIcon[4].onClick.AddListener(Click_Profile);
+        HomeIcon[5].onClick.AddListener(Click_Shop);
+        HomeIcon[6].onClick.AddListener(Click_Deck);
+        HomeIcon[7].onClick.AddListener(Click_Badges);
+        HomeIcon[8].onClick.AddListener(Click_Rank);
         #endregion  
     }
 
@@ -126,51 +126,55 @@ public class UI_Home : MonoBehaviour {
     #region Home PointerExit Function
     void Exit(BaseEventData data)
     {
-        Info_text.text = "請完成所有任務\n學習區可進行練習\n戰鬥區可進行對戰\n可至個人狀態查詢所持有的物品";
+        Info_text.text = "請完成所有任務\n學習區可以練習題目\n戰鬥區可模擬跟電腦戰鬥的模式\n可至個人狀態查詢所持有的物品";
     }
     #endregion
 
     #region Home PointerClick Function
-    public void Click_Task(BaseEventData data)
+    public void Click_Task()
     {
         ok.Play();
         SceneManager.LoadScene("Task");
     }
-    public void Click_Learn(BaseEventData data)
+    public void Click_Learn()
     {
         ok.Play();
         SceneManager.LoadScene("Learn");
     }
-    public void Click_Battle(BaseEventData data)
+    public void Click_Battle()
     {
         ok.Play();
         SceneManager.LoadScene("Battle");
     }
-    public void Click_Guide(BaseEventData data)
+    public void Click_Guide()
     {
         ok.Play();
         SceneManager.LoadScene("Guide");
     }
-    public void Click_Profile(BaseEventData data)
+    public void Click_Profile()
     {
         ok.Play();
         SceneManager.LoadScene("Profile");
     }
-    public void Click_Shop(BaseEventData data)
+    public void Click_Shop()
     {
         ok.Play();
         SceneManager.LoadScene("Shop");
     }
-    public void Click_Deck(BaseEventData data)
+    public void Click_Deck()
     {
         ok.Play();
         SceneManager.LoadScene("Deck");
     }
-    public void Click_Badges(BaseEventData data)
+    public void Click_Badges()
     {
         ok.Play();
+        Info_text.text = "";
+        Home_obj.gameObject.SetActive(false);
+        TaskInfo_obj.gameObject.SetActive(false);
+        Badges_obj.gameObject.SetActive(true);
     }
-    public void Click_Rank(BaseEventData data)
+    public void Click_Rank()
     {
         ok.Play();
     }

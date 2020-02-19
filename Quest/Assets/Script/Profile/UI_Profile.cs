@@ -7,7 +7,7 @@ public class UI_Profile : MonoBehaviour {
 
     public Button Back_btn;
 
-    public AudioSource choose, ok, cancel;
+    public AudioSource PageTurnning, ok;
 
     // Use this for initialization
     void Start () {
