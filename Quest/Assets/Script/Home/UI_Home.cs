@@ -19,17 +19,15 @@ public class UI_Home : MonoBehaviour {
     #region Info_obj
     public Text Info_text;
     #endregion
-
-    #region TaskInfo_obj
-    public GameObject TaskInfo_obj;
-    public Text TaskContent_text;
-    #endregion
-
+    public GameObject Name_obj;
+    public Text NameContent_text;
     public GameObject Badges_obj;
     public AudioSource ok, cancel, choose;
 
     // Use this for initialization
     void Start () {
+
+        NameContent_text.text = System_Data.Username;
 
         #region Home PointerEnter
         AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPEnter, Enter_Task);
@@ -41,7 +39,6 @@ public class UI_Home : MonoBehaviour {
         AddEvents.AddTriggersListener(HomeIcon[6].gameObject, EPEnter, Enter_Deck);
         AddEvents.AddTriggersListener(HomeIcon[7].gameObject, EPEnter, Enter_Badges);
         AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPEnter, Enter_Rank);
-        AddEvents.AddTriggersListener(TaskInfo_obj, EPEnter, Enter_Task_Goal);
         #endregion
 
         #region Home PointerExit
@@ -54,7 +51,6 @@ public class UI_Home : MonoBehaviour {
         AddEvents.AddTriggersListener(HomeIcon[6].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[7].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPExit, Exit);
-        AddEvents.AddTriggersListener(TaskInfo_obj, EPExit, Exit);
         #endregion
 
         #region Home PointerClick
@@ -170,13 +166,14 @@ public class UI_Home : MonoBehaviour {
     {
         ok.Play();
         Info_text.text = "";
-        Home_obj.gameObject.SetActive(false);
-        TaskInfo_obj.gameObject.SetActive(false);
-        Badges_obj.gameObject.SetActive(true);
+        Name_obj.SetActive(false);
+        Home_obj.SetActive(false);
+        Badges_obj.SetActive(true);
     }
     public void Click_Rank()
     {
         ok.Play();
+        SceneManager.LoadScene("Rank");
     }
     #endregion
 
