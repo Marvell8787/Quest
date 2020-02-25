@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class UI_Battle : MonoBehaviour {
 
     #region Variable Events
-    EventTriggerType EPEnter = EventTriggerType.PointerEnter;
-    EventTriggerType EPExit = EventTriggerType.PointerExit;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 

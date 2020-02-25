@@ -6,23 +6,213 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class UI_Task : MonoBehaviour {
 
-    #region Variable Events
-    EventTriggerType EPEnter = EventTriggerType.PointerEnter;
-    EventTriggerType EPExit = EventTriggerType.PointerExit;
+
+    #region Variable
+    private string choose_s = "";
+    private int choose_n = 0;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
-    public Button Back_btn;
+    #region Task 
+    public GameObject ui_Task, ui_Task_Content;
+    public Button TaskLearn_btn, TaskBattle_btn; //Image
+    public Button TaskContentCancel_btn;
+    public Text[] Task_text = new Text[5];
+    #endregion
 
+    #region Task Content
+    public Text Text_Request_Content, Text_Reward_Content, Text_Punishment_Content;
+    public Button Take_btn;
+    #endregion
+    public Text Score_text;
+    public Button Back_btn;
     public AudioSource choose, ok, cancel;
 
 
     // Use this for initialization
     void Start () {
+        Score_text.text = Learner_Data.Learner_GetData("Score").ToString();
         Back_btn.onClick.AddListener(Back);
+        Take_btn.onClick.AddListener(Take);
+        for (int i = 0; i < 5; i++)
+        {
+            Task_text[i].text = "";
+        }
+        TaskLearn_btn.onClick.AddListener(Task_Learn);
+        TaskBattle_btn.onClick.AddListener(Task_Battle);
+        AddEvents.AddTriggersListener(Task_text[0].gameObject, EPClick, Task_0);
+        AddEvents.AddTriggersListener(Task_text[1].gameObject, EPClick, Task_1);
+        AddEvents.AddTriggersListener(Task_text[2].gameObject, EPClick, Task_2);
+        AddEvents.AddTriggersListener(Task_text[3].gameObject, EPClick, Task_3);
+        AddEvents.AddTriggersListener(Task_text[4].gameObject, EPClick, Task_4);
 
     }
+    void Task_Learn()
+    {
+        ui_Task_Content.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Task_text[i].text = "";
+        }
+        choose_s = "learn";
+        ok.Play();
+        Task_Class[] learn_temp = new Task_Class[5];
+        for (int i = 0; i < 5; i++)
+        {
+            learn_temp[i] = Task_Data.Learn_Get(i);
+            Task_text[i].text = learn_temp[i].GetTitle();
+            switch (learn_temp[i].GetStatus())
+            {
+                case 1: //未接
+                    Task_text[i].color = Color.black;
+                    Task_text[i].fontStyle = FontStyle.Bold;
+                    break;
+                case 2: //完成
+                    Task_text[i].color = Color.gray;
+                    Task_text[i].fontStyle = FontStyle.Italic;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    void Task_Battle()
+    {
+        ui_Task_Content.SetActive(false);
+        for (int i = 0; i < 5; i++)
+        {
+            Task_text[i].text = "";
+        }
+        choose_s = "battle";
+        ok.Play();
+        Task_Class[] battle_temp = new Task_Class[3];
+        for (int i = 0; i < 2; i++)
+        {
+            battle_temp[i] = Task_Data.Battle_Get(i);
+            Task_text[i].text = battle_temp[i].GetTitle();
+            switch (battle_temp[i].GetStatus())
+            {
+                case 1: //未接
+                    Task_text[i].color = Color.black;
+                    Task_text[i].fontStyle = FontStyle.Bold;
+                    break;
+                case 2: //完成
+                    Task_text[i].color = Color.gray;
+                    Task_text[i].fontStyle = FontStyle.Italic;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    #region Task PointerClick Function
+    void Task_0(BaseEventData data)
+    {
+        if (choose_s != "")
+        {
+            ok.Play();
+            Button_Change(0);
+            ShowContent(0);
+            choose_n = 0;
+            ui_Task_Content.SetActive(true);
+        }
 
+    }
+    void Task_1(BaseEventData data)
+    {
+        if (choose_s != "")
+        {
+            ok.Play();
+            Button_Change(1);
+            ShowContent(1);
+            choose_n = 1;
+            ui_Task_Content.SetActive(true);
+        }
+    }
+    void Task_2(BaseEventData data)
+    {
+        if (choose_s != "")
+        {
+            ok.Play();
+            Button_Change(2);
+            ShowContent(2);
+            choose_n = 2;
+            ui_Task_Content.SetActive(true);
+        }
+    }
+    void Task_3(BaseEventData data)
+    {
+        if (choose_s != "")
+        {
+            ok.Play();
+            Button_Change(3);
+            ShowContent(3);
+            choose_n = 3;
+            ui_Task_Content.SetActive(true);
+        }
+    }
+    void Task_4(BaseEventData data)
+    {
+        if (choose_s != "")
+        {
+            ok.Play();
+            Button_Change(4);
+            ShowContent(4);
+            choose_n = 4;
+            ui_Task_Content.SetActive(true);
+        }
+    }
+    #endregion
+    void Take()
+    {
+        ok.Play();
+        //改變狀態
+        Task_Data.ChangeStatus(choose_s, choose_n, 2);
+
+        if (choose_s == "learn")
+        {
+            Question_Data.Question_Init(choose_n, 1, 10, 10,1);
+            SceneManager.LoadScene("Level");
+        }
+        else if (choose_s == "battle")
+        {
+        }
+    }
+    void ShowContent(int n)
+    {
+        Task_Class task_temp = new Task_Class();
+        if (choose_s == "learn")
+            task_temp = Task_Data.Learn_Get(n);
+        else if (choose_s == "battle")
+            task_temp = Task_Data.Battle_Get(n);
+
+        Text_Request_Content.text = task_temp.GetRequest();
+        Text_Reward_Content.text = task_temp.GetReward();
+        Text_Punishment_Content.text = task_temp.GetPunishment();
+    }
+    void Button_Change(int n)
+    {
+        int status;
+        Task_Class task_temp = new Task_Class();
+        if (choose_s == "learn")
+            task_temp = Task_Data.Learn_Get(n);
+        else if (choose_s == "battle")
+            task_temp = Task_Data.Battle_Get(n);
+
+        status = task_temp.GetStatus();
+
+        switch (status)
+        {
+            case 1: //未接
+                Take_btn.interactable = true;
+                break;
+            case 2: //完成
+                Take_btn.interactable = false;
+                break;
+            default:
+                break;
+        }
+    }
     void Back()
     {
         ok.Play();

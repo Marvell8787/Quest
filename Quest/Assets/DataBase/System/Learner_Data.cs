@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 static class Learner_Data{
-
     //Task
     private static int[] Task_Num = new int[7] { 0,0,0,0,0,0,0 }; //進行次數
     private static int[] Task_Success = new int[7] { 0, 0, 0, 0, 0, 0, 0 }; //成功次數
@@ -42,10 +41,10 @@ static class Learner_Data{
     private static int[] Mistakes_Status = new int[3] { 0, 0, 0 }; //失誤持有狀態 warning YC RC
     private static int Mistakes_Num = 0; //失誤
 
-    private static string Learner_Behaviors = "";
+    private static string Learner_Behaviors = "ABC";
 
 
-    public static void Learner_Add(string s,int p, int n) // s=想要加的東西 p=索引  n=數字(可+ -)   
+    public static void Learner_Add(string s,int p, int n=0) // s=想要加的東西 p=索引  n=數字(可+ -)   
     {
         switch (s)
         {
@@ -76,7 +75,7 @@ static class Learner_Data{
 
     }
 
-    public static int Learner_GetData(string s, int p) // s=想要讀取的東西    
+    public static int Learner_GetData(string s, int p=0) // s=想要讀取的東西    
     {
         int n;
         switch (s)
@@ -113,8 +112,72 @@ static class Learner_Data{
     }
     public static string Learner_Behavior_Get()
     {
-        string s =Learner_Behaviors;
+        string s = Learner_Behaviors;
         return s;
     }
-
+    public static int Learner_GetPoints_Status(int n)
+    {
+        return Points_Status[n];
+    }
+    public static void Learner_ChangePoints_Status(int n) //Points
+    {
+        Points_Status[n] -= 1;
+        Points_Num--;
+        CheckPoints("Points_Num");
+    }
+    private static void CheckPoints(string s)
+    {
+        switch (s)
+        {
+            case "Points_Num":
+                if (Points_Status[0] == 0)
+                {
+                    Score = 0;
+                }
+                else if (Points_Status[1] == 0)
+                {
+                    Coin = 0;
+                }
+                else if (Points_Status[2] == 0)
+                {
+                    Crystal = 0;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    //Mistakes
+    public static int Learner_GetMistakes_Status(int n)
+    {
+        return Mistakes_Status[n];
+    }
+    public static void Learner_ChangeMistakes_Status(int n) //Mistakes
+    {
+        Mistakes_Status[n] += 1;
+        Mistakes_Num++;
+        CheckMistakes("Mistakes_Num");
+    }
+    private static void CheckMistakes(string s)
+    {
+        switch (s)
+        {
+            case "Mistakes_Num":
+                if ((Mistakes_Status[0] % 3) == 0 && Mistakes_Status[0] > 0)
+                {
+                    Mistakes_Status[1] += 1;
+                }
+                if ((Mistakes_Status[1] % 3) == 0 && Mistakes_Status[1] > 0)
+                {
+                    Mistakes_Status[2] += 1;
+                }
+                if (Mistakes_Status[2] > 0)
+                {
+                    //懲罰+倍
+                }
+                break;
+            default:
+                break;
+        }
+    }
 }

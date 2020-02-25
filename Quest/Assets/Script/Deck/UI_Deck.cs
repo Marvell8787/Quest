@@ -7,14 +7,12 @@ using UnityEngine.SceneManagement;
 public class UI_Deck : MonoBehaviour {
 
     #region Variable Events
-    EventTriggerType EPEnter = EventTriggerType.PointerEnter;
-    EventTriggerType EPExit = EventTriggerType.PointerExit;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
     public Button Back_btn;
 
-    public AudioSource choose, ok, cancel;
+    public AudioSource ok;
 
     // Use this for initialization
     void Start () {

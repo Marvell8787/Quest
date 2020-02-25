@@ -6,13 +6,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class UI_Learn : MonoBehaviour {
 
-    #region Variable Events
-    EventTriggerType EPEnter = EventTriggerType.PointerEnter;
-    EventTriggerType EPExit = EventTriggerType.PointerExit;
+    private int choose_n = 0;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
-    #endregion
-
     public Button Back_btn;
+    public Text Coin_text;
 
     #region MaterialOrLevel_obj
     public GameObject MaterialOrLevel_obj;
@@ -41,7 +38,7 @@ public class UI_Learn : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Back_btn.onClick.AddListener(Back);
-
+        Coin_text.text = Learner_Data.Learner_GetData("Coin").ToString();
         #region MaterialOrLevel_obj
         Material_btn.onClick.AddListener(GoMaterial);
         Level_btn.onClick.AddListener(OpenLevel);
@@ -51,10 +48,10 @@ public class UI_Learn : MonoBehaviour {
         SelectLevelCancel_btn.onClick.AddListener(CancelSelectLevel);
         Level_btn.onClick.AddListener(OpenLevel);
         AddEvents.AddTriggersListener(Level[0].gameObject, EPClick, Level1);
-        AddEvents.AddTriggersListener(Level[1].gameObject, EPClick, Level1);
-        AddEvents.AddTriggersListener(Level[2].gameObject, EPClick, Level1);
-        AddEvents.AddTriggersListener(Level[3].gameObject, EPClick, Level1);
-        AddEvents.AddTriggersListener(Level[4].gameObject, EPClick, Level1);
+        AddEvents.AddTriggersListener(Level[1].gameObject, EPClick, Level2);
+        AddEvents.AddTriggersListener(Level[2].gameObject, EPClick, Level3);
+        AddEvents.AddTriggersListener(Level[3].gameObject, EPClick, Level4);
+        AddEvents.AddTriggersListener(Level[4].gameObject, EPClick, Level5);
         #endregion
         
         #region Content_obj
@@ -70,6 +67,12 @@ public class UI_Learn : MonoBehaviour {
         ok.Play();
         MaterialOrLevel_obj.gameObject.SetActive(false);
         SelectLevel_obj.SetActive(true);
+        Level_Class[] level_temp = new Level_Class[5];
+        for (int i = 0; i < 5; i++)
+        {
+            level_temp[i] = Level_Data.Level_Get(i);
+            Level[i].text = level_temp[i].GetTitle();
+        }
     }
 
     #region SelectLevel
@@ -81,27 +84,27 @@ public class UI_Learn : MonoBehaviour {
     }
     void Level1(BaseEventData data){
         ok.Play();
-        Content_obj.SetActive(true);
+        ShowContent(0);
     }
     void Level2(BaseEventData data)
     {
         ok.Play();
-        Content_obj.SetActive(true);
+        ShowContent(1);
     }
     void Level3(BaseEventData data)
     {
         ok.Play();
-        Content_obj.SetActive(true);
+        ShowContent(2);
     }
     void Level4(BaseEventData data)
     {
         ok.Play();
-        Content_obj.SetActive(true);
+        ShowContent(3);
     }
     void Level5(BaseEventData data)
     {
         ok.Play();
-        Content_obj.SetActive(true);
+        ShowContent(4);
     }
     #endregion
 
@@ -113,8 +116,22 @@ public class UI_Learn : MonoBehaviour {
     }
     void Practice(){
         ok.Play();
+        Question_Data.Question_Init(choose_n,1,10,10);
+        SceneManager.LoadScene("Level");
     }
     #endregion
+
+    void ShowContent(int n)
+    {
+        Level_Class level_temp = new Level_Class();
+        level_temp = Level_Data.Level_Get(n);
+        Content_obj.SetActive(true);
+        QuestionTypeContent_text.text = level_temp.GetQuestionType();
+        RangeContent_text.text = level_temp.GetRange();
+        RewardContent_text.text = level_temp.GetReward();
+        PunishmentContent_text.text = level_temp.GetPunishment();
+        HighestScoreContent_text.text = level_temp.GetHighestScore();
+    }
 
     void Back() {
         ok.Play();

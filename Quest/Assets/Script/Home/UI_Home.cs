@@ -19,6 +19,8 @@ public class UI_Home : MonoBehaviour {
     #region Info_obj
     public Text Info_text;
     #endregion
+    private static Manager_log ml = new Manager_log();
+    public Button Save;
     public GameObject Name_obj;
     public Text NameContent_text;
     public GameObject Badges_obj;
@@ -27,6 +29,7 @@ public class UI_Home : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+        Save.onClick.AddListener(SaveData);
         NameContent_text.text = System_Data.Username;
 
         #region Home PointerEnter
@@ -177,4 +180,70 @@ public class UI_Home : MonoBehaviour {
     }
     #endregion
 
+    #region SaveLog
+    public void SaveData()
+    {
+        ok.Play();
+        Info_text.text = "存檔中，請不要點選任何物件";
+        Home_obj.SetActive(false);
+        Save.enabled = false;
+        StartCoroutine(Saving());
+    }
+    IEnumerator Saving()
+    {
+        Debug.Log(Learner_Data.Learner_Behavior_Get());
+        for(int i = 0; i < 7; i++)
+        {
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Task"+ (i+1) +"_Num", Learner_Data.Learner_GetData("Task_Num", i)));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Task" + (i + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", i)));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Task" + (i + 1) + "_Fail", Learner_Data.Learner_GetData("Task_Fail", i)));
+            yield return new WaitForSeconds(0.1f);
+        }
+        for(int i = 0; i<5; i++)
+        {
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Learn" + (i + 1) + "_Num", Learner_Data.Learner_GetData("Learn_Num", i)));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Learn" + (i + 1) + "_Success", Learner_Data.Learner_GetData("Learn_Success", i)));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Learn" + (i + 1) + "_Fail", Learner_Data.Learner_GetData("Learn_Fail", i)));
+            yield return new WaitForSeconds(0.1f);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Battle" + (i + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", i)));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Battle" + (i + 1) + "_Success", Learner_Data.Learner_GetData("Battle_Success", i)));
+            yield return new WaitForSeconds(0.1f);
+            StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Battle" + (i + 1) + "_Fail", Learner_Data.Learner_GetData("Battle_Fail", i)));
+            yield return new WaitForSeconds(0.1f);
+        }
+        StartCoroutine(ml.SetData("LearnerLog.php", "Score", Learner_Data.Learner_GetData("Score")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Score_Accumulation", Learner_Data.Learner_GetData("Score_Accumulation")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Coin", Learner_Data.Learner_GetData("Coin")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Coin_Accumulation", Learner_Data.Learner_GetData("Coin_Accumulation")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Crystal", Learner_Data.Learner_GetData("Crystal")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Crystal_Accumulation", Learner_Data.Learner_GetData("Crystal_Accumulation")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Badges_Num", Learner_Data.Learner_GetData("Badges_Num")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Card_Num", Learner_Data.Learner_GetData("Card_Num")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Points_Num", Learner_Data.Learner_GetData("Points_Num")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetData("LearnerLog.php", "Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(ml.SetBehavior("LearnerLog_Behavior.php", "Learner_Behaviors", Learner_Data.Learner_Behavior_Get()));
+        yield return new WaitForSeconds(1);
+        Home_obj.SetActive(true);
+        Save.enabled = true;
+        Info_text.text = "存檔完成";
+    }
+    #endregion
 }
