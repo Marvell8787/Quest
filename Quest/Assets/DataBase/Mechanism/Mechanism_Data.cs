@@ -18,9 +18,9 @@ static class Mechanism_Data{
                     case "Learn":
                         Learner_Data.Learner_Add("Coin", 0, Level_Bank.Level_Reward[n]);
                         break;
-                   /* case "Battle":
+                   case "Battle":
                         Learner_Data.Learner_Add("Crystal",0, Battle_Bank.Battle_Reward[n]);
-                        break;*/
+                        break;
                     default:
                         break;
                 }
@@ -47,11 +47,11 @@ static class Mechanism_Data{
                         Learner_Data.Learner_ChangePoints_Status(1);
                         Learner_Data.Learner_ChangeMistakes_Status(0);
                         break;
-                    /*case "Battle":
+                    case "Battle":
                         Learner_Data.Learner_Add("Crystal",0, Battle_Bank.Battle_Punishment[n]);
                         Learner_Data.Learner_ChangePoints_Status(2);
                         Learner_Data.Learner_ChangeMistakes_Status(0);
-                        break;*/
+                        break;
                     default:
                         break;
                 }

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Deck.unity
+- path: Assets/Scene/Profile.unity
   isLoaded: 1
   isActive: 1

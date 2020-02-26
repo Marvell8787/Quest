@@ -176,6 +176,17 @@ public class UI_Task : MonoBehaviour {
         }
         else if (choose_s == "battle")
         {
+            ok.Play();
+            Battle_Class battle_temp = new Battle_Class();
+            battle_temp = Battle_Data.Battle_Get(choose_n);
+            int n3 = int.Parse(battle_temp.GetTime());
+            ok.Play();
+            Question_Data.Question_Init(6, 1, 10, n3, 1);
+            Player_Data.Player_Init(choose_n);
+            Player_Data.Shuffle(0);
+            Player_Data.Shuffle(1);
+            Player_Data.Deal();
+            SceneManager.LoadScene("Fight");
         }
     }
     void ShowContent(int n)

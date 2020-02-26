@@ -137,12 +137,12 @@ static class Question_Data{
                 Question[i] = vocabulary_temp[i].GetE_Name();
                 Answer_r_Content[i] = vocabulary_temp[i].GetE_Name();
             }
-            else if (_Level < 6) //英翻中
+            else if (_Level < 5) //英翻中
             {
                 Question[i] = vocabulary_temp[i].GetE_Name();
                 Answer_r_Content[i] = vocabulary_temp[i].GetC_Name();
             }
-            else if (_Level > 5)//中翻英 6 7 題目中文 7戰鬥用
+            else if (_Level > 4)//中翻英 6 7 題目中文 7戰鬥用
             {
                 Question[i] = vocabulary_temp[i].GetC_Name();
                 Answer_r_Content[i] = vocabulary_temp[i].GetE_Name();
