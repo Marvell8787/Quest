@@ -96,6 +96,9 @@ static class Learner_Data{
             case "Score": n = Score; break;
             case "Coin": n = Coin; break;
             case "Crystal": n = Crystal; break;
+            case "Score_Accumulation": n = Score_Accumulation; break;
+            case "Coin_Accumulation": n = Coin_Accumulation; break;
+            case "Crystal_Accumulation": n = Crystal_Accumulation; break;
             //Reward
             case "Badges_Num": n = Badges_Num; break;
             case "Cards_Num": n = Cards_Num; break;

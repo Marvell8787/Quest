@@ -84,26 +84,31 @@ public class UI_Learn : MonoBehaviour {
     }
     void Level1(BaseEventData data){
         ok.Play();
+        choose_n = 0;
         ShowContent(0);
     }
     void Level2(BaseEventData data)
     {
         ok.Play();
+        choose_n = 1;
         ShowContent(1);
     }
     void Level3(BaseEventData data)
     {
         ok.Play();
+        choose_n = 2;
         ShowContent(2);
     }
     void Level4(BaseEventData data)
     {
         ok.Play();
+        choose_n = 3;
         ShowContent(3);
     }
     void Level5(BaseEventData data)
     {
         ok.Play();
+        choose_n = 4;
         ShowContent(4);
     }
     #endregion

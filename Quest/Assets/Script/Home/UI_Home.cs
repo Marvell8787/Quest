@@ -233,7 +233,7 @@ public class UI_Home : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("LearnerLog.php", "Badges_Num", Learner_Data.Learner_GetData("Badges_Num")));
         yield return new WaitForSeconds(0.1f);
-        StartCoroutine(ml.SetData("LearnerLog.php", "Card_Num", Learner_Data.Learner_GetData("Card_Num")));
+        StartCoroutine(ml.SetData("LearnerLog.php", "Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("LearnerLog.php", "Points_Num", Learner_Data.Learner_GetData("Points_Num")));
         yield return new WaitForSeconds(0.1f);
