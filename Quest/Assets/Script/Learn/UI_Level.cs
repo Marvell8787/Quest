@@ -28,7 +28,7 @@ public class UI_Level : MonoBehaviour {
     public Button Submit_btn, Next_btn;
     public Button[] Button_Ans = new Button[3];
     public Button Question_btn;
-    public AudioSource[] Voice= new AudioSource[10]; //access
+    public AudioSource[] Voice= new AudioSource[8]; //access
     #endregion
 
     #region Settlement
@@ -382,35 +382,29 @@ public class UI_Level : MonoBehaviour {
 
         switch (question_temp[Question_Num].GetQuestion())
         {
-            case "access":
+            case "breakfast":
                 Voice[0].Play();
                 break;
-            case "ashamed":
+            case "lunch":
                 Voice[1].Play();
                 break;
-            case "authority":
+            case "dinner":
                 Voice[2].Play();
                 break;
-            case "bare":
+            case "a hamburger":
                 Voice[3].Play();
                 break;
-            case "behavior":
+            case "noodles":
                 Voice[4].Play();
                 break;
-            case "citizen":
+            case "rice":
                 Voice[5].Play();
                 break;
-            case "clash":
+            case "salad":
                 Voice[6].Play();
                 break;
-            case "destroy":
+            case "soup":
                 Voice[7].Play();
-                break;
-            case "exhaust":
-                Voice[8].Play();
-                break;
-            case "fort":
-                Voice[9].Play();
                 break;
             default:
                 break;

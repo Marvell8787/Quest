@@ -93,7 +93,7 @@ public class UI_Battle : MonoBehaviour {
         battle_temp = Battle_Data.Battle_Get(choose_n);
         int n3 = int.Parse(battle_temp.GetTime());
         ok.Play();
-        Question_Data.Question_Init(6, 1, 10, n3, 0);
+        Question_Data.Question_Init(5, 1, 10, n3, 0);
         Player_Data.Player_Init(choose_n);
         Player_Data.Shuffle(0);
         Player_Data.Shuffle(1);

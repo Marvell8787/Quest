@@ -11,8 +11,8 @@ public class UI_Material : MonoBehaviour {
 
     #region Material
     public Button Back_btn,Voice_btn;
-    public Button[] Vocabular_Btn = new Button[10];
-    public Text[] VocabularBtn_text = new Text[10];
+    public Button[] Vocabular_Btn = new Button[8];
+    public Text[] VocabularBtn_text = new Text[8];
     public Text Num_text, E_Name_text, C_Name_text, PartOfSpeech_text, Sentence_text, Info_text;
     public Button[] Direction = new Button[2]; //left right
     public AudioSource[] voice = new AudioSource[Vocabulary_Bank.Vocabulary_Num];
@@ -22,7 +22,7 @@ public class UI_Material : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Info_text.text = "點擊上方按鈕或旁邊箭頭可切換單字\n點擊喇叭圖示可聽該單字發音";
+        Info_text.text = "點擊上方按鈕或旁邊箭頭可切換單字及查看應用例句\n點擊喇叭圖示可聽該單字發音";
 
         Back_btn.onClick.AddListener(Back);
         Voice_btn.onClick.AddListener(Play);
@@ -38,8 +38,13 @@ public class UI_Material : MonoBehaviour {
         Vocabular_Btn[5].onClick.AddListener(Button_6);
         Vocabular_Btn[6].onClick.AddListener(Button_7);
         Vocabular_Btn[7].onClick.AddListener(Button_8);
-        Vocabular_Btn[8].onClick.AddListener(Button_9);
-        Vocabular_Btn[9].onClick.AddListener(Button_10);
+
+        for(int i = 0; i < 8; i++)
+        {
+            Vocabulary_Class vocabulary_temp = new Vocabulary_Class();
+            vocabulary_temp = Vocabulary_Data.Vocabulary_Get(i);
+            VocabularBtn_text[i].text = vocabulary_temp.GetE_Name();
+        }
 
         ShowContent(No);
     }
@@ -48,7 +53,7 @@ public class UI_Material : MonoBehaviour {
     void Right()
     {
         PageTurning.Play();
-        if (No > 8)
+        if (No > 6)
         {
             No = 0;
 
@@ -56,10 +61,6 @@ public class UI_Material : MonoBehaviour {
         else
         {
             No++;
-            if (No == 10)
-            {
-                No = 0;
-            }
         }
         ShowContent(No);
     }
@@ -68,15 +69,11 @@ public class UI_Material : MonoBehaviour {
         PageTurning.Play();
         if (No < 1)
         {
-            No = 9;
+            No = 7;
         }
         else
         {
             No--;
-            if (No == -1)
-            {
-                No = 9;
-            }
         }
         ShowContent(No);
     }
@@ -125,16 +122,6 @@ public class UI_Material : MonoBehaviour {
     void Button_8()
     {
         No = 7;
-        ShowContent(No);
-    }
-    void Button_9()
-    {
-        No = 8;
-        ShowContent(No);
-    }
-    void Button_10()
-    {
-        No = 9;
         ShowContent(No);
     }
     #endregion

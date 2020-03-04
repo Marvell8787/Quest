@@ -34,13 +34,13 @@ static class Player_Data{
         switch (difficult)
         {
             case 0:
-                Player[1] = new Player_Class(15, 17, 0, 5);
+                Player[1] = new Player_Class(15, 14, 0, 5);
                 for (int i = 0; i < 22; i++)
                 {
-                    if (i < 14)
-                        Player[1].ChangeDeck_Status(i, 1); //0~13
-                    else if (i > 14 && i < 18)
-                        Player[1].ChangeDeck_Status(i, 1); //15~17
+                    if (i < 12)
+                        Player[1].ChangeDeck_Status(i, 1); //0~11
+                    else if (i > 14 && i < 17)
+                        Player[1].ChangeDeck_Status(i, 1); //15~16
                     else
                     {
                         Player[1].ChangeDeck_Status(i, 0); //12~14 17~21
