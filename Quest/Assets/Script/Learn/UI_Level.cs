@@ -28,7 +28,8 @@ public class UI_Level : MonoBehaviour {
     public Button Submit_btn, Next_btn;
     public Button[] Button_Ans = new Button[3];
     public Button Question_btn;
-    public AudioSource[] Voice= new AudioSource[8]; //access
+    public AudioSource[] Voice= new AudioSource[8]; //breakfast
+    public AudioSource[] QuestionVoice = new AudioSource[6]; //breakfast
     #endregion
 
     #region Settlement
@@ -368,8 +369,10 @@ public class UI_Level : MonoBehaviour {
 
     void VoicePlay()
     {
-        if (Level < 2)
+        if (Level == 0)
             Play();
+        else if (Level == 1)
+            Q_Play();
     }
     void Play()
     {
@@ -405,6 +408,39 @@ public class UI_Level : MonoBehaviour {
                 break;
             case "soup":
                 Voice[7].Play();
+                break;
+            default:
+                break;
+        }
+    }
+    void Q_Play()
+    {
+        Question_Class[] question_temp = new Question_Class[Question_total];
+        for (int i = 0; i < Question_total; i++)
+        {
+            question_temp[i] = Question_Data.Question_Get(i);
+        }
+        question_temp[Question_Num].GetQuestion();
+
+        switch (question_temp[Question_Num].GetQuestion())
+        {
+            case "I eat some noodles.":
+                Voice[0].Play();
+                break;
+            case "She wants some noodles.":
+                Voice[1].Play();
+                break;
+            case "The girl wants a hamburger and some pizza for lunch.":
+                Voice[2].Play();
+                break;
+            case "Tom wants some rice for dinner.":
+                Voice[3].Play();
+                break;
+            case "What do you want for breakfast?":
+                Voice[4].Play();
+                break;
+            case "What does he want for breakfast?":
+                Voice[5].Play();
                 break;
             default:
                 break;

@@ -11,8 +11,8 @@ static class Question_Data{
     private static string[] Button_Ans = new string[3] { "", "", ""};
     private static string[] Button_Ans_Check = new string[3] { "A", "B", "C" };
 
-    private static string[,] BtnAns_Level4 = new string[6, 3];
-    private static string[,] Question_BtnAns_Level4 = new string[5, 3];
+    private static string[,] BtnAns_Level24 = new string[6, 3];
+    private static string[,] Question_BtnAns_Level24 = new string[5, 3];
 
 
     private static Question_Class[] question_temp = new Question_Class[8];
@@ -33,12 +33,22 @@ static class Question_Data{
         }
         switch (_Level)
         {
+            case 1:
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        BtnAns_Level24[i, j] = Question_Bank.Question_Level2_BtnAns[i, j];
+                    }
+                }
+                Question_Set(_Level, 1, 6, n3);
+                break;
             case 3:
                 for(int i = 0; i < 6; i++)
                 {
                     for(int j = 0; j < 3; j++)
                     {
-                        BtnAns_Level4[i,j] = Question_Bank.Question_Level4_BtnAns[i,j];
+                        BtnAns_Level24[i,j] = Question_Bank.Question_Level4_BtnAns[i,j];
                     }
                 }
                 Question_Set(_Level, 1, 6, n3);
@@ -59,10 +69,10 @@ static class Question_Data{
         r = Random.Range(0, 3);
         //亂數陣列 START
         int[] rand = new int[8];
-        int[] rand_level4 = new int[3];
+        int[] rand_level24 = new int[3];
         int c = 0;
         rand = GetRandomSequence(8);
-        rand_level4 = GetRandomSequence(3);
+        rand_level24 = GetRandomSequence(3);
         //亂數陣列 END
         for (int i = 0; i < 3; i++)
         {
@@ -75,7 +85,7 @@ static class Question_Data{
             {
                 while (true)
                 {
-                    if (_Level <= 1)  //英文 Level 1 2
+                    if (_Level == 0)  //英文 Level 1 
                     {
                         if (Vocabulary_Bank.Vocabulary_E_Name[rand[c]] == (question_temp[QNum].GetAnswer_r_Content()))
                         { c++; continue; }
@@ -85,6 +95,18 @@ static class Question_Data{
                             c++;
                             break;
                         }
+                    }
+                    else if (_Level == 1)//聽力  英文 答案 中文 Level 2
+                    {
+                        if (Question_BtnAns_Level24[QNum, rand_level24[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        { c++; continue; }
+                        else
+                        {
+                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand_level24[c]], i);
+                            c++;
+                            break;
+                        }
+
                     }
                     else if (_Level ==2)//題目 英文 答案 中文 Level 3
                     {
@@ -99,11 +121,11 @@ static class Question_Data{
                     }
                     else if (_Level == 3)//文法  英文 答案 中文 Level 4
                     {
-                        if (Question_BtnAns_Level4[QNum, rand_level4[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        if (Question_BtnAns_Level24[QNum, rand_level24[c]] == (question_temp[QNum].GetAnswer_r_Content()))
                         { c++; continue; }
                         else
                         {
-                            ChangeButton_Ans(Question_BtnAns_Level4[QNum, rand_level4[c]], i);
+                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand_level24[c]], i);
                             c++;
                             break;
                         }
@@ -177,9 +199,9 @@ static class Question_Data{
     private static void Question_Set(int _Level,int n1,int n2,int n3) //Level=題型 第n1題到第n2題 共n3題
     {
         int[] rand = new int[8];
-        int[] rand_level4 = new int[6];
+        int[] rand_level24 = new int[6];
         rand = GetRandomSequence(5);
-        rand_level4 = GetRandomSequence(6);
+        rand_level24 = GetRandomSequence(6);
         for (int i = n1 - 1; i < n3; i++)
         {
             switch (_Level)
@@ -188,19 +210,21 @@ static class Question_Data{
                     Question[i] = vocabulary_temp[rand[i]].GetE_Name();
                     Answer_r_Content[i] = vocabulary_temp[rand[i]].GetE_Name();
                     break;
-                case 1://Level2 回應句
-                    Question[i] = vocabulary_temp[rand[i]].GetE_Name();
-                    Answer_r_Content[i] = vocabulary_temp[rand[i]].GetE_Name();
+                case 1://Level2 聽句子
+                    Question[i] = Question_Bank.Question_Level2[rand_level24[i]];
+                    Answer_r_Content[i] = Question_Bank.Question_Level2[rand_level24[i]];
+                    for (int j = 0; j < 3; j++)
+                        Question_BtnAns_Level24[i, j] = BtnAns_Level24[rand_level24[i], j];
                     break;
                 case 2://Level3 英文選中文
                     Question[i] = vocabulary_temp[rand[i]].GetE_Name();
                     Answer_r_Content[i] = vocabulary_temp[rand[i]].GetC_Name();
                     break;
                 case 3://Level 4 文法
-                    Question[i] = Question_Bank.Question_Level4[rand_level4[i], 0];
-                    Answer_r_Content[i] = Question_Bank.Question_Level4[rand_level4[i], 1];
+                    Question[i] = Question_Bank.Question_Level4[rand_level24[i], 0];
+                    Answer_r_Content[i] = Question_Bank.Question_Level4[rand_level24[i], 1];
                     for (int j = 0; j < 3; j++)
-                        Question_BtnAns_Level4[i,j] = BtnAns_Level4[rand_level4[i], j];
+                        Question_BtnAns_Level24[i,j] = BtnAns_Level24[rand_level24[i], j];
                     break;
                 case 4://Level 5 拼字
                     Question[i] = vocabulary_temp[rand[i]].GetC_Name();
@@ -257,9 +281,9 @@ static class Question_Data{
 
             for(int j = 0; j < 3; j++)
             {
-                temp = BtnAns_Level4[i, j];
-                BtnAns_Level4[i, j] = BtnAns_Level4[r, j];
-                BtnAns_Level4[r, j] = temp;
+                temp = BtnAns_Level24[i, j];
+                BtnAns_Level24[i, j] = BtnAns_Level24[r, j];
+                BtnAns_Level24[r, j] = temp;
                 
             }
         }
