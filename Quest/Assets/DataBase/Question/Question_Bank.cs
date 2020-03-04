@@ -14,4 +14,8 @@ static class Question_Bank {
     };
     public static string[,] Question_Level4 = new string[6,2] {{ "I want a sandwich _ dinner.", "for" },{ "I want _ noodles.", "some" },{ "Sarah _ some want.","wants" }, { "What _ Danny want for breakfast.","does" }, {"Dad wants some _ for lunch.","rice" }, {"He _ some soup.","wants"}};
     public static string[,] Question_Level4_BtnAns = new string[6, 3] { { "with", "for", "to" }, { "a", "this", "some" }, { "want", "wants", "wanting" }, { "do", "does", "are" }, { "a rice", "rice", "rices" }, { "wants", "want", "wanting" } };
+
+    public static string[,] Question_Battle = new string[6, 2] { { "A: What do you want for _ ?\n B:I want some noodles for dinner.", "dinner" }, { "A: What time is it?\n B:It's 12 o'clock. Time for _ !", "lunch" }, { "A: What do you want?\n B: I want _ salad,please.", "some" }, { "A: What _ Amy want for dinner?\nB: Some salad and noodles,please.", "does" }, { "A: Mom wants some _ for lunch.\nB:I want some soup,too.", "soup" }, { "A: He _ some rice.\nB:I also want it.", "wants" } };
+    public static string[,] Question_Battle_BtnAns = new string[6, 3] { { "dinner", "lunch", "breakfast" }, { "dinner", "lunch", "breakfast" }, { "some", "many", "two" }, { "do", "does", "are" }, { "rice", "soup", "noodles" }, { "wants", "want", "wanting" } };
+
 }

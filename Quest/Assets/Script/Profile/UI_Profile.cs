@@ -68,7 +68,6 @@ public class UI_Profile : MonoBehaviour {
         Text_RCContent.text = Learner_Data.Learner_GetMistakes_Status(2).ToString();
         #endregion
     }
-
     #region Status Function
     void Status_PageUp()
     {

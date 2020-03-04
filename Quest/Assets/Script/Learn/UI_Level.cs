@@ -425,22 +425,22 @@ public class UI_Level : MonoBehaviour {
         switch (question_temp[Question_Num].GetQuestion())
         {
             case "I eat some noodles.":
-                Voice[0].Play();
+                QuestionVoice[0].Play();
                 break;
             case "She wants some noodles.":
-                Voice[1].Play();
+                QuestionVoice[1].Play();
                 break;
             case "The girl wants a hamburger and some pizza for lunch.":
-                Voice[2].Play();
+                QuestionVoice[2].Play();
                 break;
             case "Tom wants some rice for dinner.":
-                Voice[3].Play();
+                QuestionVoice[3].Play();
                 break;
             case "What do you want for breakfast?":
-                Voice[4].Play();
+                QuestionVoice[4].Play();
                 break;
             case "What does he want for breakfast?":
-                Voice[5].Play();
+                QuestionVoice[5].Play();
                 break;
             default:
                 break;

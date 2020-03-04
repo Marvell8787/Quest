@@ -53,6 +53,16 @@ static class Question_Data{
                 }
                 Question_Set(_Level, 1, 6, n3);
                 break;
+            case 6:
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        BtnAns_Level24[i, j] = Question_Bank.Question_Battle_BtnAns[i, j];
+                    }
+                }
+                Question_Set(_Level, 1, 6, n3);
+                break;
             default:
                 Question_Set(_Level, 1, 8, n3);
                 break;
@@ -129,7 +139,6 @@ static class Question_Data{
                             c++;
                             break;
                         }
-
                     }
                     else if(_Level == 4)//拼字 答案 中文 Level 5
                     {
@@ -151,6 +160,17 @@ static class Question_Data{
                         else
                         {
                             ChangeButton_Ans(Vocabulary_Bank.Vocabulary_E_Name[rand[c]], i);
+                            c++;
+                            break;
+                        }
+                    }
+                    else if (_Level == 6)//回應  英文 答案 英文 Level 4
+                    {
+                        if (Question_BtnAns_Level24[QNum, rand_level24[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        { c++; continue; }
+                        else
+                        {
+                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand_level24[c]], i);
                             c++;
                             break;
                         }
@@ -200,7 +220,7 @@ static class Question_Data{
     {
         int[] rand = new int[8];
         int[] rand_level24 = new int[6];
-        rand = GetRandomSequence(5);
+        rand = GetRandomSequence(8);
         rand_level24 = GetRandomSequence(6);
         for (int i = n1 - 1; i < n3; i++)
         {
@@ -233,6 +253,12 @@ static class Question_Data{
                 case 5://戰鬥
                     Question[i] = vocabulary_temp[rand[i]].GetC_Name();
                     Answer_r_Content[i] = vocabulary_temp[rand[i]].GetE_Name();
+                    break;
+                case 6:
+                    Question[i] = Question_Bank.Question_Battle[rand_level24[i], 0];
+                    Answer_r_Content[i] = Question_Bank.Question_Battle[rand_level24[i], 1];
+                    for (int j = 0; j < 3; j++)
+                        Question_BtnAns_Level24[i, j] = BtnAns_Level24[rand_level24[i], j];
                     break;
                 default:
                     break;
