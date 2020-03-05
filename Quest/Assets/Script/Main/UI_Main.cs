@@ -63,13 +63,9 @@ public class UI_Main : MonoBehaviour {
             Vocabulary_Data.Vocabulary_Init();
             SceneManager.LoadScene("Home");
         }
-        else if (ml.state == 0)
-        {
-            Message.text = "帳號或密碼不正確";
-        }
         else if (ml.state == 2)
         {
-            Message.text = "連線失敗";
+            Message.text = "帳號或密碼不正確，連線失敗";
         }
         else if (ml.state == 3)
         {

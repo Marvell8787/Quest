@@ -21,11 +21,11 @@ public class Manager_Login{
         {
             if (reg.text == "2")
             {
-                state = 0;//帳密錯誤
+                state = 2;//帳密錯誤
             }
             else if (reg.text == "3")
             {
-                state = 2;//連線失敗
+                state = 3;//連線失敗
             }
             else if (reg.text == "1")//帳密正確
             {

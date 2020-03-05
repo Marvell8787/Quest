@@ -25,7 +25,7 @@ static class Learner_Data{
     //Reward
     //Badges
     private static int[] Badges_Status = new int[18] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
-    //test private static int[] Badges_Status = new int[18] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
+    //testprivate static int[] Badges_Status = new int[18] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
     private static int[] Badges_GetStatus = new int[3] { 0, 0, 0 }; //任務 學習 戰鬥
     private static int Badges_Num = 0; //獎章數量
 
