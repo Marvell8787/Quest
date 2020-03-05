@@ -40,9 +40,39 @@ static class Learner_Data{
     //Mistakes
     private static int[] Mistakes_Status = new int[3] { 0, 0, 0 }; //失誤持有狀態 warning YC RC
     private static int Mistakes_Num = 0; //失誤
+    public static int Mistakes_N2 = 1; //失誤倍率
 
     private static string Learner_Behaviors = "";
 
+    public static void Learner_Init()
+    {
+        switch (System_Data.Version)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                Score = 500; Score_Accumulation = 500;
+                Coin = 500; Coin_Accumulation = 500;
+                Crystal = 100; Crystal_Accumulation = 500;
+                Cards_GetStatus[0] = 15;Cards_GetStatus[1] = 4; Cards_GetStatus[2] = 3;
+                Cards_Num = 22;
+                for (int i = 0; i < 22; i++)
+                    Card_Status[i] = 1;
+                break;
+            case 3:
+                Cards_GetStatus[0] = 15; Cards_GetStatus[1] = 4; Cards_GetStatus[2] = 3;
+                Cards_Num = 22;
+                for (int i = 0; i < 22; i++)
+                    Card_Status[i] = 1;
+                break;
+            default:
+                break;
+        }
+
+
+    }
 
     public static void Learner_Add(string s,int p, int n=0) // s=想要加的東西 p=索引  n=數字(可+ -)   
     {
@@ -205,61 +235,65 @@ static class Learner_Data{
                     Badges_Status[8] = 1;
                 break;
             //Score_Highest Crystal_Highest 是指定
-            case "Score_Highest":
-                if (Score_Accumulation > 149 && Score_Accumulation < 200)
+            case "Task_Success":
+                if (_Task_Success > 2 && _Task_Success < 5)
                     Badges_Status[9] = 1;
-                else if (Score_Accumulation > 199 && Score_Accumulation < 250)
+                else if (_Task_Success > 4 && _Task_Success < 7)
                     Badges_Status[10] = 1;
-                else if (Score_Accumulation > 249)
+                else if (_Task_Success > 6)
                     Badges_Status[11] = 1;
                 break;
-            case "Coin_Highest":
-                if (Coin_Accumulation > 199 && Coin_Accumulation < 400)
+            case "Learn_Success":
+                if (_Learn_Success > 4 && _Learn_Success < 10)
                     Badges_Status[12] = 1;
-                else if (Coin_Accumulation > 399 && Coin_Accumulation < 600)
+                else if (_Learn_Success > 9 && _Learn_Success < 15)
                     Badges_Status[13] = 1;
-                else if (Coin_Accumulation > 599)
+                else if (_Learn_Success > 14)
                     Badges_Status[14] = 1;
                 break;
-            case "Crystal_Highest":
-                if (Crystal_Accumulation > 149 && Crystal_Accumulation < 250)
+            case "Battle_Success":
+                if (_Battle_Success > 1 && _Battle_Success < 5)
                     Badges_Status[15] = 1;
-                else if (Crystal_Accumulation > 249 && Crystal_Accumulation < 400)
+                else if (_Battle_Success > 4 && _Battle_Success < 10)
                     Badges_Status[16] = 1;
-                else if (Crystal_Accumulation > 399)
+                else if (_Battle_Success > 9)
                     Badges_Status[17] = 1;
                 break;
             default:
                 break;
         }
     }
-
+    
     public static int Learner_GetPoints_Status(int n)
     {
         return Points_Status[n];
     }
     public static void Learner_ChangePoints_Status(int n) //Points
     {
-        Points_Status[n] -= 1;
-        Points_Num--;
-        CheckPoints("Points_Num");
+        if(Points_Status[n] != 0)
+        {
+            Points_Status[n] -= 1;
+            Points_Num--;
+        }
+
+        CheckPoints("Points_Num",n);
     }
-    private static void CheckPoints(string s)
+    private static void CheckPoints(string s ,int n)
     {
         switch (s)
         {
             case "Points_Num":
                 if (Points_Status[0] == 0)
                 {
-                    Score = 0;
+                    Score /= 2;
                 }
                 else if (Points_Status[1] == 0)
                 {
-                    Coin = 0;
+                    Coin /= 2;
                 }
                 else if (Points_Status[2] == 0)
                 {
-                    Crystal = 0;
+                    Crystal /= 2;
                 }
                 break;
             default:
@@ -292,6 +326,7 @@ static class Learner_Data{
                 }
                 if (Mistakes_Status[2] > 0)
                 {
+                    Mistakes_N2 *= 2;
                     //懲罰+倍
                 }
                 break;

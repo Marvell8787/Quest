@@ -31,18 +31,81 @@ static class Task_Data{
         {
             Learn_Title[i] = Task_Bank.Learn_Title[i];
             Learn_Request[i] = Task_Bank.Learn_Request[i];
-            Learn_Reward[i] = Task_Bank.Learn_Reward[i];
-            Learn_Punishment[i] = Task_Bank.Learn_Punishment[i];
             Learn_Status[i] = Task_Bank.Learn_Status[i];
+        }
+        switch (System_Data.Version)
+        {
+            case 0:
+                for (int i = 0; i < 5; i++)
+                {
+                    Learn_Reward[i] = Task_Bank.Learn_Reward_O[i];
+                    Learn_Punishment[i] = Task_Bank.Learn_Punishment_O[i];
+                }
+                break;
+            case 1:
+                for (int i = 0; i < 5; i++)
+                {
+                    Learn_Reward[i] = Task_Bank.Learn_Reward_O[i];
+                    Learn_Punishment[i] = Task_Bank.Learn_Punishment_X[i];
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 5; i++)
+                {
+                    Learn_Reward[i] = Task_Bank.Learn_Reward_X[i];
+                    Learn_Punishment[i] = Task_Bank.Learn_Punishment_O[i];
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 5; i++)
+                {
+                    Learn_Reward[i] = Task_Bank.Learn_Reward_X[i];
+                    Learn_Punishment[i] = Task_Bank.Learn_Punishment_X[i];
+                }
+                break;
+            default:
+                break;
         }
         for (int i = 0; i < 2; i++)
         {
             Battle_Title[i] = Task_Bank.Battle_Title[i];
             Battle_Request[i] = Task_Bank.Battle_Request[i];
-            Battle_Reward[i] = Task_Bank.Battle_Reward[i];
-            Battle_Punishment[i] = Task_Bank.Battle_Punishment[i];
             Battle_Status[i] = Task_Bank.Battle_Status[i];
         }
+        switch (System_Data.Version)
+        {
+            case 0:
+                for (int i = 0; i < 2; i++)
+                {
+                    Battle_Reward[i] = Task_Bank.Battle_Reward_O[i];
+                    Battle_Punishment[i] = Task_Bank.Battle_Punishment_O[i];
+                }
+                break;
+            case 1:
+                for (int i = 0; i < 2; i++)
+                {
+                    Battle_Reward[i] = Task_Bank.Battle_Reward_O[i];
+                    Battle_Punishment[i] = Task_Bank.Battle_Punishment_X[i];
+                }
+                break;
+            case 2:
+                for (int i = 0; i < 2; i++)
+                {
+                    Battle_Reward[i] = Task_Bank.Battle_Reward_X[i];
+                    Battle_Punishment[i] = Task_Bank.Battle_Punishment_O[i];
+                }
+                break;
+            case 3:
+                for (int i = 0; i < 2; i++)
+                {
+                    Battle_Reward[i] = Task_Bank.Battle_Reward_X[i];
+                    Battle_Punishment[i] = Task_Bank.Battle_Punishment_X[i];
+                }
+                break;
+            default:
+                break;
+        }
+
 
         //宣告 learn_temp 陣列並加入資料 Start
         for (int i = 0; i < 5; i++)

@@ -65,8 +65,8 @@ MonoBehaviour:
     y: 0
     width: 306
     height: 947
-  m_MinSize: {x: 204, y: 221}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -95,10 +95,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 917, y: 271}
-  m_MaxSize: {x: 22012, y: 10021}
+  m_MinSize: {x: 913, y: 271}
+  m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
-  controlID: 108
+  controlID: 9
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -287,19 +287,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/DataBase/System
+    - Assets/Script/Shop
   m_ViewMode: 1
   m_StartGridSize: 47
   m_LastFolders:
-  - Assets/DataBase/System
+  - Assets/Script/Shop
   m_LastFoldersGridSize: 47
   m_LastProjectPath: C:\Users\user\Documents\GitHub\Quest\Quest
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 46270000
-    m_LastClickedID: 10054
-    m_ExpandedIDs: 00000000002500006e250000d02500005a260000da2600001a27000000ca9a3bffffff7f
+    m_SelectedIDs: e6910000
+    m_LastClickedID: 37350
+    m_ExpandedIDs: 000000000225000070250000d22500005c260000dc2600001c27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -327,7 +327,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000002500006e250000d02500005a260000da2600001a270000
+    m_ExpandedIDs: 000000000225000070250000d22500005c260000dc2600001c270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -443,9 +443,9 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 52050000
-    m_LastClickedID: 0
-    m_ExpandedIDs: e4fbffff00000000
+    m_SelectedIDs: 30910000
+    m_LastClickedID: 37168
+    m_ExpandedIDs: c680ffff2a84fffffc8dffff849effffe0e3ffffc8edffffe2fbffff00000000f4270000227b00002e7c0000b48d000094910000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -464,7 +464,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 3}
     m_SearchString: 
   m_ExpandedScenes:
-  - Main
+  - Shop
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting

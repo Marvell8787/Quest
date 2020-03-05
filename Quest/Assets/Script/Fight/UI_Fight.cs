@@ -263,11 +263,11 @@ public class UI_Fight : MonoBehaviour {
                         ATK_A += 2;
                         break;
                     case 17:
-                        Text_ATK_A_Num.text = (card_temp[s].GetATK()).ToString();
+                        Text_ATK_A_Num.text += "+ "+(card_temp[s].GetATK()).ToString();
                         ATK_A += 3;
                         break;
                     case 18:
-                        Text_ATK_A_Num.text = (card_temp[s].GetATK()).ToString();
+                        Text_ATK_A_Num.text += "+ "+(card_temp[s].GetATK()).ToString();
                         ATK_A += 4;
                         break;
                     default:
@@ -289,11 +289,11 @@ public class UI_Fight : MonoBehaviour {
                     ATK_A += 2;
                     break;
                 case 17:
-                    Text_ATK_A_Num.text = (card_temp[n].GetATK()).ToString();
+                    Text_ATK_A_Num.text += "+ " + (card_temp[n].GetATK()).ToString();
                     ATK_A += 3;
                     break;
                 case 18:
-                    Text_ATK_A_Num.text = (card_temp[n].GetATK()).ToString();
+                    Text_ATK_A_Num.text += "+ " + (card_temp[n].GetATK()).ToString();
                     ATK_A += 4;
                     break;
                 default:

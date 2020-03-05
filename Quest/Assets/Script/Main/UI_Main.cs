@@ -36,11 +36,6 @@ public class UI_Main : MonoBehaviour {
             if (pwd != "")
             {
                 Message.text = "資料載入中";
-                Battle_Data.Battle_Init();
-                Card_Data.Card_Init();
-                Task_Data.Task_Init();
-                Level_Data.Level_Init();
-                Vocabulary_Data.Vocabulary_Init();
                 StartCoroutine(Login());
             }
             else
@@ -60,7 +55,12 @@ public class UI_Main : MonoBehaviour {
         if (ml.state == 1)
         {
             System_Data.Username = user;
+            Battle_Data.Battle_Init();
+            Card_Data.Card_Init();
+            Level_Data.Level_Init();
+            Task_Data.Task_Init();
             Vocabulary_Data.Vocabulary_Init();
+            Learner_Data.Learner_Init();
             SceneManager.LoadScene("Home");
         }
         else if (ml.state == 2)
