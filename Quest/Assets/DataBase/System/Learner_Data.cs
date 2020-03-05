@@ -18,10 +18,10 @@ static class Learner_Data{
     //Reward and Punishment
     private static int Score = 100; //分數
     private static int Score_Accumulation = 100; //分數高點
-    private static int Coin = 200; //金幣持有
-    private static int Coin_Accumulation = 200; //金幣高點
-    private static int Crystal = 10; //水晶
-    private static int Crystal_Accumulation = 10; //水晶高數
+    private static int Coin = 100; //金幣持有
+    private static int Coin_Accumulation = 100; //金幣高點
+    private static int Crystal = 100; //水晶
+    private static int Crystal_Accumulation = 100; //水晶高數
     //Reward
     //Badges
     private static int[] Badges_Status = new int[18] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
@@ -158,40 +158,50 @@ static class Learner_Data{
 
     private static void CheckBadges(string s)
     {
-        int _Task_Succes=0, _Learn_Succes=0, _Battle_Success = 0;
+        int _Task_Nums = 0, _Learn_Nums = 0, _Battle_Nums = 0;
+        int _Task_Success =0, _Learn_Success=0, _Battle_Success = 0;
         for (int i = 0; i < 7; i++)
-            _Task_Succes += Task_Success[i];
+        {
+            _Task_Nums += Task_Num[i];
+            _Task_Success += Task_Success[i];
+        }
         for (int i = 0; i < 5; i++)
-            _Learn_Succes += Learn_Success[i];
+        {
+            _Learn_Nums += Learn_Num[i];
+            _Learn_Success += Learn_Success[i];
+        }
         for (int i = 0; i < 2; i++)
+        {
+            _Battle_Nums += Battle_Num[i];
             _Battle_Success += Battle_Success[i];
+        }
         switch (s)
         {
             //Task
-            case "Task_Succes":
-                if (_Task_Succes > 2 && _Task_Succes < 5)
+            case "Task_Num":
+                if (_Task_Nums > 1  && _Task_Nums < 5)
                     Badges_Status[0] = 1;
-                else if (_Task_Succes > 4 && _Task_Succes < 8)
+                else if (_Task_Nums > 4 && _Task_Nums < 7)
                     Badges_Status[1] = 1;
-                else if (_Task_Succes > 7)
+                else if (_Task_Nums > 6)
                     Badges_Status[2] = 1;
                 break;
             //Learn
-            case "Learn_Succes":
-                if (_Learn_Succes > 4 && _Learn_Succes < 10)
+            case "Learn_Num":
+                if (_Learn_Nums > 4 && _Learn_Nums < 10)
                     Badges_Status[3] = 1;
-                else if (_Learn_Succes > 9 && _Learn_Succes < 20)
+                else if (_Learn_Nums > 9 && _Learn_Nums < 20)
                     Badges_Status[4] = 1;
-                else if (_Learn_Succes > 19)
+                else if (_Learn_Nums > 19)
                     Badges_Status[5] = 1;
                 break;
             //Battle
-            case "Battle_Win":
-                if (_Battle_Success > 2 && _Battle_Success < 5)
+            case "Battle_Num":
+                if (_Battle_Nums > 2 && _Battle_Nums < 5)
                     Badges_Status[6] = 1;
-                else if (_Battle_Success > 4 && _Battle_Success < 10)
+                else if (_Battle_Nums > 4 && _Battle_Nums < 10)
                     Badges_Status[7] = 1;
-                else if (_Battle_Success > 9)
+                else if (_Battle_Nums > 9)
                     Badges_Status[8] = 1;
                 break;
             //Score_Highest Crystal_Highest 是指定
