@@ -17,8 +17,8 @@ static class Card_Data{
     {
         for (int i = 0; i < 22; i++)
         {
-            Card_CType[i] = Card_Bank.E_Card_CType[i];
-            Card_Name[i] = Card_Bank.E_Card_Name[i];
+            Card_CType[i] = Card_Bank.Card_CType[i];
+            Card_Name[i] = Card_Bank.Card_Name[i];
             switch (i)
             {
                 //Fight

@@ -74,7 +74,7 @@ static class Learner_Data{
 
     }
 
-    public static void Learner_Add(string s,int p, int n=0) // s=想要加的東西 p=索引  n=數字(可+ -)   
+    public static void Learner_Add(string s,int p=0, int n=0) // s=想要加的東西 p=索引  n=數字(可+ -)   
     {
         switch (s)
         {
