@@ -32,6 +32,21 @@ public class UI_Home : MonoBehaviour {
         Save.onClick.AddListener(SaveData);
         NameContent_text.text = System_Data.Username;
 
+        switch (System_Data.Version)
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+            case 3:
+                HomeIcon[5].gameObject.SetActive(false);
+                HomeIcon[7].gameObject.SetActive(false);
+                break;
+            default:
+                break;
+        }
+
         #region Home PointerEnter
         AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPEnter, Enter_Task);
         AddEvents.AddTriggersListener(HomeIcon[1].gameObject, EPEnter, Enter_Learn);

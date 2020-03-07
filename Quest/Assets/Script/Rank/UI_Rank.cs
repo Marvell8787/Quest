@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UI_Rank : MonoBehaviour {
     Manager_Rank mr = new Manager_Rank();
     string choose_s;
+    public GameObject btn_obj;
     public Button Back_btn,Task_btn,Learn_btn,Battle_btn;
     public Text Info_text;
     public Text[] Rank_text = new Text[6];
@@ -24,6 +25,7 @@ public class UI_Rank : MonoBehaviour {
     void Task()
     {
         ok.Play();
+        btn_obj.SetActive(false);
         choose_s = "Task";
         Info_text.text = "資料載入中";
         StartCoroutine(Loading());
@@ -31,6 +33,7 @@ public class UI_Rank : MonoBehaviour {
     void Learn()
     {
         ok.Play();
+        btn_obj.SetActive(false);
         choose_s = "Learn";
         Info_text.text = "資料載入中";
         StartCoroutine(Loading());
@@ -38,6 +41,7 @@ public class UI_Rank : MonoBehaviour {
     void Battle()
     {
         ok.Play();
+        btn_obj.SetActive(false);
         choose_s = "Battle";
         Info_text.text = "資料載入中";
         StartCoroutine(Loading());
@@ -72,6 +76,7 @@ public class UI_Rank : MonoBehaviour {
         ID_text[5].text = mr.Learner[0, 1];
         Num_text[5].text = mr.Learner[0, 2];
         Info_text.text = "已顯示排名";
+        btn_obj.SetActive(true);
     }
     void Back()
     {

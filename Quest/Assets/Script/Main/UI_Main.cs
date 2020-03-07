@@ -61,7 +61,7 @@ public class UI_Main : MonoBehaviour {
             Task_Data.Task_Init();
             Vocabulary_Data.Vocabulary_Init();
             Learner_Data.Learner_Init();
-            SceneManager.LoadScene("Home");
+            SceneManager.LoadScene("Guide");
         }
         else if (ml.state == 2)
         {

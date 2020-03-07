@@ -55,7 +55,7 @@ static class Learner_Data{
             case 2:
                 Score = 500; Score_Accumulation = 500;
                 Coin = 500; Coin_Accumulation = 500;
-                Crystal = 100; Crystal_Accumulation = 500;
+                Crystal = 500; Crystal_Accumulation = 500;
                 Cards_GetStatus[0] = 15;Cards_GetStatus[1] = 4; Cards_GetStatus[2] = 3;
                 Cards_Num = 22;
                 for (int i = 0; i < 22; i++)
