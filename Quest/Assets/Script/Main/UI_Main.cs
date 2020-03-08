@@ -60,16 +60,17 @@ public class UI_Main : MonoBehaviour {
             Level_Data.Level_Init();
             Task_Data.Task_Init();
             Vocabulary_Data.Vocabulary_Init();
-            Learner_Data.Learner_Init();
+            StartCoroutine(ml.Loading("Learner_Load.php", user));
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Guide");
         }
         else if (ml.state == 2)
         {
-            Message.text = "帳號或密碼不正確，連線失敗";
+            Message.text = "帳號或密碼不正確";
         }
         else if (ml.state == 3)
         {
-            Message.text = "發生錯誤";
+            Message.text = "連線失敗";
         }
     }
         void Setting()
@@ -84,6 +85,11 @@ public class UI_Main : MonoBehaviour {
         cancel.Play();
         Main_obj.SetActive(true);
         Setting_obj.SetActive(false);
+    }
+    IEnumerator Loading()
+    {
+        StartCoroutine(ml.CheckLogin("Learner_Load.php", user, pwd));
+        yield return new WaitForSeconds(1f);
     }
     void VersionSelect(int index)
     {

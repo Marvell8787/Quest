@@ -58,7 +58,7 @@ public class UI_Guide : MonoBehaviour {
                 Info3_text.text = "";
                 break;
             case 3:
-                Info_text.text = "無";
+                Info_text.text = "1.卡牌共22張，分成三類，分別是前衛、中鋒及支援，前衛卡為攻擊力高但沒有效果的卡；中鋒卡為攻擊力低，但有能與前鋒卡的攻擊力做相加的效果；支援卡為沒有攻擊力，但有能恢復玩家在戰鬥中的生命值的效果。\n\n";
                 break;
             default:
                 break;

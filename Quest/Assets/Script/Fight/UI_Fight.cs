@@ -89,7 +89,7 @@ public class UI_Fight : MonoBehaviour {
     public Button Button_Next;
     public Text Text_Next;
 
-    public AudioSource ok, PageTurning;
+    public AudioSource ok, PageTurning,dmg,slash,ans,choose,end;
 
 
     // Use this for initialization
@@ -201,19 +201,21 @@ public class UI_Fight : MonoBehaviour {
             Question_Data.ChangeFeedBack("O", Question_Num);
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
             Text_ROW.text = "答對了！";
+            ans.Play();
         }
         else
         {
             Question_Data.ChangeFeedBack("X", Question_Num);
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
             Text_ROW.text = "答錯了！！";
-
+            dmg.Play();
             Player.ChangeLP(Player.GetLP() - 5);
             Text_LP_A_Num.text = Player.GetLP().ToString();
         }
 
         if (Player.GetLP() < 1)
         {
+            end.Play();
             Button_Next.gameObject.SetActive(true);
             Button_Next.interactable = true;
             Text_ROW.text = "由於生命值歸0，遊戲結束!";
@@ -239,7 +241,7 @@ public class UI_Fight : MonoBehaviour {
     void Summon()
     {
         int n;
-
+        ok.Play();
         Button_Summon.interactable = false;
 
         n = Player.GetHand_Status(HandChooseA);
@@ -316,6 +318,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void HA1(BaseEventData data)
     {
+        choose.Play();
         Reset();
         HandChooseA = 0;
         if (Player.GetHand_Status(0) < 22)
@@ -327,6 +330,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void HA2(BaseEventData data)
     {
+        choose.Play();
         Reset();
         HandChooseA = 1;
         if (Player.GetHand_Status(1) < 22)
@@ -338,6 +342,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void HA3(BaseEventData data)
     {
+        choose.Play();
         Reset();
         HandChooseA = 2;
         if (Player.GetHand_Status(2) < 22)
@@ -349,6 +354,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void HA4(BaseEventData data)
     {
+        choose.Play();
         Reset();
         HandChooseA = 3;
         if (Player.GetHand_Status(3) < 22)
@@ -360,6 +366,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void HA5(BaseEventData data)
     {
+        choose.Play();
         Reset();
         HandChooseA = 4;
         if (Player.GetHand_Status(4) < 22)
@@ -445,6 +452,7 @@ public class UI_Fight : MonoBehaviour {
     #region Battle BattlePhase Function
     void FIGHT()
     {
+        ok.Play();
         TypeChooseA = 0;
         HandChooseA = 0;
 
@@ -620,11 +628,13 @@ public class UI_Fight : MonoBehaviour {
         {
             Enemy.DecLP((aatk - batk));
             Text_Message.text += "\n" + "敵方 LP - " + (aatk - batk);
+            slash.Play();
         }
         else if (batk > aatk)
         {
             Player.DecLP((batk - aatk));
             Text_Message.text += "\n" + "我方 LP - " + (batk - aatk);
+            dmg.Play();
         }
         else
         {
@@ -635,6 +645,7 @@ public class UI_Fight : MonoBehaviour {
 
         if (Player.GetLP() < 1)
         {
+            end.Play();
             Text_Count.gameObject.SetActive(true);
             Text_Next.text = "結算";
             Text_Message.text += "\n" + "遊戲結束";
@@ -643,6 +654,7 @@ public class UI_Fight : MonoBehaviour {
         }
         else if (Enemy.GetLP() < 1)
         {
+            end.Play();
             Text_Count.gameObject.SetActive(true);
             Text_Next.text = "結算";
             Text_Message.text += "\n" + "遊戲結束";
@@ -651,6 +663,7 @@ public class UI_Fight : MonoBehaviour {
         }
         else if (Question_Num == Question_total)
         {
+            end.Play();
             if (Player.GetLP() >= Enemy.GetLP())
             {
                 Text_Count.gameObject.SetActive(true);
@@ -670,6 +683,7 @@ public class UI_Fight : MonoBehaviour {
         }
         else if (Player.GetDeck_Num() == 0)
         {
+            end.Play();
             Text_Count.gameObject.SetActive(true);
             Text_Next.text = "結算";
             Text_Message.text += "\n" + "我方牌組已抽完！遊戲結束";
@@ -678,6 +692,7 @@ public class UI_Fight : MonoBehaviour {
         }
         else if (Enemy.GetDeck_Num() == 0)
         {
+            end.Play();
             Text_Count.gameObject.SetActive(true);
             Text_Next.text = "結算";
             Text_Message.text += "\n" + "敵方牌組已抽完！遊戲結束";
@@ -830,7 +845,7 @@ public class UI_Fight : MonoBehaviour {
             Flag.text = "任務成功";
             Mechanism_Data.Reward("Task", 5 + hard);
             Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
-            Learner_Data.Learner_Add("Task_Succes",5+hard, 1);
+            Learner_Data.Learner_Add("Task_Success",5+hard, 1);
             Learner_Data.Learner_Add("Task_Num", 5+hard, 1);
         }
         else if (Task == 0 && n == 0)
@@ -849,7 +864,7 @@ public class UI_Fight : MonoBehaviour {
             Flag.text = "戰鬥勝利";
             Mechanism_Data.Reward("Battle", hard);
             Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
-            Learner_Data.Learner_Add("Battle_Success", 1);
+            Learner_Data.Learner_Add("Battle_Success", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
 
         }

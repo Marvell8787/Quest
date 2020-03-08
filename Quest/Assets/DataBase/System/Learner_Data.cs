@@ -44,34 +44,34 @@ static class Learner_Data{
 
     private static string Learner_Behaviors = "";
 
-    public static void Learner_Init()
+    public static void Learner_SetData(string s, int p = 0, int n = 0) // s=想要加的東西 p=索引  n=數字(可+ -) 指定資料   
     {
-        switch (System_Data.Version)
+        switch (s)
         {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                Score = 500; Score_Accumulation = 500;
-                Coin = 500; Coin_Accumulation = 500;
-                Crystal = 500; Crystal_Accumulation = 500;
-                Cards_GetStatus[0] = 15;Cards_GetStatus[1] = 4; Cards_GetStatus[2] = 3;
-                Cards_Num = 22;
-                for (int i = 0; i < 22; i++)
-                    Card_Status[i] = 1;
-                break;
-            case 3:
-                Cards_GetStatus[0] = 15; Cards_GetStatus[1] = 4; Cards_GetStatus[2] = 3;
-                Cards_Num = 22;
-                for (int i = 0; i < 22; i++)
-                    Card_Status[i] = 1;
-                break;
-            default:
-                break;
+            case "Task_Num": Task_Num[p] += n; break;
+            case "Task_Success": Task_Success[p] += n; break;
+            case "Task_Fail": Task_Fail[p] += n; break;
+            case "Learn_Num": Learn_Num[p] += n; break;
+            case "Learn_Success": Learn_Success[p] += n; break;
+            case "Learn_Fail": Learn_Fail[p] += n; break;
+            case "Battle_Num": Battle_Num[p] += n; break;
+            case "Battle_Success": Battle_Success[p] += n; break;
+            case "Battle_Fail": Battle_Fail[p] += n; break;
+            //Reward and Punishment
+            case "Score": Score += n; break;
+            case "Score_Accumulation": Score_Accumulation += n; break;
+            case "Coin": Coin += n; break;
+            case "Coin_Accumulation": Coin_Accumulation += n; break;
+            case "Crystal": Crystal += n; break;
+            case "Crystal_Accumulation": Crystal_Accumulation += n; break;
+            //Reward
+            case "Badges_Num": Badges_Num += n; break;
+            case "Card_Num": Cards_Num += n; break;
+            //Punishment
+            case "Points_Num": Points_Num += n; break;
+            case "Mistakes_Num": Mistakes_Num += n; break;
+            default: break;
         }
-
-
     }
 
     public static void Learner_Add(string s,int p=0, int n=0) // s=想要加的東西 p=索引  n=數字(可+ -)   
@@ -102,7 +102,7 @@ static class Learner_Data{
             case "Mistakes_Num": Mistakes_Num += n; break;
             default: break;
         }
-
+        CheckBadges(s);
     }
 
     public static int Learner_GetData(string s, int p=0) // s=想要讀取的東西    
@@ -156,6 +156,10 @@ static class Learner_Data{
     public static void Learner_ChangeCardsGet_Status(int n) //Cards
     {
         Cards_GetStatus[n] += 1;
+    }
+    public static void Learner_SetCardsGet_Status(int p,int n) //Cards
+    {
+        Cards_GetStatus[p] = n;
     }
 
     public static int Learner_GetCard_Status(int n)
@@ -263,7 +267,10 @@ static class Learner_Data{
                 break;
         }
     }
-    
+    public static void Learner_SetPoints_Status(int p,int n) //Points
+    {
+        Points_Status[p] = n;
+    }
     public static int Learner_GetPoints_Status(int n)
     {
         return Points_Status[n];
@@ -278,20 +285,20 @@ static class Learner_Data{
 
         CheckPoints("Points_Num",n);
     }
-    private static void CheckPoints(string s ,int n)
+    private static void CheckPoints(string s ,int n) 
     {
         switch (s)
         {
             case "Points_Num":
-                if (Points_Status[0] == 0)
+                if (n==0 && Points_Status[0] == 0)
                 {
                     Score /= 2;
                 }
-                else if (Points_Status[1] == 0)
+                else if (n == 1 && Points_Status[1] == 0)
                 {
                     Coin /= 2;
                 }
-                else if (Points_Status[2] == 0)
+                else if (n == 2 && Points_Status[2] == 0)
                 {
                     Crystal /= 2;
                 }
@@ -301,6 +308,10 @@ static class Learner_Data{
         }
     }
     //Mistakes
+    public static void Learner_SetMistakes_Status(int p ,int n) //Mistakes
+    {
+        Mistakes_Status[p] = n;
+    }
     public static int Learner_GetMistakes_Status(int n)
     {
         return Mistakes_Status[n];
@@ -309,9 +320,9 @@ static class Learner_Data{
     {
         Mistakes_Status[n] += 1;
         Mistakes_Num++;
-        CheckMistakes("Mistakes_Num");
+        CheckMistakes("Mistakes_Num",n);
     }
-    private static void CheckMistakes(string s)
+    private static void CheckMistakes(string s,int n)
     {
         switch (s)
         {
@@ -319,10 +330,12 @@ static class Learner_Data{
                 if ((Mistakes_Status[0] % 3) == 0 && Mistakes_Status[0] > 0)
                 {
                     Mistakes_Status[1] += 1;
+                    Mistakes_Status[0] %= 3;
                 }
                 if ((Mistakes_Status[1] % 3) == 0 && Mistakes_Status[1] > 0)
                 {
                     Mistakes_Status[2] += 1;
+                    Mistakes_Status[1] %= 3;
                 }
                 if (Mistakes_Status[2] > 0)
                 {
