@@ -55,13 +55,13 @@ public class UI_Main : MonoBehaviour {
         if (ml.state == 1)
         {
             System_Data.Username = user;
+            StartCoroutine(ml.Loading("Learner_Load.php", user));
+            yield return new WaitForSeconds(1f);
             Battle_Data.Battle_Init();
             Card_Data.Card_Init();
             Level_Data.Level_Init();
             Task_Data.Task_Init();
             Vocabulary_Data.Vocabulary_Init();
-            StartCoroutine(ml.Loading("Learner_Load.php", user));
-            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene("Guide");
         }
         else if (ml.state == 2)
@@ -93,6 +93,7 @@ public class UI_Main : MonoBehaviour {
     }
     void VersionSelect(int index)
     {
+        /*
         switch (index)
         {
             case 0:
@@ -109,7 +110,7 @@ public class UI_Main : MonoBehaviour {
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
 }

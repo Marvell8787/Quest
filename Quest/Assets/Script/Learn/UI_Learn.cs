@@ -121,7 +121,15 @@ public class UI_Learn : MonoBehaviour {
     }
     void Practice(){
         ok.Play();
-        Question_Data.Question_Init(choose_n,1,8,5);
+        switch (choose_n)
+        {
+            case 3:
+                Question_Data.Question_Init(choose_n, 1, 10, 5);
+                break;
+            default:
+                Question_Data.Question_Init(choose_n, 1, 8, 5);
+                break;
+        }
         SceneManager.LoadScene("Level");
     }
     #endregion

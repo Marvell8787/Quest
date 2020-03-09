@@ -12,6 +12,7 @@ public class UI_Fight : MonoBehaviour {
     private Player_Class Player = new Player_Class();
     private Player_Class Enemy = new Player_Class();
     //QurestionPhase
+    private int loseflag = 0;
     private int Question_Num = 0;
     private int Question_total = 10;
     private string choose_Ans = "";
@@ -113,6 +114,7 @@ public class UI_Fight : MonoBehaviour {
         Button_Ans[0].onClick.AddListener(Choose_A);
         Button_Ans[1].onClick.AddListener(Choose_B);
         Button_Ans[2].onClick.AddListener(Choose_C);
+        Button_Surrender.onClick.AddListener(Surrender);
 
         //MainPhase
         for (int i = 0; i < 22; i++)
@@ -237,6 +239,21 @@ public class UI_Fight : MonoBehaviour {
         Button_Surrender.interactable = true;
         Text_Message.text = "請出牌！";
         ShowHand(0);
+    }
+    void Surrender()
+    {
+        end.Play();
+        Button_Fight.interactable = false;
+        Button_Summon.interactable = false;
+        Button_Surrender.interactable = false;
+        Text_Count.gameObject.SetActive(true);
+        Text_Next.text = "結算";
+        Text_Message.text += "\n" + "遊戲結束";
+        Text_Count.text = "敵方勝利！";
+        Text_Count.color = new Color32(255, 0, 0, 255);
+        Button_Next.gameObject.SetActive(true);
+        Button_Next.interactable = true;
+        loseflag = 1; //舉白旗
     }
     void Summon()
     {
@@ -452,7 +469,6 @@ public class UI_Fight : MonoBehaviour {
     #region Battle BattlePhase Function
     void FIGHT()
     {
-        ok.Play();
         TypeChooseA = 0;
         HandChooseA = 0;
 
@@ -728,39 +744,38 @@ public class UI_Fight : MonoBehaviour {
     #region Battle EndPhase Function
     void NEXT()
     {
+        ok.Play();
         Button_Next.gameObject.SetActive(false);
         ui_Question.SetActive(false);
         //先判斷遊戲是否結束 是:進入結算畫面 否:重整盤面 抽牌  進入QP
-        if (Player.GetLP() < 1)
+        if(loseflag == 1)
         {
-            Learner_Data.Learner_Add("Battle_Lose", 1);
+            Settlement(0);
+        }
+        else if (Player.GetLP() < 1)
+        {
             Settlement(0);
         }
         else if (Enemy.GetLP() < 1)
         {
-            Learner_Data.Learner_Add("Battle_Win", 1);
             Settlement(1);
         }
         else if (Player.GetDeck_Num() == 0)
         {
-            Learner_Data.Learner_Add("Battle_Lose", 1);
             Settlement(0);
         }
         else if (Enemy.GetDeck_Num() == 0)
         {
-            Learner_Data.Learner_Add("Battle_Win", 1);
             Settlement(1);
         }
         else if (Question_Num == Question_total)
         {
             if (Player.GetLP() >= Enemy.GetLP())
             {
-                Learner_Data.Learner_Add("Battle_Win", 1);
                 Settlement(1);
             }
             else
             {
-                Learner_Data.Learner_Add("Battle_Lose", 1);
                 Settlement(0);
             }
         }

@@ -40,8 +40,8 @@ public class UI_Profile : MonoBehaviour {
     void Start () {
         Button_Status_Left.onClick.AddListener(Status_PageDown);
         Button_Status_Right.onClick.AddListener(Status_PageUp);
-        Button_Item_Left.onClick.AddListener(Item_PageDown);
-        Button_Item_Right.onClick.AddListener(Item_PageUp);
+        Button_Item_Left.onClick.AddListener(Left);
+        Button_Item_Right.onClick.AddListener(Right);
         Back_btn.onClick.AddListener(Back);
 
         StatusShowContent(1);
@@ -67,6 +67,24 @@ public class UI_Profile : MonoBehaviour {
         Text_YCContent.text = Learner_Data.Learner_GetMistakes_Status(1).ToString();
         Text_RCContent.text = Learner_Data.Learner_GetMistakes_Status(2).ToString();
         #endregion
+
+        switch (System_Data.Version)
+        {
+            case 0:
+                Text_Item_PageDown.text = "3";
+                break;
+            case 1:
+                Text_Item_PageDown.text = "2";
+                break;
+            case 2:
+                Text_Item_PageDown.text = "2";
+                break;
+            case 3:
+                Text_Item_PageDown.text = "1";
+                break;
+            default:
+                break;
+        }
     }
     #region Status Function
     void Status_PageUp()
@@ -140,20 +158,57 @@ public class UI_Profile : MonoBehaviour {
     }
     #endregion
     #region Item Function
-    void Item_PageUp()
+    void Right()
     {
         PageTurnning.Play();
         Item_Page++;
-        if (Item_Page == 4)
-            Item_Page = 1;
+        switch (System_Data.Version)
+        {
+            case 0:
+                if (Item_Page == 4)
+                    Item_Page = 1;
+                break;
+            case 1:
+                if (Item_Page == 3)
+                    Item_Page = 1;
+                break;
+            case 2:
+                if (Item_Page == 3)
+                    Item_Page = 1;
+                break;
+            case 3:
+                    Item_Page = 1;
+                break;
+            default:
+                break;
+        }
         ItemShowContent(Item_Page);
     }
-    void Item_PageDown()
+    void Left()
     {
         PageTurnning.Play();
         Item_Page--;
-        if (Item_Page == 0)
-            Item_Page = 3;
+        switch (System_Data.Version)
+        {
+            case 0:
+                if (Item_Page == 0)
+                    Item_Page = 3;
+                break;
+            case 1:
+                if (Item_Page == 0)
+                    Item_Page = 2;
+                break;
+            case 2:
+                if (Item_Page == 0)
+                    Item_Page = 2;
+                break;
+            case 3:
+                Item_Page = 1;
+                break;
+            default:
+                break;
+        }
+
         ItemShowContent(Item_Page);
     }
     void ItemShowContent(int n)
@@ -167,9 +222,23 @@ public class UI_Profile : MonoBehaviour {
                 ui_W.SetActive(false);
                 break;
             case 2:
-                ui_RW.SetActive(false);
-                ui_R.SetActive(true);
-                ui_W.SetActive(false);
+                switch (System_Data.Version)
+                {
+                    case 0:
+                    case 1:
+                        ui_RW.SetActive(false);
+                        ui_R.SetActive(true);
+                        ui_W.SetActive(false);
+                        break;
+                    case 2:
+                        ui_RW.SetActive(false);
+                        ui_R.SetActive(false);
+                        ui_W.SetActive(true);
+                        break;
+                    default:
+                        break;
+                }
+
                 break;
             case 3:
                 ui_RW.SetActive(false);

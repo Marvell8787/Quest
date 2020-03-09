@@ -10,9 +10,11 @@ public class UI_Material : MonoBehaviour {
     #endregion
 
     #region Material
+    public GameObject Vocabulary_obj,Phonics_obj,Setence_obj,Daily_obj;
     public Button Back_btn,Voice_btn;
-    public Button[] Vocabular_Btn = new Button[8];
-    public Text[] VocabularBtn_text = new Text[8];
+    public Image Vocabulary_img;
+    public Button[] Vocabular_Btn = new Button[11];
+    public Text[] VocabularBtn_text = new Text[11];
     public Text Num_text, E_Name_text, C_Name_text, PartOfSpeech_text, Sentence_text, Info_text;
     public Button[] Direction = new Button[2]; //left right
     public AudioSource[] voice = new AudioSource[Vocabulary_Bank.Vocabulary_Num];
@@ -39,13 +41,19 @@ public class UI_Material : MonoBehaviour {
         Vocabular_Btn[6].onClick.AddListener(Button_7);
         Vocabular_Btn[7].onClick.AddListener(Button_8);
 
-        for(int i = 0; i < 8; i++)
+        Vocabular_Btn[8].onClick.AddListener(Button_9);
+        Vocabular_Btn[9].onClick.AddListener(Button_10);
+        Vocabular_Btn[10].onClick.AddListener(Button_11);
+
+        for (int i = 0; i < 8; i++)
         {
             Vocabulary_Class vocabulary_temp = new Vocabulary_Class();
             vocabulary_temp = Vocabulary_Data.Vocabulary_Get(i);
             VocabularBtn_text[i].text = vocabulary_temp.GetE_Name();
         }
-
+        VocabularBtn_text[8].text = "字母拼讀";
+        VocabularBtn_text[9].text = "句型";
+        VocabularBtn_text[10].text = "日常用語";
         ShowContent(No);
     }
 
@@ -53,10 +61,9 @@ public class UI_Material : MonoBehaviour {
     void Right()
     {
         PageTurning.Play();
-        if (No > 6)
+        if (No > 9)
         {
             No = 0;
-
         }
         else
         {
@@ -69,7 +76,7 @@ public class UI_Material : MonoBehaviour {
         PageTurning.Play();
         if (No < 1)
         {
-            No = 7;
+            No = 10;
         }
         else
         {
@@ -79,7 +86,8 @@ public class UI_Material : MonoBehaviour {
     }
     void Play()
     {
-        voice[No].Play();
+        if(No<8)
+            voice[No].Play();
     }
     #endregion
 
@@ -124,18 +132,61 @@ public class UI_Material : MonoBehaviour {
         No = 7;
         ShowContent(No);
     }
+    void Button_9()
+    {
+        No = 8;
+        ShowContent(No);
+    }
+    void Button_10()
+    {
+        No = 9;
+        ShowContent(No);
+    }
+    void Button_11()
+    {
+        No = 10;
+        ShowContent(No);
+    }
     #endregion
 
     void ShowContent(int n)
     {
-        Vocabulary_Class vocabulary_temp = new Vocabulary_Class();
-        vocabulary_temp = Vocabulary_Data.Vocabulary_Get(n);
-
-        Num_text.text = (n + 1).ToString() + ".";
-        E_Name_text.text = vocabulary_temp.GetE_Name();
-        C_Name_text.text = vocabulary_temp.GetC_Name();
-        PartOfSpeech_text.text = vocabulary_temp.GetPartOfSpeech();
-        Sentence_text.text = vocabulary_temp.GetSentence();
+        if (n < 8)
+        {
+            Vocabulary_obj.SetActive(true);
+            Phonics_obj.SetActive(false);
+            Setence_obj.SetActive(false);
+            Daily_obj.SetActive(false);
+            Vocabulary_Class vocabulary_temp = new Vocabulary_Class();
+            vocabulary_temp = Vocabulary_Data.Vocabulary_Get(n);
+            Vocabulary_img.sprite = Resources.Load("Image/Vocabulary_Img/"+ vocabulary_temp.GetE_Name(), typeof(Sprite)) as Sprite;
+            Num_text.text = (n + 1).ToString() + ".";
+            E_Name_text.text = vocabulary_temp.GetE_Name();
+            C_Name_text.text = vocabulary_temp.GetC_Name();
+            PartOfSpeech_text.text = vocabulary_temp.GetPartOfSpeech();
+            Sentence_text.text = vocabulary_temp.GetSentence();
+        }
+        else if (n == 8)
+        {
+            Vocabulary_obj.SetActive(false);
+            Phonics_obj.SetActive(true);
+            Setence_obj.SetActive(false);
+            Daily_obj.SetActive(false);
+        }
+        else if (n == 9)
+        {
+            Vocabulary_obj.SetActive(false);
+            Phonics_obj.SetActive(false);
+            Setence_obj.SetActive(true);
+            Daily_obj.SetActive(false);
+        }
+        else if (n == 10)
+        {
+            Vocabulary_obj.SetActive(false);
+            Phonics_obj.SetActive(false);
+            Setence_obj.SetActive(false);
+            Daily_obj.SetActive(true);
+        }
     }
     void Back()
     {

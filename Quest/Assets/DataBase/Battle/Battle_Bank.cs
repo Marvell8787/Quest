@@ -6,7 +6,7 @@ static class Battle_Bank{
 
     public static string[] C_Battle_Title = new string[2] { "Battle-1", "Battle-2" };
     public static string[] C_Battle_QuestionType = new string[2] { "字彙單選題", "對話單選題"};
-    public static string[] C_Battle_Range = new string[2] { "1-8", "1-8"};
+    public static string[] C_Battle_Range = new string[2] { "字彙1-8", "字彙1-8、句型、日常用語"};
 
     public static string[] Battle_Time = new string[2] { "5", "5"};
     public static string[] Battle_LP = new string[2] { "15", "20" };

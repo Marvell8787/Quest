@@ -14,7 +14,7 @@ public class UI_Badges : MonoBehaviour {
 
     #region Home
     public GameObject Home_obj, Name_obj;
-    public AudioSource ok, cancel, PageTurning;
+    public AudioSource ok, cancel, PageTurning,choose;
     public Text Info_text;
     #endregion
 
@@ -25,6 +25,7 @@ public class UI_Badges : MonoBehaviour {
     public Text[] Item_text = new Text[3];
     public Text PageUp_text;
     #endregion
+
 
     // Use this for initialization
     void Start () {
@@ -107,6 +108,7 @@ public class UI_Badges : MonoBehaviour {
     #region Badges Image
     void Badges_Output(int n)
     {
+        choose.Play();
         Info_text.text = Badges_Bank.Badges_Description[n];
     }
     void Badges_0()

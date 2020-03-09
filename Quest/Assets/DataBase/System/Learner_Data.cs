@@ -48,28 +48,28 @@ static class Learner_Data{
     {
         switch (s)
         {
-            case "Task_Num": Task_Num[p] += n; break;
-            case "Task_Success": Task_Success[p] += n; break;
-            case "Task_Fail": Task_Fail[p] += n; break;
-            case "Learn_Num": Learn_Num[p] += n; break;
-            case "Learn_Success": Learn_Success[p] += n; break;
-            case "Learn_Fail": Learn_Fail[p] += n; break;
-            case "Battle_Num": Battle_Num[p] += n; break;
-            case "Battle_Success": Battle_Success[p] += n; break;
-            case "Battle_Fail": Battle_Fail[p] += n; break;
+            case "Task_Num": Task_Num[p] = n; break;
+            case "Task_Success": Task_Success[p] = n; break;
+            case "Task_Fail": Task_Fail[p] = n; break;
+            case "Learn_Num": Learn_Num[p] = n; break;
+            case "Learn_Success": Learn_Success[p] = n; break;
+            case "Learn_Fail": Learn_Fail[p] = n; break;
+            case "Battle_Num": Battle_Num[p] = n; break;
+            case "Battle_Success": Battle_Success[p] = n; break;
+            case "Battle_Fail": Battle_Fail[p] = n; break;
             //Reward and Punishment
-            case "Score": Score += n; break;
-            case "Score_Accumulation": Score_Accumulation += n; break;
-            case "Coin": Coin += n; break;
-            case "Coin_Accumulation": Coin_Accumulation += n; break;
-            case "Crystal": Crystal += n; break;
-            case "Crystal_Accumulation": Crystal_Accumulation += n; break;
+            case "Score": Score = n; break;
+            case "Score_Accumulation": Score_Accumulation = n; break;
+            case "Coin": Coin = n; break;
+            case "Coin_Accumulation": Coin_Accumulation = n; break;
+            case "Crystal": Crystal = n; break;
+            case "Crystal_Accumulation": Crystal_Accumulation = n; break;
             //Reward
-            case "Badges_Num": Badges_Num += n; break;
-            case "Card_Num": Cards_Num += n; break;
+            case "Badges_Num": Badges_Num = n; break;
+            case "Card_Num": Cards_Num = n; break;
             //Punishment
-            case "Points_Num": Points_Num += n; break;
-            case "Mistakes_Num": Mistakes_Num += n; break;
+            case "Points_Num": Points_Num = n; break;
+            case "Mistakes_Num": Mistakes_Num = n; break;
             default: break;
         }
     }

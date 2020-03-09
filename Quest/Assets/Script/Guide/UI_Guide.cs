@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 public class UI_Guide : MonoBehaviour {
 
     private int Page = 1; //1 2 3
+    public GameObject Image_obj,R_obj,W_obj;
     public Text Info_text, Info2_text, Info3_text, PageUp_text, PageDown_text;
-    public Button[] G_btn = new Button[4];
+    public Button[] G_btn = new Button[5];
     public Button Back_btn,Left_btn,Right_btn;
     public AudioSource ok, PageTurnning;
 
     // Use this for initialization
     void Start () {
+        Image_obj.SetActive(false);
         G_btn[0].onClick.AddListener(Task);
         G_btn[1].onClick.AddListener(Learn);
         G_btn[2].onClick.AddListener(Battle);
         G_btn[3].onClick.AddListener(Item);
+        G_btn[4].onClick.AddListener(Image);
         Back_btn.onClick.AddListener(Back);
         Left_btn.onClick.AddListener(Left);
         Right_btn.onClick.AddListener(Right);
@@ -24,6 +27,7 @@ public class UI_Guide : MonoBehaviour {
     }
     void Item()
     {
+        Image_obj.SetActive(false);
         PageTurnning.Play();
         Info_text.text = "1.遊戲中的道具共七個，分別為分數、金幣、水晶、卡牌、獎章、點數及失誤。\n\n"
             + "2.可至\"狀態\"查看自己持有的道具狀態。\n\n"
@@ -36,6 +40,7 @@ public class UI_Guide : MonoBehaviour {
     }
     void Item2()
     {
+        Image_obj.SetActive(false);
         PageTurnning.Play();
         switch (System_Data.Version)
         {
@@ -59,6 +64,8 @@ public class UI_Guide : MonoBehaviour {
                 break;
             case 3:
                 Info_text.text = "1.卡牌共22張，分成三類，分別是前衛、中鋒及支援，前衛卡為攻擊力高但沒有效果的卡；中鋒卡為攻擊力低，但有能與前鋒卡的攻擊力做相加的效果；支援卡為沒有攻擊力，但有能恢復玩家在戰鬥中的生命值的效果。\n\n";
+                Info2_text.text = "";
+                Info3_text.text = "";
                 break;
             default:
                 break;
@@ -70,6 +77,7 @@ public class UI_Guide : MonoBehaviour {
     }
     void Task()
     {
+        Image_obj.SetActive(false);
         PageTurnning.Play();
         Info_text.text = "1.任務一共有七項，分別為五項學習任務及兩項戰鬥任務，每項任務僅能進行一次。\n\n"
             + "2.英語學習的任務內容為在任務指定的某學習關卡中需取得任務要求的分數才算成功，否則算失敗，題型與對應學習關卡的設定相同。\n\n"
@@ -83,6 +91,7 @@ public class UI_Guide : MonoBehaviour {
     }
     void Learn()
     {
+        Image_obj.SetActive(false);
         PageTurnning.Play();
         Info_text.text = "1.分為教材和關卡。教材為遊戲中的學習內容，包含單字、中文意思及例句，可透過上方的按鈕及下方的箭頭圖示來切換單字。\n\n"
             + "2.關卡為測驗，共五關，需在關卡中取得60以上的分數才算成功，否則算失敗。\n";
@@ -96,6 +105,7 @@ public class UI_Guide : MonoBehaviour {
     }
     void Battle()
     {
+        Image_obj.SetActive(false);
         PageTurnning.Play();
         Info_text.text = "1.卡牌戰鬥為以持有的卡牌數量(可至\"牌組\"查看擁有的卡牌)與電腦進行對戰，玩家一開始擁有20點生命值及五張手牌。\n\n"
             + "2.生命值為卡牌戰鬥中，雙方需保護的項目，當某方生命值被扣除至零點以下時，則判定該方輸。\n\n"
@@ -109,12 +119,37 @@ public class UI_Guide : MonoBehaviour {
         PageDown_text.text = "10";
         Page = 9;
     }
-
+    void Image()
+    {
+        Image_obj.SetActive(true);
+        switch (System_Data.Version)
+        {
+            case 0:
+                break;
+            case 1:
+                W_obj.SetActive(false);
+                break;
+            case 2:
+                R_obj.SetActive(false);
+                break;
+            case 3:
+                R_obj.SetActive(false);
+                W_obj.SetActive(false);
+                break;
+        }
+        PageTurnning.Play();
+        Info_text.text = "";
+        Info2_text.text = "";
+        Info3_text.text = "";
+        PageUp_text.text = "11";
+        PageDown_text.text = "12";
+        Page = 11;
+    }
     #region Item Function
     void Right()
     {
         Page+=2;
-        if (Page == 11)
+        if (Page == 13)
             Page = 1;
         ShowContent(Page);
     }
@@ -122,7 +157,7 @@ public class UI_Guide : MonoBehaviour {
     {
         Page-=2;
         if (Page == -1)
-            Page = 9;
+            Page = 11;
         ShowContent(Page);
     }
     void ShowContent(int n)
@@ -145,6 +180,9 @@ public class UI_Guide : MonoBehaviour {
                 break;
             case 9:
                 Battle();
+                break;
+            case 11:
+                Image();
                 break;
             default:
                 break;

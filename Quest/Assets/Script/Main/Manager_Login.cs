@@ -52,6 +52,26 @@ public class Manager_Login{
             int n = 0;
             if (str != "")
             {
+                s = GetDataValue(str, "Learner_Code:");
+                Debug.Log(s);
+                switch (s)
+                { 
+                    case "A503":
+                        System_Data.Version = 0;
+                        Debug.Log(System_Data.Version);
+                        break;
+                    case "B506":
+                        System_Data.Version = 1;
+                        break;
+                    case "C507":
+                        System_Data.Version = 2;
+                        break;
+                    case "D505":
+                        System_Data.Version = 3;
+                        break;
+                    default:
+                        break;
+                }
                 for (int i = 0; i < 7; i++)
                 {
                     n = int.Parse(GetDataValue(str, "Learner_Task" + (i + 1) + "_Num:"));
@@ -133,7 +153,7 @@ public class Manager_Login{
             }
         }
         #endregion
-       #region  Points
+        #region  Points
         WWWForm PointsForm = new WWWForm();
         PointsForm.AddField("Username", user);
         WWW pointreg = new WWW(serverlink + "Learner_PointLoad.php", PointsForm);

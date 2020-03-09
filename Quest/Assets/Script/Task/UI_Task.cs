@@ -31,6 +31,7 @@ public class UI_Task : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        
         Score_text.text = Learner_Data.Learner_GetData("Score").ToString();
         Back_btn.onClick.AddListener(Back);
         Take_btn.onClick.AddListener(Take);

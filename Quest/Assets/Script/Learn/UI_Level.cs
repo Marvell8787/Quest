@@ -30,7 +30,7 @@ public class UI_Level : MonoBehaviour {
     public Button Question_btn;
     public AudioSource[] Voice= new AudioSource[8]; //breakfast
     public AudioSource[] QuestionVoice = new AudioSource[6]; //breakfast
-    public AudioSource ans,wro,end; //breakfast
+    public AudioSource ans,wro,end,ok; //breakfast
 
     #endregion
 
@@ -376,6 +376,8 @@ public class UI_Level : MonoBehaviour {
     {
         if (Level == 0)
             Play();
+        else if(Level == 4)
+            Spell_Play();
         else if (Level == 1)
             Q_Play();
     }
@@ -389,6 +391,45 @@ public class UI_Level : MonoBehaviour {
         question_temp[Question_Num].GetQuestion();
 
         switch (question_temp[Question_Num].GetQuestion())
+        {
+            case "breakfast":
+                Voice[0].Play();
+                break;
+            case "lunch":
+                Voice[1].Play();
+                break;
+            case "dinner":
+                Voice[2].Play();
+                break;
+            case "a hamburger":
+                Voice[3].Play();
+                break;
+            case "noodles":
+                Voice[4].Play();
+                break;
+            case "rice":
+                Voice[5].Play();
+                break;
+            case "salad":
+                Voice[6].Play();
+                break;
+            case "soup":
+                Voice[7].Play();
+                break;
+            default:
+                break;
+        }
+    }
+    void Spell_Play()
+    {
+        Question_Class[] question_temp = new Question_Class[Question_total];
+        for (int i = 0; i < Question_total; i++)
+        {
+            question_temp[i] = Question_Data.Question_Get(i);
+        }
+        question_temp[Question_Num].GetQuestion();
+
+        switch (question_temp[Question_Num].GetAnswer_r_Content())
         {
             case "breakfast":
                 Voice[0].Play();
@@ -453,6 +494,7 @@ public class UI_Level : MonoBehaviour {
     }
     void Back()
     {
+        ok.Play();
         SceneManager.LoadScene("Home");
     }
 }
