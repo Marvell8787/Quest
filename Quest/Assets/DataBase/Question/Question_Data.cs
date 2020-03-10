@@ -14,11 +14,14 @@ static class Question_Data{
     private static string[,] BtnAns_Level24 = new string[6, 3];
     private static string[,] Question_BtnAns_Level24 = new string[5, 3];
 
+    private static string[,] BtnAns_Level4 = new string[10, 3];//10題
+    private static string[,] Question_BtnAns_Level4 = new string[5, 3];//題庫抽5題 每一題帶2個錯誤答案及1個答案
+
+    private static string[,] BtnAns_Level5 = new string[4, 3]; //題庫為2 每個題庫帶4個答案 原本5 但第1個是題目不能用
+    private static string[,] Question_BtnAns_Level5 = new string[4, 3]; //4題 每題有3個答案可以選
+
     private static string[,] BtnAns_Battle = new string[8, 3];
     private static string[,] Question_BtnAns_Battle = new string[5, 3];
-
-    private static string[,] BtnAns_Level4 = new string[10, 3];
-    private static string[,] Question_BtnAns_Level4 = new string[5, 3];
 
     private static Question_Class[] question_temp = new Question_Class[8];
     private static Vocabulary_Class[] vocabulary_temp = new Vocabulary_Class[8];
@@ -26,16 +29,21 @@ static class Question_Data{
     private static int Level;
     private static int Task;
     private static int Qtotal;
+    //for reading 
+    private static string paper = "";
+    private static int randtopaper = 0; //亂數選文章
 
     public static void Question_Init(int _Level,int n1,int n2,int n3,int _Task=0) //題型 第n1題到第n2題 共n3題 是否有任務
     {
         Random.InitState(System.Guid.NewGuid().GetHashCode());
+        paper = "";
         Level = _Level;
         Task = _Task;
         for (int i = 0; i < Vocabulary_Bank.Vocabulary_Num; i++)
         {
             vocabulary_temp[i] = Vocabulary_Data.Vocabulary_Get(i);
         }
+        //設定題庫已先定義好的ABC所擁有的答案
         switch (_Level)
         {
             case 1:
@@ -57,6 +65,19 @@ static class Question_Data{
                     }
                 }
                 Question_Set(_Level, 1, Question_Bank.Question_Level4_Num, n3);
+                break;
+            case 4://閱讀理解
+                randtopaper = Random.Range(0, Question_Bank.Question_Level5_Num);
+                
+                for (int i = 0; i < Question_Bank.Question_Level5_QuestionNum; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        BtnAns_Level5[i, j] = Question_Bank.Question_Level5_BtnAns[randtopaper, i, j];
+                    }
+                }
+                //Question_Set(_Level, 1,2, n3);
+                Reading_Set();
                 break;
             case 5:
                 for (int i = 0; i < Question_Bank.Question_Battl_Num; i++)
@@ -93,8 +114,8 @@ static class Question_Data{
         int r = 0;
         r = Random.Range(0, 3);
         //亂數陣列 START
-        int[] rand = new int[8];
-        int[] rand3 = new int[3];
+        int[] rand = new int[8]; //給單字亂數抽取用
+        int[] rand3 = new int[3]; //給只有3個答案在跑的
         int c = 0;
         rand = GetRandomSequence(8);
         rand3 = GetRandomSequence(3);
@@ -155,19 +176,19 @@ static class Question_Data{
                             break;
                         }
                     }
-                    /*else if(_Level == 4)//拼字 答案 中文 Level 5
+                    else if(_Level == 4)//拼字 答案 中文 Level 5
                     {
 
 
-                        if (Vocabulary_Bank.Vocabulary_E_Name[rand[c]] == (question_temp[QNum].GetQuestion()))
+                        if (Question_BtnAns_Level5[QNum, rand3[c]] == (question_temp[QNum].GetAnswer_r_Content()))
                         { c++; continue; }
                         else
                         {
-                            ChangeButton_Ans(Vocabulary_Bank.Vocabulary_C_Name[rand[c]], i);
+                            ChangeButton_Ans(Question_BtnAns_Level5[QNum, rand3[c]], i);
                             c++;
                             break;
                         }
-                    }*/
+                    }
                     else if (_Level ==5)//聽力 答案 英文 卡牌戰鬥用
                     {
                         if (Question_BtnAns_Battle[QNum, rand3[c]] == (question_temp[QNum].GetAnswer_r_Content()))
@@ -218,6 +239,10 @@ static class Question_Data{
     public static int GetTask()
     {
         return Task;
+    }
+    public static string Getpaper()
+    {
+        return paper;
     }
     public static void ChangeButton_Ans(string s, int c) //傳送到Level_Learn的三個選項
     {
@@ -271,7 +296,7 @@ static class Question_Data{
                     for (int j = 0; j < 3; j++)
                         Question_BtnAns_Level4[i,j] = BtnAns_Level4[rand_level4[i], j];
                     break;
-                case 4://Level 5 拼字
+                case 4://Level 5 拼字 <<用不到了 ㄏㄏ
                     Question[i] = vocabulary_temp[rand[i]].GetC_Name();
                     Answer_r_Content[i] = vocabulary_temp[rand[i]].GetE_Name();
                     break;
@@ -297,6 +322,22 @@ static class Question_Data{
             question_temp[i] = new Question_Class(i + 1, Question[i], "", Answer_r_Content[i], "", "", "");
 
         Qtotal = n3;
+    }
+
+    private static void Reading_Set() //Level=題型 第n1題到第n2題 共n3題
+    {
+        
+        for (int i = 0; i < Question_Bank.Question_Level5_QuestionNum; i++)
+        {
+            Question[i] = "";
+            Answer_r_Content[i] = Question_Bank.Question_Level5[randtopaper, i+1];
+            for (int j = 0; j < 3; j++)
+                Question_BtnAns_Level5[i, j] = BtnAns_Level5[i, j];
+        }
+        paper = Question_Bank.Question_Level5[randtopaper, 0];
+        for (int i = 0; i < 4; i++)
+            question_temp[i] = new Question_Class(i + 1, Question[i], "", Answer_r_Content[i], "", "", "");
+        Qtotal = 4;
     }
 
     private static int[] GetRandomSequence(int total)

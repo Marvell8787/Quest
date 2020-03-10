@@ -142,6 +142,9 @@ public class UI_Learn : MonoBehaviour {
             case 3:
                 Question_Data.Question_Init(choose_n, 1, 10, 5);
                 break;
+            case 4:
+                Question_Data.Question_Init(choose_n, 1, 2, 5);
+                break;
             default:
                 Question_Data.Question_Init(choose_n, 1, 8, 5);
                 break;

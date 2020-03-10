@@ -21,16 +21,17 @@ public class UI_Level : MonoBehaviour {
     #endregion
 
     #region Level
-    public GameObject ui_Title, ui_Level, ui_Overall, ui_Settlement;
+    public GameObject ui_Title, ui_Level, ui_Overall, ui_Settlement,ui_reading,ui_paper;
     public Text QuestionNum_text,Description_text, Input_text;
     public Text QuestionTypeContent_text, LevelContent_text, AnswerContent_text, ScoreContent_text, FeedBack_text, Question_text, Next_text, ENDContent_text;
+    public Text paper_text;
     public Text[] Ans_text = new Text[3];
-    public Button Submit_btn, Next_btn;
+    public Button Submit_btn, Next_btn,Read_btn,ReadCancel_btn;
     public Button[] Button_Ans = new Button[3];
     public Button Question_btn;
     public AudioSource[] Voice= new AudioSource[8]; //breakfast
     public AudioSource[] QuestionVoice = new AudioSource[6]; //breakfast
-    public AudioSource ans,wro,end,ok; //breakfast
+    public AudioSource ans,wro,end,ok,cancel; //breakfast
 
     #endregion
 
@@ -54,6 +55,9 @@ public class UI_Level : MonoBehaviour {
         Next_btn.onClick.AddListener(Next);
         Next_btn.interactable = false;
 
+        Read_btn.onClick.AddListener(Readapaper);
+        ReadCancel_btn.onClick.AddListener(ReadCancel);
+
         ui_Title.SetActive(true);
         ENDContent_text.text = "";
         FeedBack_text.text = "";
@@ -68,7 +72,7 @@ public class UI_Level : MonoBehaviour {
         Question_total = Question_Data.GetQtotal();
         QuestionTypeContent_text.text = level_temp.GetQuestionType();
         LevelContent_text.text = level_temp.GetTitle();
-        if (Level < 4)
+        if (Level < 5)
         {
             Button_Ans[0].onClick.AddListener(Choose_A);
             Button_Ans[1].onClick.AddListener(Choose_B);
@@ -87,6 +91,7 @@ public class UI_Level : MonoBehaviour {
                 Question_Data.Button_Ans_Set(Level, Question_Num);
                 for (int i = 0; i < 3; i++)
                     Ans_text[i].text = Question_Data.GetButton_Ans(i);
+                ui_reading.SetActive(false);
                 ui_Level.SetActive(true);
                 break;
             case 2: //Level-3 中文
@@ -96,13 +101,23 @@ public class UI_Level : MonoBehaviour {
                 Question_Data.Button_Ans_Set(Level, Question_Num);
                 for (int i = 0; i < 3; i++)
                     Ans_text[i].text = Question_Data.GetButton_Ans(i);
+                ui_reading.SetActive(false);
                 ui_Level.SetActive(true);
                 break;
             case 4:
-                Description_text.text = "請聽音並拼出正確的單字";
+                /*
+                Question_btn.gameObject.SetActive(false);
+                Description_text.text = "請填寫正確的單字";
                 Question_text.text = question_temp.GetQuestion();
-                Question_btn.gameObject.SetActive(true);
-                ui_Overall.SetActive(true);
+                ui_Overall.SetActive(true);*/
+                Question_btn.gameObject.SetActive(false);
+                Question_text.text = "閱讀短文並根據題號回答該題號所指向的正確答案";
+                paper_text.text = Question_Data.Getpaper();
+                Question_Data.Button_Ans_Set(Level, Question_Num);
+                for (int i = 0; i < 3; i++)
+                    Ans_text[i].text = Question_Data.GetButton_Ans(i);
+                ui_reading.SetActive(true);
+                ui_Level.SetActive(true);
                 break;
             default:
                 break;
@@ -128,6 +143,16 @@ public class UI_Level : MonoBehaviour {
         choose_Ans_Content = Question_Data.GetButton_Ans(2);
         CheckAns();
     }
+    void Readapaper()
+    {
+        ok.Play();
+        ui_paper.SetActive(true);
+    }
+    void ReadCancel()
+    {
+        cancel.Play();
+        ui_paper.SetActive(false);
+    }
     #endregion
 
     void CheckAns(string s = "")
@@ -138,7 +163,7 @@ public class UI_Level : MonoBehaviour {
 
         question_temp = Question_Data.Question_Get(Question_Num);
 
-        if (Level < 4)
+        if (Level < 5)
             s = question_temp.GetAnswer_c_Content();
 
 
@@ -157,7 +182,7 @@ public class UI_Level : MonoBehaviour {
         }
         ScoreContent_text.text = Score.ToString();
 
-        if (Level < 4)
+        if (Level < 5)
         {
             AnswerContent_text.text = question_temp.GetAnswer_r();
             Button_Ans[0].interactable = false;
@@ -187,7 +212,7 @@ public class UI_Level : MonoBehaviour {
 
         Next_btn.interactable = false;
 
-        if (Level < 4)
+        if (Level < 5)
         {
             Button_Ans[0].interactable = true;
             Button_Ans[1].interactable = true;
@@ -200,6 +225,7 @@ public class UI_Level : MonoBehaviour {
         {
             ui_Title.SetActive(false);
             ui_Level.SetActive(false);
+            ui_reading.SetActive(false);
             ui_Overall.SetActive(false);
             ui_Settlement.SetActive(true);
 
@@ -375,7 +401,7 @@ public class UI_Level : MonoBehaviour {
         {
             Question_Num++;
             question_temp = Question_Data.Question_Get(Question_Num);
-            if (Level < 4)
+            if (Level < 5)
             {
                 Question_Data.Button_Ans_Set(Level, Question_Num);
                 for (int i = 0; i < 3; i++)
@@ -392,8 +418,10 @@ public class UI_Level : MonoBehaviour {
                     break;
                 case 2: //Level-4 中文
                 case 3: //Level-5 中文
-                case 4: //Overall
                     Question_text.text = question_temp.GetQuestion();
+                    break;
+                case 4: //Overall
+                    Question_text.text = "閱讀短文並根據題號回答該題號所指向的正確答案";
                     break;
                 default:
                     break;
