@@ -20,9 +20,9 @@ static class Battle_Data {
 
         for (int i = 0; i < 2; i++)
         {
-            Battle_Title[i] = Battle_Bank.C_Battle_Title[i];
-            Battle_QuestionType[i] = Battle_Bank.C_Battle_QuestionType[i];
-            Battle_Range[i] = Battle_Bank.C_Battle_Range[i];
+            Battle_Title[i] = Battle_Bank.Battle_Title[i];
+            Battle_QuestionType[i] = Battle_Bank.Battle_QuestionType[i];
+            Battle_Range[i] = Battle_Bank.Battle_Range[i];
         }
 
         switch (System_Data.Version)
@@ -30,29 +30,29 @@ static class Battle_Data {
             case 0:
                 for (int i = 0; i < 2; i++)
                 {
-                    Battle_Reward[i] = Battle_Bank.C_Battle_Reward_0[i];
-                    Battle_Punishment[i] = Battle_Bank.C_Battle_Punishment_0[i];
+                    Battle_Reward[i] = Battle_Bank.Battle_Reward_0[i];
+                    Battle_Punishment[i] = Battle_Bank.Battle_Punishment_0[i];
                 }
                 break;
             case 1:
                 for (int i = 0; i < 2; i++)
                 {
-                    Battle_Reward[i] = Battle_Bank.C_Battle_Reward_0[i];
-                    Battle_Punishment[i] = Battle_Bank.C_Battle_Punishment_1[i];
+                    Battle_Reward[i] = Battle_Bank.Battle_Reward_0[i];
+                    Battle_Punishment[i] = Battle_Bank.Battle_Punishment_1[i];
                 }
                 break;
             case 2:
                 for (int i = 0; i < 2; i++)
                 {
-                    Battle_Reward[i] = Battle_Bank.C_Battle_Reward_1[i];
-                    Battle_Punishment[i] = Battle_Bank.C_Battle_Punishment_0[i];
+                    Battle_Reward[i] = Battle_Bank.Battle_Reward_1[i];
+                    Battle_Punishment[i] = Battle_Bank.Battle_Punishment_0[i];
                 }
                 break;
             case 3:
                 for (int i = 0; i < 2; i++)
                 {
-                    Battle_Reward[i] = Battle_Bank.C_Battle_Reward_1[i];
-                    Battle_Punishment[i] = Battle_Bank.C_Battle_Punishment_1[i];
+                    Battle_Reward[i] = Battle_Bank.Battle_Reward_1[i];
+                    Battle_Punishment[i] = Battle_Bank.Battle_Punishment_1[i];
                 }
                 break;
             default:

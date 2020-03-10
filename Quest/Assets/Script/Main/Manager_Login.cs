@@ -53,12 +53,10 @@ public class Manager_Login{
             if (str != "")
             {
                 s = GetDataValue(str, "Learner_Code:");
-                Debug.Log(s);
                 switch (s)
                 { 
                     case "A503":
                         System_Data.Version = 0;
-                        Debug.Log(System_Data.Version);
                         break;
                     case "B506":
                         System_Data.Version = 1;

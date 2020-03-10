@@ -35,8 +35,8 @@ public class UI_Level : MonoBehaviour {
     #endregion
 
     #region Settlement
-    public Image Item_img;
-    public Text S_PageUp, S_PageDown, ItemContent_text, Flag;
+    public Image Item_img, Point_img, Mistake_img;
+    public Text S_PageUp, S_PageDown, ItemContent_text, Point_Num, Mistake_Num, Flag;
     public Text[] A_S_QNum = new Text[5];
     public Text[] A_S_Question = new Text[5];
     public Text[] A_S_Answer = new Text[5];
@@ -212,23 +212,69 @@ public class UI_Level : MonoBehaviour {
                 task_temp = Task_Data.Learn_Get(Level);
                 if (Score >= Task_Bank.Learn_Request_Score[Level])//成功
                 {
+                    switch (System_Data.Version)
+                    {
+                        case 0:
+                        case 2:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                            Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                            Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                            Mechanism_Data.Reward("Task", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
+                            Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                            Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                            Point_img.gameObject.SetActive(true);
+                            Mistake_img.gameObject.SetActive(true);
+                            Point_Num.gameObject.SetActive(true);
+                            Mistake_Num.gameObject.SetActive(true);
+                            break;
+                        default:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                            Mechanism_Data.Reward("Task", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
+                            Point_img.gameObject.SetActive(false);
+                            Mistake_img.gameObject.SetActive(false);
+                            Point_Num.gameObject.SetActive(false);
+                            Mistake_Num.gameObject.SetActive(false);
+                            break;
+                    }
                     Item_img.sprite = Resources.Load("Image/Home/Item_Icon/Score", typeof(Sprite)) as Sprite;
                     task_temp.ChangeStatus(2);
-                    ItemContent_text.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
                     Flag.text = "任務成功";
-                    Mechanism_Data.Reward("Task", Level);
-                    ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
                     Learner_Data.Learner_Add("Task_Success", Level, 1);
                     Learner_Data.Learner_Add("Task_Num", Level, 1);
                 }
                 else if (Score < Task_Bank.Learn_Request_Score[Level]) //失敗
                 {
+                    switch (System_Data.Version)
+                    {
+                        case 0:
+                        case 2:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                            Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                            Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                            Mechanism_Data.Punishment("Task", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
+                            Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                            Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                            Point_img.gameObject.SetActive(true);
+                            Mistake_img.gameObject.SetActive(true);
+                            Point_Num.gameObject.SetActive(true);
+                            Mistake_Num.gameObject.SetActive(true);
+                            break;
+                        default:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                            Mechanism_Data.Punishment("Task", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
+                            Point_img.gameObject.SetActive(false);
+                            Mistake_img.gameObject.SetActive(false);
+                            Point_Num.gameObject.SetActive(false);
+                            Mistake_Num.gameObject.SetActive(false);
+                            break;
+                    }
                     Item_img.sprite = Resources.Load("Image/Home/Item_Icon/Score", typeof(Sprite)) as Sprite;
                     task_temp.ChangeStatus(2);
-                    ItemContent_text.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
                     Flag.text = "任務失敗";
-                    Mechanism_Data.Punishment("Task", Level);
-                    ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
                     Learner_Data.Learner_Add("Task_Fail", Level, 1);
                     Learner_Data.Learner_Add("Task_Num", Level,1);
                 }
@@ -238,19 +284,65 @@ public class UI_Level : MonoBehaviour {
             {
                 if (Score > 59)//成功
                 {
-                    ItemContent_text.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
+                    switch (System_Data.Version)
+                    {
+                        case 0:
+                        case 2:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
+                            Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                            Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                            Mechanism_Data.Reward("Learn", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Coin").ToString();
+                            Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                            Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                            Point_img.gameObject.SetActive(true);
+                            Mistake_img.gameObject.SetActive(true);
+                            Point_Num.gameObject.SetActive(true);
+                            Mistake_Num.gameObject.SetActive(true);
+                            break;
+                        default:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
+                            Mechanism_Data.Reward("Learn", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Coin").ToString();
+                            Point_img.gameObject.SetActive(false);
+                            Mistake_img.gameObject.SetActive(false);
+                            Point_Num.gameObject.SetActive(false);
+                            Mistake_Num.gameObject.SetActive(false);
+                            break;
+                    }
                     Flag.text = "練習成功";
-                    Mechanism_Data.Reward("Learn", Level);
-                    ItemContent_text.text += Learner_Data.Learner_GetData("Coin").ToString();
                     Learner_Data.Learner_Add("Learn_Num", Level, 1);
                     Learner_Data.Learner_Add("Learn_Success", Level, 1);
                 }
                 else if (Score < 60) //失敗
                 {
-                    ItemContent_text.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
+                    switch (System_Data.Version)
+                    {
+                        case 0:
+                        case 2:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
+                            Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                            Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                            Mechanism_Data.Punishment("Learn", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Coin").ToString();
+                            Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                            Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                            Point_img.gameObject.SetActive(true);
+                            Mistake_img.gameObject.SetActive(true);
+                            Point_Num.gameObject.SetActive(true);
+                            Mistake_Num.gameObject.SetActive(true);
+                            break;
+                        default:
+                            ItemContent_text.text = Learner_Data.Learner_GetData("Coin").ToString() + " -> ";
+                            Mechanism_Data.Punishment("Learn", Level);
+                            ItemContent_text.text += Learner_Data.Learner_GetData("Coin").ToString();
+                            Point_img.gameObject.SetActive(false);
+                            Mistake_img.gameObject.SetActive(false);
+                            Point_Num.gameObject.SetActive(false);
+                            Mistake_Num.gameObject.SetActive(false);
+                            break;
+                    }
                     Flag.text = "練習失敗";
-                    Mechanism_Data.Punishment("Learn",Level);
-                    ItemContent_text.text += Learner_Data.Learner_GetData("Coin").ToString();
                     Learner_Data.Learner_Add("Learn_Num", Level, 1);
                     Learner_Data.Learner_Add("Learn_Fail", Level, 1);
                 }

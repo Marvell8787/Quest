@@ -24,7 +24,8 @@ public class UI_Task : MonoBehaviour {
     public Text Text_Request_Content, Text_Reward_Content, Text_Punishment_Content;
     public Button Take_btn;
     #endregion
-    public Text Score_text;
+    public Text Score_text, Point_text, Mistake_text;
+    public Image Point_img, Mistake_img;
     public Button Back_btn;
     public AudioSource choose, ok, cancel;
 
@@ -33,6 +34,20 @@ public class UI_Task : MonoBehaviour {
     void Start () {
         
         Score_text.text = Learner_Data.Learner_GetData("Score").ToString();
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 2:
+                Point_text.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                Mistake_text.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                break;
+            default:
+                Point_img.gameObject.SetActive(false);
+                Mistake_img.gameObject.SetActive(false);
+                Point_text.gameObject.SetActive(false);
+                Mistake_text.gameObject.SetActive(false);
+                break;
+        }
         Back_btn.onClick.AddListener(Back);
         Take_btn.onClick.AddListener(Take);
         for (int i = 0; i < 5; i++)

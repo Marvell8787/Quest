@@ -277,7 +277,7 @@ static class Learner_Data{
     }
     public static void Learner_ChangePoints_Status(int n) //Points
     {
-        if(Points_Status[n] != 0)
+        if(Points_Status[n] > 0)
         {
             Points_Status[n] -= 1;
             Points_Num--;

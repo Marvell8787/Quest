@@ -13,6 +13,10 @@ static class Question_Data{
 
     private static string[,] BtnAns_Level24 = new string[6, 3];
     private static string[,] Question_BtnAns_Level24 = new string[5, 3];
+
+    private static string[,] BtnAns_Battle = new string[8, 3];
+    private static string[,] Question_BtnAns_Battle = new string[5, 3];
+
     private static string[,] BtnAns_Level4 = new string[10, 3];
     private static string[,] Question_BtnAns_Level4 = new string[5, 3];
 
@@ -54,12 +58,22 @@ static class Question_Data{
                 }
                 Question_Set(_Level, 1, Question_Bank.Question_Level4_Num, n3);
                 break;
+            case 5:
+                for (int i = 0; i < Question_Bank.Question_Battl_Num; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        BtnAns_Battle[i, j] = Question_Bank.Question_Battle_BtnAns[i, j];
+                    }
+                }
+                Question_Set(_Level, 1, Question_Bank.Question_Battl_Num, n3);
+                break;
             case 6:
                 for (int i = 0; i < 6; i++)
                 {
                     for (int j = 0; j < 3; j++)
                     {
-                        BtnAns_Level24[i, j] = Question_Bank.Question_Battle_BtnAns[i, j];
+                        BtnAns_Level24[i, j] = Question_Bank.Question_Battle2_BtnAns[i, j];
                     }
                 }
                 Question_Set(_Level, 1, 6, n3);
@@ -80,10 +94,10 @@ static class Question_Data{
         r = Random.Range(0, 3);
         //亂數陣列 START
         int[] rand = new int[8];
-        int[] rand_level24 = new int[3];
+        int[] rand3 = new int[3];
         int c = 0;
         rand = GetRandomSequence(8);
-        rand_level24 = GetRandomSequence(3);
+        rand3 = GetRandomSequence(3);
         //亂數陣列 END
         for (int i = 0; i < 3; i++)
         {
@@ -109,11 +123,11 @@ static class Question_Data{
                     }
                     else if (_Level == 1)//聽力  英文 答案 中文 Level 2
                     {
-                        if (Question_BtnAns_Level24[QNum, rand_level24[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        if (Question_BtnAns_Level24[QNum, rand3[c]] == (question_temp[QNum].GetAnswer_r_Content()))
                         { c++; continue; }
                         else
                         {
-                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand_level24[c]], i);
+                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand3[c]], i);
                             c++;
                             break;
                         }
@@ -132,11 +146,11 @@ static class Question_Data{
                     }
                     else if (_Level == 3)//文法  英文 答案 中文 Level 4
                     {
-                        if (Question_BtnAns_Level4[QNum, rand_level24[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        if (Question_BtnAns_Level4[QNum, rand3[c]] == (question_temp[QNum].GetAnswer_r_Content()))
                         { c++; continue; }
                         else
                         {
-                            ChangeButton_Ans(Question_BtnAns_Level4[QNum, rand_level24[c]], i);
+                            ChangeButton_Ans(Question_BtnAns_Level4[QNum, rand3[c]], i);
                             c++;
                             break;
                         }
@@ -154,24 +168,32 @@ static class Question_Data{
                             break;
                         }
                     }*/
-                    else if (_Level ==5)//題目 中文 答案 英文 卡牌戰鬥用
+                    else if (_Level ==5)//聽力 答案 英文 卡牌戰鬥用
                     {
-                        if (Vocabulary_Bank.Vocabulary_C_Name[rand[c]] == (question_temp[QNum].GetQuestion()))
+                        if (Question_BtnAns_Battle[QNum, rand3[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        { c++; continue; }
+                        else
+                        {
+                            ChangeButton_Ans(Question_BtnAns_Battle[QNum, rand3[c]], i);
+                            c++;
+                            break;
+                        }
+                        /*if (Vocabulary_Bank.Vocabulary_C_Name[rand[c]] == (question_temp[QNum].GetQuestion()))
                         { c++; continue; }
                         else
                         {
                             ChangeButton_Ans(Vocabulary_Bank.Vocabulary_E_Name[rand[c]], i);
                             c++;
                             break;
-                        }
+                        }*/
                     }
                     else if (_Level == 6)//回應  英文 答案 英文 卡牌戰鬥用
                     {
-                        if (Question_BtnAns_Level24[QNum, rand_level24[c]] == (question_temp[QNum].GetAnswer_r_Content()))
+                        if (Question_BtnAns_Level24[QNum, rand3[c]] == (question_temp[QNum].GetAnswer_r_Content()))
                         { c++; continue; }
                         else
                         {
-                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand_level24[c]], i);
+                            ChangeButton_Ans(Question_BtnAns_Level24[QNum, rand3[c]], i);
                             c++;
                             break;
                         }
@@ -219,9 +241,9 @@ static class Question_Data{
     }
     private static void Question_Set(int _Level,int n1,int n2,int n3) //Level=題型 第n1題到第n2題 共n3題
     {
-        int[] rand = new int[8];
-        int[] rand_level24 = new int[6];
-        int[] rand_level4 = new int[Question_Bank.Question_Level4_Num];
+        int[] rand = new int[8]; //Level 1 3 5 戰鬥1
+        int[] rand_level24 = new int[6]; //Level 2
+        int[] rand_level4 = new int[Question_Bank.Question_Level4_Num]; //Level4
         rand = GetRandomSequence(8);
         rand_level24 = GetRandomSequence(6);
         rand_level4 = GetRandomSequence(Question_Bank.Question_Level4_Num);
@@ -254,12 +276,14 @@ static class Question_Data{
                     Answer_r_Content[i] = vocabulary_temp[rand[i]].GetE_Name();
                     break;
                 case 5://戰鬥
-                    Question[i] = vocabulary_temp[rand[i]].GetC_Name();
-                    Answer_r_Content[i] = vocabulary_temp[rand[i]].GetE_Name();
+                    Question[i] = Question_Bank.Question_Battle[rand[i]];
+                    Answer_r_Content[i] = Question_Bank.Question_Battle[rand[i]];
+                    for (int j = 0; j < 3; j++)
+                        Question_BtnAns_Battle[i,j] = Question_Bank.Question_Battle_BtnAns[rand[i],j];
                     break;
-                case 6:
-                    Question[i] = Question_Bank.Question_Battle[rand_level24[i], 0];
-                    Answer_r_Content[i] = Question_Bank.Question_Battle[rand_level24[i], 1];
+                case 6://戰鬥2
+                    Question[i] = Question_Bank.Question_Battle2[rand_level24[i], 0];
+                    Answer_r_Content[i] = Question_Bank.Question_Battle2[rand_level24[i], 1];
                     for (int j = 0; j < 3; j++)
                         Question_BtnAns_Level24[i, j] = BtnAns_Level24[rand_level24[i], j];
                     break;

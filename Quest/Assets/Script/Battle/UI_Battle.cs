@@ -13,7 +13,8 @@ public class UI_Battle : MonoBehaviour {
     #endregion
 
     public Button Back_btn;
-    public Text ItemContent_text;
+    public Text ItemContent_text,Point_text, Mistake_text;
+    public Image Point_img, Mistake_img;
 
     #region SelectBattle_obj
     public GameObject SelectFight_obj;
@@ -36,6 +37,20 @@ public class UI_Battle : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 2:
+                Point_text.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                Mistake_text.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                break;
+            default:
+                Point_img.gameObject.SetActive(false);
+                Mistake_img.gameObject.SetActive(false);
+                Point_text.gameObject.SetActive(false);
+                Mistake_text.gameObject.SetActive(false);
+                break;
+        }
         ItemContent_text.text = Learner_Data.Learner_GetData("Crystal").ToString();
         Back_btn.onClick.AddListener(Back);
         LearnerDeckContent_text.text = Learner_Data.Learner_GetData("Cards_Num").ToString();

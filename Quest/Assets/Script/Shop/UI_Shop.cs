@@ -59,7 +59,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 分數才可購買";
         if (check_n[0] == 1 || Learner_Data.Learner_GetData("Score") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[0] == 0 && Learner_Data.Learner_GetData("Score") > 150)
+        else if (check_n[0] == 0 && Learner_Data.Learner_GetData("Score") >= 150)
             Buy_btn.interactable = true;
     }
     void Item2()
@@ -71,7 +71,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 分數才可購買";
         if (check_n[1] == 1 || Learner_Data.Learner_GetData("Score") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[1] == 0 && Learner_Data.Learner_GetData("Score") > 150)
+        else if (check_n[1] == 0 && Learner_Data.Learner_GetData("Score") >= 150)
             Buy_btn.interactable = true;
     }
     void Item3()
@@ -83,7 +83,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 分數才可購買";
         if (check_n[2] == 1 || Learner_Data.Learner_GetData("Score") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[2] == 0 && Learner_Data.Learner_GetData("Score") > 150)
+        else if (check_n[2] == 0 && Learner_Data.Learner_GetData("Score") >= 150)
             Buy_btn.interactable = true;
     }
     void Item4()
@@ -95,7 +95,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 金幣才可購買";
         if (check_n[3] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[3] == 0 && Learner_Data.Learner_GetData("Coin") > 150)
+        else if (check_n[3] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item5()
@@ -107,7 +107,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 金幣才可購買";
         if (check_n[4] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[4] == 0 && Learner_Data.Learner_GetData("Coin") > 150)
+        else if (check_n[4] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item6()
@@ -119,7 +119,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 金幣才可購買";
         if (check_n[5] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[5] == 0 && Learner_Data.Learner_GetData("Coin") > 150)
+        else if (check_n[5] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item7()
@@ -131,7 +131,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 金幣才可購買";
         if (check_n[6] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[6] == 0 && Learner_Data.Learner_GetData("Coin") > 150)
+        else if (check_n[6] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item8()
@@ -143,7 +143,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 金幣才可購買";
         if (check_n[7] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[7] == 0 && Learner_Data.Learner_GetData("Coin") > 150)
+        else if (check_n[7] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item9()
@@ -155,7 +155,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 金幣才可購買";
         if (check_n[8] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[8] == 0 && Learner_Data.Learner_GetData("Coin") > 150)
+        else if (check_n[8] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item10()
@@ -167,7 +167,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 水晶才可購買";
         if (check_n[9] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[9] == 0 && Learner_Data.Learner_GetData("Crystal") > 150)
+        else if (check_n[9] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
             Buy_btn.interactable = true;
     }
     void Item11()
@@ -179,7 +179,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 水晶才可購買";
         if (check_n[10] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[10] == 0 && Learner_Data.Learner_GetData("Crystal") > 150)
+        else if (check_n[10] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
             Buy_btn.interactable = true;
     }
     void Item12()
@@ -191,7 +191,7 @@ public class UI_Shop : MonoBehaviour {
         ShopInfo_text.text = "需要 150 水晶才可購買";
         if (check_n[11] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[11] == 0 && Learner_Data.Learner_GetData("Crystal") > 150)
+        else if (check_n[11] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
             Buy_btn.interactable = true;
     }
     #endregion

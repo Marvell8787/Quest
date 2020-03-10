@@ -9,7 +9,8 @@ public class UI_Learn : MonoBehaviour {
     private int choose_n = 0;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     public Button Back_btn;
-    public Text Coin_text;
+    public Text Coin_text, Point_text, Mistake_text;
+    public Image Point_img, Mistake_img;
 
     #region MaterialOrLevel_obj
     public GameObject MaterialOrLevel_obj;
@@ -38,7 +39,22 @@ public class UI_Learn : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Back_btn.onClick.AddListener(Back);
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 2:
+                Point_text.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                Mistake_text.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                break;
+            default:
+                Point_img.gameObject.SetActive(false);
+                Mistake_img.gameObject.SetActive(false);
+                Point_text.gameObject.SetActive(false);
+                Mistake_text.gameObject.SetActive(false);
+                break;
+        }
         Coin_text.text = Learner_Data.Learner_GetData("Coin").ToString();
+
         #region MaterialOrLevel_obj
         Material_btn.onClick.AddListener(GoMaterial);
         Level_btn.onClick.AddListener(OpenLevel);

@@ -12,6 +12,7 @@ public class UI_Fight : MonoBehaviour {
     private Player_Class Player = new Player_Class();
     private Player_Class Enemy = new Player_Class();
     //QurestionPhase
+    private int Level = 0;
     private int loseflag = 0;
     private int Question_Num = 0;
     private int Question_total = 10;
@@ -68,16 +69,18 @@ public class UI_Fight : MonoBehaviour {
     #endregion
 
     #region Battle Question
-    public Text Text_Question, Text_QuestionNum;
+    public Text Text_Question, Text_QuestionNum,Description_text;
     public Text[] Text_Ans = new Text[3];
     public Button[] Button_Ans = new Button[3];
+    public AudioSource[] Phonic = new AudioSource[8];
     public Button Button_Start;
     public Text Text_Answer, Text_ROW, Text_Start;
+    public Button Voice;
     #endregion
 
     #region Battle Settlement
-    public Image Image_Item;
-    public Text S_PageUp, S_PageDown, Text_ItemContent, Flag;
+    public Image Image_Item,Point_img,Mistake_img;
+    public Text S_PageUp, S_PageDown, Text_ItemContent,Point_Num,Mistake_Num, Flag;
     public Text[] A_S_QNum = new Text[5];
     public Text[] A_S_Question = new Text[5];
     public Text[] A_S_Answer = new Text[5];
@@ -106,21 +109,21 @@ public class UI_Fight : MonoBehaviour {
 
         //QuestionPhase
         Question_total = Question_Data.GetQtotal();
-        Text_ATK_A_Num.text = "0";
-        Text_ATK_B_Num.text = "0";
+        Text_ATK_A_Num.text = "0 ";
+        Text_ATK_B_Num.text = "0 ";
         Text_ROW.text = "";
         InvokeRepeating("timer", 1, 1);
-
+        Voice.onClick.AddListener(Play);
         Button_Ans[0].onClick.AddListener(Choose_A);
         Button_Ans[1].onClick.AddListener(Choose_B);
         Button_Ans[2].onClick.AddListener(Choose_C);
-        Button_Surrender.onClick.AddListener(Surrender);
-
+        
         //MainPhase
         for (int i = 0; i < 22; i++)
             card_temp[i] = Card_Data.Card_Get(i);
         Button_Start.onClick.AddListener(BattleStart);
         Button_Summon.onClick.AddListener(Summon);
+        Button_Surrender.onClick.AddListener(Surrender);
         AddEvents.AddTriggersListener(Image_Hand_A[0].gameObject, EPClick, HA1);
         AddEvents.AddTriggersListener(Image_Hand_A[1].gameObject, EPClick, HA2);
         AddEvents.AddTriggersListener(Image_Hand_A[2].gameObject, EPClick, HA3);
@@ -150,8 +153,22 @@ public class UI_Fight : MonoBehaviour {
             Question_Class question_temp = new Question_Class();
             Question_Num = 0; //init
             question_temp = Question_Data.Question_Get(0);
+            Level = Question_Data.GetLevel();
             Text_QuestionNum.text = (Question_Num + 1).ToString() + ".";
-            Text_Question.text = question_temp.GetQuestion();
+            switch (Level)
+            {
+                case 5:
+                    Description_text.text = "仔細聽，並選擇正確的答案";
+                    Text_Question.text = "";
+                    break;
+                case 6:
+                    Description_text.text = "選出適當的對應句";
+                    Text_Question.text = question_temp.GetQuestion();
+                    Voice.gameObject.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
             Question_Data.Button_Ans_Set(Question_Data.GetLevel(), Question_Num);
             Text_Ans[0].text = Question_Data.GetButton_Ans(0);
             Text_Ans[1].text = Question_Data.GetButton_Ans(1);
@@ -227,6 +244,42 @@ public class UI_Fight : MonoBehaviour {
         {
             Button_Start.interactable = true;
             Question_Num++;
+        }
+    }
+    void Play()
+    {
+        VoicePlay(Question_Num);
+    }
+    void VoicePlay(int n)
+    {
+        Question_Class question_temp = Question_Data.Question_Get(n); ;
+
+        switch (question_temp.GetQuestion())
+        {
+            case "wine":
+                Phonic[0].Play();
+                break;
+            case "tile":
+                Phonic[1].Play();
+                break;
+            case "sky":
+                Phonic[2].Play();
+                break;
+            case "like":
+                Phonic[3].Play();
+                break;
+            case "flea":
+                Phonic[4].Play();
+                break;
+            case "by":
+                Phonic[5].Play();
+                break;
+            case "file":
+                Phonic[6].Play();
+                break;
+            case "dave":
+                Phonic[7].Play();
+                break;
         }
     }
     #endregion
@@ -813,8 +866,22 @@ public class UI_Fight : MonoBehaviour {
             //問題設置
             Question_Class question_temp = new Question_Class();
             question_temp = Question_Data.Question_Get(Question_Num);
+            Level = Question_Data.GetLevel();
             Text_QuestionNum.text = (Question_Num + 1).ToString() + ".";
-            Text_Question.text = question_temp.GetQuestion();
+            switch (Level)
+            {
+                case 5:
+                    Description_text.text = "仔細聽，並選擇正確的答案";
+                    Text_Question.text = "";
+                    break;
+                case 6:
+                    Description_text.text = "選出適當的對應句";
+                    Text_Question.text = question_temp.GetQuestion();
+                    Voice.gameObject.SetActive(false);
+                    break;
+                default:
+                    break;
+            }
             Question_Data.Button_Ans_Set(Question_Data.GetLevel(), Question_Num);
             for (int i = 0; i < 3; i++)
             {
@@ -847,38 +914,133 @@ public class UI_Fight : MonoBehaviour {
 
         if (Task == 1 && n == 0)
         {
-            Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+            switch (System_Data.Version)
+            {
+                case 0:
+                case 2:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                    Mechanism_Data.Punishment("Task", 5 + hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                    Point_img.gameObject.SetActive(true);
+                    Mistake_img.gameObject.SetActive(true);
+                    Point_Num.gameObject.SetActive(true);
+                    Mistake_Num.gameObject.SetActive(true);
+                    break;
+                default:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                    Mechanism_Data.Punishment("Task", 5 + hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+                    Point_img.gameObject.SetActive(false);
+                    Mistake_img.gameObject.SetActive(false);
+                    Point_Num.gameObject.SetActive(false);
+                    Mistake_Num.gameObject.SetActive(false);
+                    break;
+            }
             Flag.text = "任務失敗";
-            Mechanism_Data.Punishment("Task", 5 + hard);
-            Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
             Learner_Data.Learner_Add("Task_Fail", 5+hard, 1);
             Learner_Data.Learner_Add("Task_Num", 5+hard, 1);
         }
         else if (Task == 1 && n == 1)
         {
-            Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+            switch (System_Data.Version)
+            {
+                case 0:
+                case 2:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                    Mechanism_Data.Reward("Task", 5 + hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                    Point_img.gameObject.SetActive(true);
+                    Mistake_img.gameObject.SetActive(true);
+                    Point_Num.gameObject.SetActive(true);
+                    Mistake_Num.gameObject.SetActive(true);
+                    break;
+                default:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
+                    Mechanism_Data.Reward("Task", 5 + hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
+                    Point_img.gameObject.SetActive(false);
+                    Mistake_img.gameObject.SetActive(false);
+                    Point_Num.gameObject.SetActive(false);
+                    Mistake_Num.gameObject.SetActive(false);
+                    break;
+            }
             Flag.text = "任務成功";
-            Mechanism_Data.Reward("Task", 5 + hard);
-            Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
             Learner_Data.Learner_Add("Task_Success",5+hard, 1);
             Learner_Data.Learner_Add("Task_Num", 5+hard, 1);
         }
         else if (Task == 0 && n == 0)
         {
-            Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
+            switch (System_Data.Version)
+            {
+                case 0:
+                case 2:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                    Mechanism_Data.Punishment("Battle", hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                    Point_img.gameObject.SetActive(true);
+                    Mistake_img.gameObject.SetActive(true);
+                    Point_Num.gameObject.SetActive(true);
+                    Mistake_Num.gameObject.SetActive(true);
+                    break;
+                default:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
+                    Mechanism_Data.Punishment("Battle", hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
+                    Point_img.gameObject.SetActive(false);
+                    Mistake_img.gameObject.SetActive(false);
+                    Point_Num.gameObject.SetActive(false);
+                    Mistake_Num.gameObject.SetActive(false);
+                    break;
+            }
+
             Flag.text = "戰鬥失敗";
-            Mechanism_Data.Punishment("Battle",hard);
-            Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
             Learner_Data.Learner_Add("Battle_Fail", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
 
         }
         else if (Task == 0 && n == 1)
         {
-            Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
+
+            switch (System_Data.Version)
+            {
+                case 0:
+                case 2:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
+                    Mechanism_Data.Reward("Battle", hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                    Point_img.gameObject.SetActive(true);
+                    Mistake_img.gameObject.SetActive(true);
+                    Point_Num.gameObject.SetActive(true);
+                    Mistake_Num.gameObject.SetActive(true);
+                    break;
+                default:
+                    Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
+                    Mechanism_Data.Reward("Battle", hard);
+                    Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
+                    Point_img.gameObject.SetActive(false);
+                    Mistake_img.gameObject.SetActive(false);
+                    Point_Num.gameObject.SetActive(false);
+                    Mistake_Num.gameObject.SetActive(false);
+                    break;
+            }
+
             Flag.text = "戰鬥勝利";
-            Mechanism_Data.Reward("Battle", hard);
-            Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
             Learner_Data.Learner_Add("Battle_Success", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
 
