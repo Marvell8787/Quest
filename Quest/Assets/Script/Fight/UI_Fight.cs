@@ -292,6 +292,8 @@ public class UI_Fight : MonoBehaviour {
         Button_Surrender.interactable = true;
         Text_Message.text = "請出牌！";
         ShowHand(0);
+        //ShowHand(1);
+
     }
     void Surrender()
     {
@@ -495,8 +497,9 @@ public class UI_Fight : MonoBehaviour {
     {
         for (int i = 0; i < 5; i++)
         {
-            int n = 0;
+            int n = 0,com = 0;
             n = Player.GetHand_Status(i);
+            com = Enemy.GetHand_Status(i);
             if (s == 0)
             {
                 if (n == 22) //22 = 沒牌
@@ -507,12 +510,12 @@ public class UI_Fight : MonoBehaviour {
             }
             else
             {
-                if (n == 22) //22 = 沒牌
+                if (com == 22) //22 = 沒牌
                 {
                     Image_Hand_B[i].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
                 }
                 else
-                    //i_temp.sprite = Resources.Load("Image/Card/" + card_temp[n].GetPicture(), typeof(Sprite)) as Sprite;
+                    //Image_Hand_B[i].sprite = Resources.Load("Image/Card/" + card_temp[com].GetPicture(), typeof(Sprite)) as Sprite;
                     Image_Hand_B[i].sprite = Resources.Load("Image/Card/CardBack", typeof(Sprite)) as Sprite;
             }
         }
@@ -527,8 +530,8 @@ public class UI_Fight : MonoBehaviour {
 
         Button_Fight.interactable = false;
 
-        ShowHand(0);
-        ShowHand(1);
+        //ShowHand(0);
+        //ShowHand(1);
         Button_Summon.interactable = false;
 
         //描述電腦出牌 先出支援 再出魔法 最後出戰鬥(隨機挑)
@@ -541,7 +544,7 @@ public class UI_Fight : MonoBehaviour {
         for (int i = 0; i < 5; i++)
         {
             int n = Enemy.GetHand_Status(Ehand[i]);
-            if (n > 18 && Support_B == 22)
+            if (n > 18 && n< 22 && Support_B == 22)
             {
                 int r = Random.Range(0, 2);
                 if (r == 1)
@@ -561,7 +564,7 @@ public class UI_Fight : MonoBehaviour {
         for (int i = 0; i < 5; i++)
         {
             int n = Enemy.GetHand_Status(Ehand[i]);
-            if (n > 14 && n < 18 && Center_B == 22)
+            if (n > 14 && n < 19 && Center_B == 22)
             {
                 int r = Random.Range(0, 2);
                 if (r == 1)
@@ -594,20 +597,7 @@ public class UI_Fight : MonoBehaviour {
             else
                 continue;
         }
-        /*
-        //Debug
-        ShowHand(1);
-        string ss="";
-        for(int i = 0; i < 5; i++)
-        {
-            ss += Ehand[i] + " ";
-        }
-        Debug.Log(ss);
-        Debug.Log(BattleCheck.Vanguard_B);
-        Debug.Log(BattleCheck.Center_B);
-        Debug.Log(BattleCheck.Support_B);
-        //Debug
-        */
+        
         //電腦放置卡牌
 
         if (Vanguard_B < 15)
@@ -617,7 +607,7 @@ public class UI_Fight : MonoBehaviour {
             ATK_B = card_temp[Vanguard_B].GetATK();
 
             Image_Show_B[0].sprite = Resources.Load("Image/Card/" + card_temp[Vanguard_B].GetPicture(), typeof(Sprite)) as Sprite;
-            Image_Hand_B[HandChoose_B_V].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
+            //Image_Hand_B[HandChoose_B_V].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
         }
         if (Center_B > 14 && Center_B < 19)
         {
@@ -640,13 +630,18 @@ public class UI_Fight : MonoBehaviour {
                     break;
             }
             Image_Show_B[1].sprite = Resources.Load("Image/Card/" + card_temp[Center_B].GetPicture(), typeof(Sprite)) as Sprite;
-            Image_Hand_B[HandChoose_B_C].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
+            //Image_Hand_B[HandChoose_B_C].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
         }
-        if (Support_B < 22)
+        if (Support_B>18 && Support_B < 22)
         {
             Image_Show_B[2].sprite = Resources.Load("Image/Card/" + card_temp[Support_B].GetPicture(), typeof(Sprite)) as Sprite;
-            Image_Hand_B[HandChoose_B_S].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
+            //Image_Hand_B[HandChoose_B_S].sprite = Resources.Load("Image/Battle/Hand", typeof(Sprite)) as Sprite;
         }
+        /*
+        for (int i = 0; i < 5; i++)
+            Debug.Log(Enemy.GetHand_Status(i) + " ");
+        */
+        ShowHand(1);
 
         //結算 左上角顯示這回合贏還是輸
         //雙方攻擊力

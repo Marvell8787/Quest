@@ -256,6 +256,25 @@ public class UI_Home : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetBehavior("LearnerLog_Behavior.php", "Learner_Behaviors", Learner_Data.Learner_Behavior_Get()));
         yield return new WaitForSeconds(1);
+        for(int i = 0; i < 22; i++)
+        { 
+            StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_" + i.ToString(), Learner_Data.Learner_GetCard_Status(i)));
+            yield return new WaitForSeconds(1);
+        }
+        StartCoroutine(ml.SetData("Learner_PointSave.php", "Pointstatus_Task", Learner_Data.Learner_GetPoints_Status(0)));
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ml.SetData("Learner_PointSave.php", "Pointstatus_Learn", Learner_Data.Learner_GetPoints_Status(1)));
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ml.SetData("Learner_PointSave.php", "Pointstatus_Battle", Learner_Data.Learner_GetPoints_Status(2)));
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ml.SetData("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ml.SetData("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
+        yield return new WaitForSeconds(1);
+        StartCoroutine(ml.SetData("Learner_MistakeSave.php", "Mistake_RC", Learner_Data.Learner_GetMistakes_Status(2)));
+        yield return new WaitForSeconds(1);
+
+
         Home_obj.SetActive(true);
         Save.enabled = true;
         Info_text.text = "存檔完成";
