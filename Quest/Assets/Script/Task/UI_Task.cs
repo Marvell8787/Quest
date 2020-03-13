@@ -77,6 +77,17 @@ public class UI_Task : MonoBehaviour {
         {
             learn_temp[i] = Task_Data.Learn_Get(i);
             Task_text[i].text = learn_temp[i].GetTitle();
+            if (Learner_Data.Learner_GetData("Task_Success", i) > 0)
+            {
+                Task_text[i].color = Color.gray;
+                Task_text[i].fontStyle = FontStyle.Italic;
+            }
+            else
+            {
+                Task_text[i].color = Color.black;
+                Task_text[i].fontStyle = FontStyle.Bold;
+
+            }/*
             switch (learn_temp[i].GetStatus())
             {
                 case 1: //未接
@@ -89,7 +100,7 @@ public class UI_Task : MonoBehaviour {
                     break;
                 default:
                     break;
-            }
+            }*/
         }
     }
     void Task_Battle()
@@ -106,19 +117,30 @@ public class UI_Task : MonoBehaviour {
         {
             battle_temp[i] = Task_Data.Battle_Get(i);
             Task_text[i].text = battle_temp[i].GetTitle();
+            if(Learner_Data.Learner_GetData("Task_Success", i + 5) > 0)
+            {
+                Task_text[i].color = Color.gray;
+                Task_text[i].fontStyle = FontStyle.Italic;
+            }
+            else
+            {
+                Task_text[i].color = Color.black;
+                Task_text[i].fontStyle = FontStyle.Bold;
+            }
+            /*
             switch (battle_temp[i].GetStatus())
             {
-                case 1: //未接
+                case 0: //未接
                     Task_text[i].color = Color.black;
                     Task_text[i].fontStyle = FontStyle.Bold;
                     break;
-                case 2: //完成
+                case 1: //完成
                     Task_text[i].color = Color.gray;
                     Task_text[i].fontStyle = FontStyle.Italic;
                     break;
                 default:
                     break;
-            }
+            }*/
         }
     }
     #region Task PointerClick Function
@@ -219,16 +241,17 @@ public class UI_Task : MonoBehaviour {
     }
     void Button_Change(int n)
     {
-        int status;
+        /*
         Task_Class task_temp = new Task_Class();
+        int status;
+        task_temp = Task_Data.Learn_Get(n);
         if (choose_s == "learn")
             task_temp = Task_Data.Learn_Get(n);
         else if (choose_s == "battle")
             task_temp = Task_Data.Battle_Get(n);
-
+        
         status = task_temp.GetStatus();
-
-        switch (status)
+                switch (status)
         {
             case 1: //未接
                 Take_btn.interactable = true;
@@ -239,6 +262,36 @@ public class UI_Task : MonoBehaviour {
             default:
                 break;
         }
+        */
+        if (choose_s == "learn")
+        {
+            switch (Learner_Data.Learner_GetData("Task_Success", n))
+            {
+                case 0: //未接
+                    Take_btn.interactable = true;
+                    break;
+                case 1: //完成
+                    Take_btn.interactable = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else if (choose_s == "battle")
+        {
+            switch (Learner_Data.Learner_GetData("Task_Success", 5+n))
+            {
+                case 0: //未接
+                    Take_btn.interactable = true;
+                    break;
+                case 1: //完成
+                    Take_btn.interactable = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
     void Back()
     {

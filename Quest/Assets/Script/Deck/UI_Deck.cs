@@ -11,8 +11,9 @@ public class UI_Deck : MonoBehaviour {
     #endregion
 
     #region Deck
-    public GameObject ui_Vanguard, ui_Center, ui_Support;
+    public GameObject R_obj,W_obj,RVanguard_obj, RCenter_obj, RSupport_obj, WVanguard_obj, WCenter_obj, WSupport_obj;
     public Image[] Image_Card = new Image[22];
+    public Image[] Image_Card_W = new Image[13];
     public Image Image_Show;
     //按鈕
     public Button[] Button_VCSA = new Button[4];
@@ -25,6 +26,19 @@ public class UI_Deck : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                R_obj.SetActive(true);
+                break;
+            case 2:
+            case 3:
+                W_obj.SetActive(true);
+                break;
+        }
+
         Back_btn.onClick.AddListener(Back);
         Button_VCSA[0].onClick.AddListener(VCSA_V);
         Button_VCSA[1].onClick.AddListener(VCSA_C);
@@ -56,6 +70,21 @@ public class UI_Deck : MonoBehaviour {
         AddEvents.AddTriggersListener(Image_Card[21].gameObject, EPClick, Card_21);
         #endregion
 
+        AddEvents.AddTriggersListener(Image_Card_W[0].gameObject, EPClick, Card_0);
+        AddEvents.AddTriggersListener(Image_Card_W[1].gameObject, EPClick, Card_1);
+        AddEvents.AddTriggersListener(Image_Card_W[2].gameObject, EPClick, Card_2);
+        AddEvents.AddTriggersListener(Image_Card_W[3].gameObject, EPClick, Card_3);
+        AddEvents.AddTriggersListener(Image_Card_W[4].gameObject, EPClick, Card_4);
+        AddEvents.AddTriggersListener(Image_Card_W[5].gameObject, EPClick, Card_5);
+        AddEvents.AddTriggersListener(Image_Card_W[6].gameObject, EPClick, Card_6);
+        AddEvents.AddTriggersListener(Image_Card_W[7].gameObject, EPClick, Card_7);
+        AddEvents.AddTriggersListener(Image_Card_W[8].gameObject, EPClick, Card_8);
+        AddEvents.AddTriggersListener(Image_Card_W[9].gameObject, EPClick, Card_9);
+        AddEvents.AddTriggersListener(Image_Card_W[10].gameObject, EPClick, Card_15);
+        AddEvents.AddTriggersListener(Image_Card_W[11].gameObject, EPClick, Card_16);
+        AddEvents.AddTriggersListener(Image_Card_W[12].gameObject, EPClick, Card_19);
+
+
         Card_Class[] card_temp = new Card_Class[22];
         int[] card_status = new int[22];
 
@@ -65,11 +94,38 @@ public class UI_Deck : MonoBehaviour {
             card_status[i] = Learner_Data.Learner_GetCard_Status(i);
         }
 
-        for (int i = 0; i < 22; i++)
+        switch (System_Data.Version)
         {
-            if (card_status[i] >= 1)
-                Image_Card[i].sprite = Resources.Load("Image/Card/" + card_temp[i].GetPicture(), typeof(Sprite)) as Sprite;
+            case 0:
+            case 1:
+                for (int i = 0; i < 22; i++)
+                {
+                    if (card_status[i] >= 1)
+                        Image_Card[i].sprite = Resources.Load("Image/Card/" + card_temp[i].GetPicture(), typeof(Sprite)) as Sprite;
+                }
+                break;
+            case 2:
+            case 3:
+                for (int i = 0; i < 13; i++)
+                {
+                    if (i < 10)
+                    {
+                        if (card_status[i] >= 1)
+                            Image_Card_W[i].sprite = Resources.Load("Image/Card/" + card_temp[i].GetPicture(), typeof(Sprite)) as Sprite;
+                    }
+                    else if(i == 10)
+                        Image_Card_W[i].sprite = Resources.Load("Image/Card/" + card_temp[15].GetPicture(), typeof(Sprite)) as Sprite;
+                    else if (i == 11)
+                        Image_Card_W[i].sprite = Resources.Load("Image/Card/" + card_temp[16].GetPicture(), typeof(Sprite)) as Sprite;
+                    else if (i == 12)
+                        Image_Card_W[i].sprite = Resources.Load("Image/Card/" + card_temp[19].GetPicture(), typeof(Sprite)) as Sprite;
+                }
+                break;
+            default:
+                break;
         }
+
+
         Image_Show.sprite = Resources.Load("Image/Card/CardBack", typeof(Sprite)) as Sprite;
         Text_No_Content.text = "???";
         Text_Type_Content.text = "???";
@@ -85,8 +141,31 @@ public class UI_Deck : MonoBehaviour {
         Card_Class card_temp = new Card_Class();
         for (int i = 0; i < 22; i++)
             Image_Card[i].color = new Color32(255, 255, 255, 255);
+        for (int i = 0; i < 13; i++)
+            Image_Card_W[i].color = new Color32(255, 255, 255, 255);
 
-        Image_Card[n].color = new Color32(255, 0, 0, 255);
+
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                Image_Card[n].color = new Color32(255, 0, 0, 255);
+                break;
+            case 2:
+            case 3:
+                if(n==15)
+                    Image_Card_W[10].color = new Color32(255, 0, 0, 255);
+                else if (n == 16)
+                    Image_Card_W[11].color = new Color32(255, 0, 0, 255);
+                else if (n == 19)
+                    Image_Card_W[12].color = new Color32(255, 0, 0, 255);
+                else
+                    Image_Card_W[n].color = new Color32(255, 0, 0, 255);
+                break;
+            default:
+                break;
+        }
+
 
         int card_status = new int();
         card_status = Learner_Data.Learner_GetCard_Status(n);
@@ -116,30 +195,78 @@ public class UI_Deck : MonoBehaviour {
     void VCSA_V()
     {
         ok.Play();
-        ui_Vanguard.SetActive(true);
-        ui_Center.SetActive(false);
-        ui_Support.SetActive(false);
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                RVanguard_obj.SetActive(true);
+                RCenter_obj.SetActive(false);
+                RSupport_obj.SetActive(false);
+                break;
+            case 2:
+            case 3:
+                WVanguard_obj.SetActive(true);
+                WCenter_obj.SetActive(false);
+                WSupport_obj.SetActive(false);
+                break;
+        }
     }
     void VCSA_C()
     {
         ok.Play();
-        ui_Vanguard.SetActive(false);
-        ui_Center.SetActive(true);
-        ui_Support.SetActive(false);
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                RVanguard_obj.SetActive(false);
+                RCenter_obj.SetActive(true);
+                RSupport_obj.SetActive(false);
+                break;
+            case 2:
+            case 3:
+                WVanguard_obj.SetActive(false);
+                WCenter_obj.SetActive(true);
+                WSupport_obj.SetActive(false);
+                break;
+        }
     }
     void VCSA_S()
     {
         ok.Play();
-        ui_Vanguard.SetActive(false);
-        ui_Center.SetActive(false);
-        ui_Support.SetActive(true);
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                RVanguard_obj.SetActive(false);
+                RCenter_obj.SetActive(false);
+                RSupport_obj.SetActive(true);
+                break;
+            case 2:
+            case 3:
+                WVanguard_obj.SetActive(false);
+                WCenter_obj.SetActive(false);
+                WSupport_obj.SetActive(true);
+                break;
+        }
     }
     void VCSA_A()
     {
         ok.Play();
-        ui_Vanguard.SetActive(true);
-        ui_Center.SetActive(true);
-        ui_Support.SetActive(true);
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                RVanguard_obj.SetActive(true);
+                RCenter_obj.SetActive(true);
+                RSupport_obj.SetActive(true);
+                break;
+            case 2:
+            case 3:
+                WVanguard_obj.SetActive(true);
+                WCenter_obj.SetActive(true);
+                WSupport_obj.SetActive(true);
+                break;
+        }
     }
     #endregion
 

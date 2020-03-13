@@ -7,11 +7,11 @@ public class UI_Shop : MonoBehaviour {
 
     #region Variable
     private int choose_n = 10;
-    private int[] check_n = new int[15];
+    private int[] check_n = new int[9];
     #endregion
 
     #region Shop
-    public Button[] Item_btn = new Button[12];
+    public Button[] Item_btn = new Button[9];
     public Text[] Have_text = new Text[3];
     public Text ShopInfo_text;
     public Button Buy_btn, Back_btn;
@@ -22,7 +22,7 @@ public class UI_Shop : MonoBehaviour {
     // Use this for initialization
     void Start () {
         ShopInfo_text.text = "點選圖案可查看商品資訊";
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 9; i++)
             check_n[i] = 0;
         Check();
 
@@ -40,9 +40,6 @@ public class UI_Shop : MonoBehaviour {
         Item_btn[6].onClick.AddListener(Item7);
         Item_btn[7].onClick.AddListener(Item8);
         Item_btn[8].onClick.AddListener(Item9);
-        Item_btn[9].onClick.AddListener(Item10);
-        Item_btn[10].onClick.AddListener(Item11);
-        Item_btn[11].onClick.AddListener(Item12);
         #endregion
 
         Buy_btn.onClick.AddListener(Buy);
@@ -80,10 +77,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 2;
         Check();
         Item_btn[2].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 分數才可購買";
-        if (check_n[2] == 1 || Learner_Data.Learner_GetData("Score") < 150)
+        ShopInfo_text.text = "需要 150 金幣才可購買";
+        if (check_n[2] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[2] == 0 && Learner_Data.Learner_GetData("Score") >= 150)
+        else if (check_n[2] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item4()
@@ -140,10 +137,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 7;
         Check();
         Item_btn[7].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 金幣才可購買";
-        if (check_n[7] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
+        ShopInfo_text.text = "需要 150 水晶才可購買";
+        if (check_n[7] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[7] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
+        else if (check_n[7] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
             Buy_btn.interactable = true;
     }
     void Item9()
@@ -152,48 +149,13 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 8;
         Check();
         Item_btn[8].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 金幣才可購買";
-        if (check_n[8] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
-            Buy_btn.interactable = false;
-        else if (check_n[8] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
-            Buy_btn.interactable = true;
-    }
-    void Item10()
-    {
-        choose.Play();
-        choose_n = 9;
-        Check();
-        Item_btn[9].image.color = new Color32(255, 0, 0, 255);
         ShopInfo_text.text = "需要 150 水晶才可購買";
-        if (check_n[9] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
+        if (check_n[8] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[9] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
+        else if (check_n[8] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
             Buy_btn.interactable = true;
     }
-    void Item11()
-    {
-        choose.Play();
-        choose_n = 10;
-        Check();
-        Item_btn[10].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 水晶才可購買";
-        if (check_n[10] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
-            Buy_btn.interactable = false;
-        else if (check_n[10] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
-            Buy_btn.interactable = true;
-    }
-    void Item12()
-    {
-        choose.Play();
-        choose_n = 11;
-        Check();
-        Item_btn[11].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 水晶才可購買";
-        if (check_n[11] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
-            Buy_btn.interactable = false;
-        else if (check_n[11] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
-            Buy_btn.interactable = true;
-    }
+
     #endregion
 
 
@@ -203,65 +165,69 @@ public class UI_Shop : MonoBehaviour {
         switch (choose_n)
         {
             case 0:
-                Learner_Data.Learner_ChangeCard_Status(16);
-                Learner_Data.Learner_ChangeCardsGet_Status(1);
-                Learner_Data.Learner_Add("Score", 0 ,-150);
-                break;
-            case 1:
                 Learner_Data.Learner_ChangeCard_Status(17);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Score", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(1);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 2:
+            case 1:
                 Learner_Data.Learner_ChangeCard_Status(18);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Score", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(1);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 3:
-                Learner_Data.Learner_ChangeCard_Status(9);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
-                Learner_Data.Learner_Add("Coin", 0, -150);
-                break;
-            case 4:
+            case 2:
                 Learner_Data.Learner_ChangeCard_Status(10);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 5:
+            case 3:
                 Learner_Data.Learner_ChangeCard_Status(11);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 6:
+            case 4:
                 Learner_Data.Learner_ChangeCard_Status(12);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 7:
+            case 5:
                 Learner_Data.Learner_ChangeCard_Status(13);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 8:
+            case 6:
                 Learner_Data.Learner_ChangeCard_Status(14);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 9:
-                Learner_Data.Learner_ChangeCard_Status(19);
-                Learner_Data.Learner_ChangeCardsGet_Status(2);
-                Learner_Data.Learner_Add("Crystal", 0, -150);
-                break;
-            case 10:
+            case 7:
                 Learner_Data.Learner_ChangeCard_Status(20);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Crystal", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(2);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
-            case 11:
+            case 8:
                 Learner_Data.Learner_ChangeCard_Status(21);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Crystal", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(2);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
+
             default:
                 break;
         }
@@ -274,35 +240,35 @@ public class UI_Shop : MonoBehaviour {
     }
     void Check()
     {
-        for (int i = 16; i < 19; i++)
+        for (int i = 17; i < 19; i++)
         {
             if (Learner_Data.Learner_GetCard_Status(i) == 1)
             {
-                check_n[i - 16] = 1;
-                Item_btn[i - 16].image.color = new Color32(66, 66, 66, 255); //6-11
+                check_n[i - 17] = 1;
+                Item_btn[i - 17].image.color = new Color32(66, 66, 66, 255); //6-11
             }
             else
-                Item_btn[i - 16].image.color = new Color(255, 255, 255, 255);  //0-5
+                Item_btn[i - 17].image.color = new Color(255, 255, 255, 255);  //0-5
         }
-        for (int i = 9; i < 15; i++)
+        for (int i = 10; i < 15; i++)
         {
             if (Learner_Data.Learner_GetCard_Status(i) == 1)
             {
-                check_n[i - 6] = 1;
-                Item_btn[i - 6].image.color = new Color32(66, 66, 66, 255);  //0-5
+                check_n[i - 8] = 1;
+                Item_btn[i - 8].image.color = new Color32(66, 66, 66, 255);  //0-5
             }
             else
-                Item_btn[i - 6].image.color = new Color32(255, 255, 255, 255);  //0-5
+                Item_btn[i - 8].image.color = new Color32(255, 255, 255, 255);  //0-5
         }
-        for (int i = 19; i < 22; i++)
+        for (int i = 20; i < 22; i++)
         {
             if (Learner_Data.Learner_GetCard_Status(i) == 1)
             {
-                check_n[i - 10] = 1;
-                Item_btn[i - 10].image.color = new Color32(66, 66, 66, 255);  //0-5
+                check_n[i - 13] = 1;
+                Item_btn[i - 13].image.color = new Color32(66, 66, 66, 255);  //0-5
             }
             else
-                Item_btn[i - 10].image.color = new Color32(255, 255, 255, 255);  //0-5
+                Item_btn[i - 13].image.color = new Color32(255, 255, 255, 255);  //0-5
         }
     }
     // Update is called once per frame

@@ -134,23 +134,23 @@ public class UI_Profile : MonoBehaviour {
             case 1:
                 Image_Status.sprite = Resources.Load("Image/Home/Task_Item", typeof(Sprite)) as Sprite;
                 Text_Status.text = "任務";
+                Text_NumContent.text = _Task_Num.ToString();
                 Text_SuccesContent.text = _Task_Success.ToString();
                 Text_FailContent.text = _Task_Fail.ToString();
-                Text_NumContent.text = _Task_Num.ToString();
                 break;
             case 2:
                 Image_Status.sprite = Resources.Load("Image/Home/Learn_Item", typeof(Sprite)) as Sprite;
                 Text_Status.text = "學習";
+                Text_NumContent.text = _Learn_Num.ToString();
                 Text_SuccesContent.text = _Learn_Success.ToString();
                 Text_FailContent.text = _Learn_Fail.ToString();
-                Text_NumContent.text = _Learn_Num.ToString();
                 break;
             case 3:
                 Image_Status.sprite = Resources.Load("Image/Home/Battle_Item", typeof(Sprite)) as Sprite;
                 Text_Status.text = "戰鬥";
+                Text_NumContent.text = _Battle_Num.ToString();
                 Text_SuccesContent.text = _Battle_Success.ToString();
                 Text_FailContent.text = _Battle_Fail.ToString();
-                Text_NumContent.text = _Battle_Num.ToString();
                 break;
             default:
                 break;

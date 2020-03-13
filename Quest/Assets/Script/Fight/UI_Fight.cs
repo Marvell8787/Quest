@@ -93,7 +93,7 @@ public class UI_Fight : MonoBehaviour {
     public Button Button_Next;
     public Text Text_Next;
 
-    public AudioSource ok, PageTurning,dmg,slash,ans,choose,end;
+    public AudioSource ok, PageTurning,dmg,slash,ans,choose,end,draw;
 
 
     // Use this for initialization
@@ -707,6 +707,7 @@ public class UI_Fight : MonoBehaviour {
         }
         else
         {
+            draw.Play();
             Text_Message.text += "\n" + "平手";
         }
         Text_LP_A_Num.text = Player.GetLP().ToString();

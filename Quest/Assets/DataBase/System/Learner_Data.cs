@@ -4,7 +4,7 @@ using UnityEngine;
 
 static class Learner_Data{
     //Task
-    private static int[] Task_Num = new int[7] { 0,0,0,0,0,0,0 }; //進行次數
+    private static int[] Task_Num = new int[7] {0,0,0,0,0,0,0 }; //進行次數
     private static int[] Task_Success = new int[7] { 0, 0, 0, 0, 0, 0, 0 }; //成功次數
     private static int[] Task_Fail = new int[7] { 0, 0, 0, 0, 0, 0, 0 }; //失敗次數
     //Learn
@@ -32,7 +32,7 @@ static class Learner_Data{
     //Card
     private static int Cards_Num = 10; //卡片數量
     private static int[] Cards_GetStatus = new int[3] { 9, 1, 0 }; //卡牌種類持有狀態 前鋒 中鋒 支援
-    private static int[] Card_Status = new int[22] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 }; //卡片持有狀態 0:無 1~22:有
+    private static int[] Card_Status = new int[22] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0 }; //卡片持有狀態 0:無 1~22:有
     //Punishment
     //Point
     private static int[] Points_Status = new int[3] { 3, 3, 3 }; //點數持有狀態 Task Learn Battle

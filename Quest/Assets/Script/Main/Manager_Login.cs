@@ -73,29 +73,29 @@ public class Manager_Login{
                 for (int i = 0; i < 7; i++)
                 {
                     n = int.Parse(GetDataValue(str, "Learner_Task" + (i + 1) + "_Num:"));
-                    Learner_Data.Learner_Add("Task_Num", i,n);
+                    Learner_Data.Learner_SetData("Task_Num", i,n);
                     n = int.Parse(GetDataValue(str, "Learner_Task" + (i + 1) + "_Success:"));
-                    Learner_Data.Learner_Add("Task_Success", i, n);
-                    n = int.Parse(GetDataValue(str, "Learner_Task" + (i + 1) + "_Success:"));
-                    Learner_Data.Learner_Add("Task_Fail", i, n);
+                    Learner_Data.Learner_SetData("Task_Success", i, n);
+                    n = int.Parse(GetDataValue(str, "Learner_Task" + (i + 1) + "_Fail:"));
+                    Learner_Data.Learner_SetData("Task_Fail", i, n);
                 }
                 for (int i = 0; i < 5; i++)
                 {
                     n = int.Parse(GetDataValue(str, "Learner_Learn" + (i + 1) + "_Num:"));
-                    Learner_Data.Learner_Add("Learn_Num", i, n);
+                    Learner_Data.Learner_SetData("Learn_Num", i, n);
                     n = int.Parse(GetDataValue(str, "Learner_Learn" + (i + 1) + "_Success:"));
-                    Learner_Data.Learner_Add("Learn_Success", i, n);
+                    Learner_Data.Learner_SetData("Learn_Success", i, n);
                     n = int.Parse(GetDataValue(str, "Learner_Learn" + (i + 1) + "_Fail:"));
-                    Learner_Data.Learner_Add("Learn_Fail", i, n);
+                    Learner_Data.Learner_SetData("Learn_Fail", i, n);
                 }
                 for (int i = 0; i < 2; i++)
                 {
                     n = int.Parse(GetDataValue(str, "Learner_Battle" + (i + 1) + "_Num:"));
-                    Learner_Data.Learner_Add("Battle_Num", i, n);
+                    Learner_Data.Learner_SetData("Battle_Num", i, n);
                     n = int.Parse(GetDataValue(str, "Learner_Battle" + (i + 1) + "_Success:"));
-                    Learner_Data.Learner_Add("Battle_Success", i, n);
+                    Learner_Data.Learner_SetData("Battle_Success", i, n);
                     n = int.Parse(GetDataValue(str, "Learner_Battle" + (i + 1) + "_Fail:"));
-                    Learner_Data.Learner_Add("Battle_Fail", i, n);
+                    Learner_Data.Learner_SetData("Battle_Fail", i, n);
                 }
                 n = int.Parse(GetDataValue(str, "Learner_Score:"));
                 Learner_Data.Learner_SetData("Score", 0, n);
