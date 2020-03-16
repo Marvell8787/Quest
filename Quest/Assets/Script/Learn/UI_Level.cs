@@ -281,8 +281,8 @@ public class UI_Level : MonoBehaviour {
                             Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                             Mechanism_Data.Punishment("Task", Level);
                             ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
-                            Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString();
-                            Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                            Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                            Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                             Point_img.gameObject.SetActive(true);
                             Mistake_img.gameObject.SetActive(true);
                             Point_Num.gameObject.SetActive(true);

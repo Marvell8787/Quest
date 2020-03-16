@@ -32,10 +32,11 @@ static class Learner_Data{
     //Card
     private static int Cards_Num = 10; //卡片數量
     private static int[] Cards_GetStatus = new int[3] { 9, 1, 0 }; //卡牌種類持有狀態 前鋒 中鋒 支援
-    private static int[] Card_Status = new int[22] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0 }; //卡片持有狀態 0:無 1~22:有
+    private static int[] Card_Status = new int[22] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //卡片持有狀態 0:無 1~22:有
+    //private static int[] Card_Status = new int[22] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0 }; //卡片持有狀態 0:無 1~22:有
     //Punishment
     //Point
-    private static int[] Points_Status = new int[3] { 3, 3, 3 }; //點數持有狀態 Task Learn Battle
+    private static int[] Points_Status = new int[3] { 0, 0, 0 }; //點數持有狀態 Task Learn Battle
     private static int Points_Num = 9; //點數
     //Mistakes
     private static int[] Mistakes_Status = new int[3] { 0, 0, 0 }; //失誤持有狀態 warning YC RC
@@ -324,6 +325,7 @@ static class Learner_Data{
     }
     private static void CheckMistakes(string s,int n)
     {
+        int temp = Mistakes_Status[2];
         switch (s)
         {
             case "Mistakes_Num":
@@ -337,7 +339,7 @@ static class Learner_Data{
                     Mistakes_Status[2] += 1;
                     Mistakes_Status[1] %= 3;
                 }
-                if (Mistakes_Status[2] > 0)
+                if (Mistakes_Status[2] > temp)
                 {
                     Mistakes_N2 *= 2;
                     //懲罰+倍

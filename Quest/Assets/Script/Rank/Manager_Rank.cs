@@ -8,8 +8,8 @@ public class Manager_Rank{
 
     public int state;
     //[0,0/1] 0:username 1:num 
-    public string[,] AllClass = new string[26, 2]; //班級人數 
-    public string[,] Rank5 = new string[26, 3]; //[x,0]:第幾名 [x,1]:名稱 [x,2]:數量
+    public string[,] AllClass = new string[27, 2]; //班級人數 
+    public string[,] Rank5 = new string[27, 3]; //[x,0]:第幾名 [x,1]:名稱 [x,2]:數量
     public string[,] Learner = new string[1, 3];//00:第幾名 01:號碼 02:數量
 
     public IEnumerator GetRank(string fileName, string s, string code, int people = 0)
@@ -60,14 +60,15 @@ public class Manager_Rank{
         {
             Debug.Log(AllClass[i, 0] + ":" + AllClass[i, 1]);
         }*/
-        if(p<26)
+        if(p<27) //數字隨便給 大於30就好
         {
-            AllClass[24, 0] = "0";
-            AllClass[24, 1] = "0";
-            AllClass[25, 0] = "0";
-            AllClass[25, 1] = "0";
+            for(int i = 25; i < 27; i++)
+            {
+                AllClass[i, 0] = p.ToString();
+                AllClass[i, 1] = "0";
+            }
         }
-        sort(AllClass,people);
+        sort(AllClass,p);
     }
     private string GetDataValue(string data, string index)
     {
@@ -118,14 +119,14 @@ public class Manager_Rank{
                 Rank5[i, 0] = n.ToString();//第幾名
             }
         }
-        if (num < 26)
+        if (num < 27)
         {
-            Rank5[24, 0] = "24";
-            Rank5[24, 1] = "X";
-            Rank5[24, 2] = "0";
-            Rank5[25, 0] = "24";
-            Rank5[25, 1] = "X";
-            Rank5[25, 2] = "0";
+            for (int i = 25; i < 27; i++)
+            {
+                Rank5[i, 0] = num.ToString();
+                Rank5[i, 1] = "X";
+                Rank5[i, 2] = "0";
+            }
         }
         for (int i=0;i< num; i++)
         {

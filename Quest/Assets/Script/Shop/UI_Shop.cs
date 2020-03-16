@@ -11,6 +11,7 @@ public class UI_Shop : MonoBehaviour {
     #endregion
 
     #region Shop
+    public GameObject R_obj, W_obj; //Shop
     public Button[] Item_btn = new Button[9];
     public Text[] Have_text = new Text[3];
     public Text ShopInfo_text;
@@ -21,7 +22,36 @@ public class UI_Shop : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        ShopInfo_text.text = "點選圖案可查看商品資訊";
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                R_obj.SetActive(true);
+                W_obj.SetActive(false);
+                ShopInfo_text.text = "點選圖案可查看商品資訊";
+                #region Item
+                Item_btn[0].onClick.AddListener(Item1);
+                Item_btn[1].onClick.AddListener(Item2);
+                Item_btn[2].onClick.AddListener(Item3);
+                Item_btn[3].onClick.AddListener(Item4);
+                Item_btn[4].onClick.AddListener(Item5);
+                Item_btn[5].onClick.AddListener(Item6);
+                Item_btn[6].onClick.AddListener(Item7);
+                Item_btn[7].onClick.AddListener(Item8);
+                Item_btn[8].onClick.AddListener(Item9);
+                #endregion
+
+                Buy_btn.onClick.AddListener(Buy);
+                break;
+            case 2:
+            case 3:
+                R_obj.SetActive(false);
+                W_obj.SetActive(true);
+                ShopInfo_text.text = "本商店已休業";
+                break;
+            default:
+                break;
+        }
         for (int i = 0; i < 9; i++)
             check_n[i] = 0;
         Check();
@@ -30,19 +60,7 @@ public class UI_Shop : MonoBehaviour {
         Have_text[1].text = Learner_Data.Learner_GetData("Coin").ToString();
         Have_text[2].text = Learner_Data.Learner_GetData("Crystal").ToString();
 
-        #region Item
-        Item_btn[0].onClick.AddListener(Item1);
-        Item_btn[1].onClick.AddListener(Item2);
-        Item_btn[2].onClick.AddListener(Item3);
-        Item_btn[3].onClick.AddListener(Item4);
-        Item_btn[4].onClick.AddListener(Item5);
-        Item_btn[5].onClick.AddListener(Item6);
-        Item_btn[6].onClick.AddListener(Item7);
-        Item_btn[7].onClick.AddListener(Item8);
-        Item_btn[8].onClick.AddListener(Item9);
-        #endregion
 
-        Buy_btn.onClick.AddListener(Buy);
         Back_btn.onClick.AddListener(Back);
 
     }

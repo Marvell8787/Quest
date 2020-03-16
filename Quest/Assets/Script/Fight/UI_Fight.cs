@@ -228,7 +228,7 @@ public class UI_Fight : MonoBehaviour {
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
             Text_ROW.text = "答錯了！！";
             dmg.Play();
-            Player.ChangeLP(Player.GetLP() - 5);
+            Player.ChangeLP(Player.GetLP() - 3);
             Text_LP_A_Num.text = Player.GetLP().ToString();
         }
 
@@ -919,8 +919,8 @@ public class UI_Fight : MonoBehaviour {
                     Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                     Mechanism_Data.Punishment("Task", 5 + hard);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
-                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString();
-                    Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                     Point_img.gameObject.SetActive(true);
                     Mistake_img.gameObject.SetActive(true);
                     Point_Num.gameObject.SetActive(true);

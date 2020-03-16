@@ -13,8 +13,8 @@ static class Question_Bank {
         
     };
     public static int Question_Level4_Num=10;
-    public static string[,] Question_Level4 = new string[10,2] {{ "I want a sandwich _ dinner.", "for" },{ "I want _ noodles.", "some" },{ "Sarah _ some want.","wants" }, { "What _ Danny want for breakfast.","does" }, {"Dad wants some _ for lunch.","rice" }, { "Danny _  to school every day.", "walks" }, { "Dino _  basketball at 2:00.", "plays" }, { "My sister and I _ in the bedroom .", "sleep" }, { "I _ two hamburgers.", "eat" }, { "I _ TV at 7:00 pm.", "watch" } };
-    public static string[,] Question_Level4_BtnAns = new string[10, 3] { { "with", "for", "to" }, { "a", "this", "some" }, { "want", "wants", "wanting" }, { "do", "does", "are" }, { "a rice", "rice", "rices" }, { "walks", "walk", "walking" }, { "plays", "play", "playing" }, { "sleep", "sleeps", "sleeping" }, { "eat", "eats", "eating" }, { "watches", "watch", "watching" } };
+    public static string[,] Question_Level4 = new string[10,2] {{ "I want a sandwich _ dinner.", "for" },{ "I want _ noodles.", "some" },{ "Sarah _ some want.","wants" }, { "What _ Danny want for breakfast.","does" }, {"Dad wants some _ for lunch.","rice" }, { "Danny _  to school every day.", "walks" }, { "Dino _  basketball at 2:00.", "plays" }, { "My sister and I _ in the bedroom .", "sleep" }, { "I _ two hamburgers.", "eat" }, { "Wow! We are _ Japan.", "in" } };
+    public static string[,] Question_Level4_BtnAns = new string[10, 3] { { "with", "for", "to" }, { "a", "this", "some" }, { "want", "wants", "wanting" }, { "do", "does", "are" }, { "a rice", "rice", "rices" }, { "walks", "walk", "walking" }, { "plays", "play", "playing" }, { "sleep", "sleeps", "sleeping" }, { "eat", "eats", "eating" }, { "in", "on", "under" } };
 
     public static int Question_Level5_Num = 2; //雖然2題 但實際上輸出只會有1題
     public static int Question_Level5_QuestionNum = 4; //每1閱讀分為4小題

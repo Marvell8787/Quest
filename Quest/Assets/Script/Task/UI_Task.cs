@@ -21,7 +21,7 @@ public class UI_Task : MonoBehaviour {
     #endregion
 
     #region Task Content
-    public Text Text_Request_Content, Text_Reward_Content, Text_Punishment_Content;
+    public Text Text_Request_Content, Text_Reward_Content, Text_Punishment_Content, Take_btntext;
     public Button Take_btn;
     #endregion
     public Text Score_text, Point_text, Mistake_text;
@@ -77,7 +77,7 @@ public class UI_Task : MonoBehaviour {
         {
             learn_temp[i] = Task_Data.Learn_Get(i);
             Task_text[i].text = learn_temp[i].GetTitle();
-            if (Learner_Data.Learner_GetData("Task_Success", i) > 0)
+            if (Learner_Data.Learner_GetData("Task_Num", i) > 0)
             {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
@@ -117,7 +117,7 @@ public class UI_Task : MonoBehaviour {
         {
             battle_temp[i] = Task_Data.Battle_Get(i);
             Task_text[i].text = battle_temp[i].GetTitle();
-            if(Learner_Data.Learner_GetData("Task_Success", i + 5) > 0)
+            if(Learner_Data.Learner_GetData("Task_Num", i + 5) > 0)
             {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
@@ -265,13 +265,15 @@ public class UI_Task : MonoBehaviour {
         */
         if (choose_s == "learn")
         {
-            switch (Learner_Data.Learner_GetData("Task_Success", n))
+            switch (Learner_Data.Learner_GetData("Task_Num", n))
             {
                 case 0: //未接
                     Take_btn.interactable = true;
+                    Take_btntext.text = "接受任務並開始";
                     break;
                 case 1: //完成
                     Take_btn.interactable = false;
+                    Take_btntext.text = "已完成";
                     break;
                 default:
                     break;
@@ -279,7 +281,7 @@ public class UI_Task : MonoBehaviour {
         }
         else if (choose_s == "battle")
         {
-            switch (Learner_Data.Learner_GetData("Task_Success", 5+n))
+            switch (Learner_Data.Learner_GetData("Task_Num", 5+n))
             {
                 case 0: //未接
                     Take_btn.interactable = true;

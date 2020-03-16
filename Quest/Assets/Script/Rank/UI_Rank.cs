@@ -51,16 +51,16 @@ public class UI_Rank : MonoBehaviour {
         switch (System_Data.Version)
         {
             case 0:
-                StartCoroutine(mr.GetRank("Rank.php",choose_s,"A503",26));//5年3班26人
+                StartCoroutine(mr.GetRank("Rank.php",choose_s,"A503",30));//5年3班26人
                 break;
             case 1:
-                StartCoroutine(mr.GetRank("Rank.php",choose_s,"B506",26));
+                StartCoroutine(mr.GetRank("Rank.php",choose_s,"B506",30));
                 break;
             case 2:
-                StartCoroutine(mr.GetRank("Rank.php",choose_s,"C507",26));
+                StartCoroutine(mr.GetRank("Rank.php",choose_s,"C507",30));
                 break;
             case 3:
-                StartCoroutine(mr.GetRank("Rank.php",choose_s,"D505",24));
+                StartCoroutine(mr.GetRank("Rank.php",choose_s,"D505",30));
                 break;
             default:
                 break;

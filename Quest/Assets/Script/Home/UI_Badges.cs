@@ -19,7 +19,7 @@ public class UI_Badges : MonoBehaviour {
     #endregion
 
     #region Badges
-    public GameObject Badges_obj;
+    public GameObject Badges_obj,R_obj,W_obj;
     public Button[] Badges_btn = new Button[9]; //Image
     public Button BadgesCancel_btn, Right_btn, Left_btn;
     public Text[] Item_text = new Text[3];
@@ -29,6 +29,22 @@ public class UI_Badges : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                R_obj.SetActive(true);
+                W_obj.SetActive(false);
+                break;
+            case 2:
+            case 3:
+                R_obj.SetActive(false);
+                W_obj.SetActive(true);
+                break;
+            default:
+                break;
+        }
+
         Badges_btn[0].onClick.AddListener(Badges_0);
         Badges_btn[1].onClick.AddListener(Badges_1);
         Badges_btn[2].onClick.AddListener(Badges_2);

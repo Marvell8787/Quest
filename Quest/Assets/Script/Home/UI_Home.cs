@@ -31,7 +31,7 @@ public class UI_Home : MonoBehaviour {
 
         Save.onClick.AddListener(SaveData);
         NameContent_text.text = System_Data.Username;
-
+        /*
         switch (System_Data.Version)
         {
             case 0:
@@ -45,7 +45,7 @@ public class UI_Home : MonoBehaviour {
                 break;
             default:
                 break;
-        }
+        }*/
 
         #region Home PointerEnter
         AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPEnter, Enter_Task);
@@ -183,7 +183,19 @@ public class UI_Home : MonoBehaviour {
     public void Click_Badges()
     {
         ok.Play();
-        Info_text.text = "點選任一獎章可查看該獎章的獲得方式";
+        switch (System_Data.Version)
+        {
+            case 0:
+            case 1:
+                Info_text.text = "點選任一獎章可查看該獎章的獲得方式";
+                break;
+            case 2:
+            case 3:
+                Info_text.text = "不開放";
+                break;
+            default:
+                break;
+        }
         Name_obj.SetActive(false);
         Home_obj.SetActive(false);
         Badges_obj.SetActive(true);
