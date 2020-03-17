@@ -24,7 +24,7 @@ static class Learner_Data{
     private static int Crystal_Accumulation = 100; //水晶高數
     //Reward
     //Badges
-    private static int[] Badges_Status = new int[18] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
+    private static int[] Badges_Status = new int[18] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有 前9個為進行次數 後九個為成功次數
     //testprivate static int[] Badges_Status = new int[18] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //獎章持有狀態 0:無 1:有
     private static int[] Badges_GetStatus = new int[3] { 0, 0, 0 }; //任務 學習 戰鬥
     private static int Badges_Num = 0; //獎章數量
@@ -67,7 +67,7 @@ static class Learner_Data{
             case "Crystal_Accumulation": Crystal_Accumulation = n; break;
             //Reward
             case "Badges_Num": Badges_Num = n; break;
-            case "Card_Num": Cards_Num = n; break;
+            case "Cards_Num": Cards_Num = n; break;
             //Punishment
             case "Points_Num": Points_Num = n; break;
             case "Mistakes_Num": Mistakes_Num = n; break;
@@ -97,7 +97,7 @@ static class Learner_Data{
             case "Crystal_Accumulation": Crystal_Accumulation += n; break;
             //Reward
             case "Badges_Num": Badges_Num += n; break;
-            case "Card_Num": Cards_Num += n; break;
+            case "Cards_Num": Cards_Num += n; break;
             //Punishment
             case "Points_Num": Points_Num += n; break;
             case "Mistakes_Num": Mistakes_Num += n; break;
@@ -191,7 +191,7 @@ static class Learner_Data{
         Badges_GetStatus[n] += 1;
     }
 
-    private static void CheckBadges(string s)
+    public static void CheckBadges(string s)
     {
         int _Task_Nums = 0, _Learn_Nums = 0, _Battle_Nums = 0;
         int _Task_Success =0, _Learn_Success=0, _Battle_Success = 0;
@@ -215,54 +215,180 @@ static class Learner_Data{
             //Task
             case "Task_Num":
                 if (_Task_Nums > 1  && _Task_Nums < 5)
-                    Badges_Status[0] = 1;
+                {
+                    if(Badges_Status[0] == 0)
+                    {
+                        Badges_Status[0] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[0] += 1;
+                    }
+                }
                 else if (_Task_Nums > 4 && _Task_Nums < 7)
-                    Badges_Status[1] = 1;
+                {
+                    if (Badges_Status[1] == 0)
+                    {
+                        Badges_Status[1] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[0] += 1;
+                    }
+                }
                 else if (_Task_Nums > 6)
-                    Badges_Status[2] = 1;
+                {
+                    if (Badges_Status[2] == 0)
+                    {
+                        Badges_Status[2] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[0] += 1;
+                    }
+                }
                 break;
             //Learn
             case "Learn_Num":
                 if (_Learn_Nums > 4 && _Learn_Nums < 10)
-                    Badges_Status[3] = 1;
+                {
+                    if (Badges_Status[3] == 0)
+                    {
+                        Badges_Status[3] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[1] += 1;
+                    }
+                }
                 else if (_Learn_Nums > 9 && _Learn_Nums < 20)
-                    Badges_Status[4] = 1;
+                {
+                    if (Badges_Status[4] == 0)
+                    {
+                        Badges_Status[4] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[1] += 1;
+                    }
+                }
                 else if (_Learn_Nums > 19)
-                    Badges_Status[5] = 1;
+                {
+                    if (Badges_Status[5] == 0)
+                    {
+                        Badges_Status[5] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[1] += 1;
+                    }
+                }
                 break;
             //Battle
             case "Battle_Num":
                 if (_Battle_Nums > 2 && _Battle_Nums < 5)
-                    Badges_Status[6] = 1;
+                {
+                    if (Badges_Status[6] == 0)
+                    {
+                        Badges_Status[6] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[2] += 1;
+                    }
+                }
                 else if (_Battle_Nums > 4 && _Battle_Nums < 10)
-                    Badges_Status[7] = 1;
+                {
+                    if (Badges_Status[7] == 0)
+                    {
+                        Badges_Status[7] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[2] += 1;
+                    }
+                }
                 else if (_Battle_Nums > 9)
-                    Badges_Status[8] = 1;
+                {
+                    if (Badges_Status[8] == 0)
+                    {
+                        Badges_Status[8] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[2] += 1;
+                    }
+                }
                 break;
             //Score_Highest Crystal_Highest 是指定
             case "Task_Success":
                 if (_Task_Success > 2 && _Task_Success < 5)
-                    Badges_Status[9] = 1;
+                {
+                    if (Badges_Status[9] == 0)
+                    {
+                        Badges_Status[9] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[0] += 1;
+                    }
+                }
                 else if (_Task_Success > 4 && _Task_Success < 7)
-                    Badges_Status[10] = 1;
+                {
+                    if (Badges_Status[10] == 0)
+                    {
+                        Badges_Status[10] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[0] += 1;
+                    }
+                }
                 else if (_Task_Success > 6)
-                    Badges_Status[11] = 1;
+                {
+                    if (Badges_Status[11] == 0)
+                    {
+                        Badges_Status[11] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[0] += 1;
+                    }
+                }
                 break;
             case "Learn_Success":
                 if (_Learn_Success > 4 && _Learn_Success < 10)
-                    Badges_Status[12] = 1;
+                {
+                    if (Badges_Status[12] == 0)
+                    {
+                        Badges_Status[12] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[1] += 1;
+                    }
+                }
                 else if (_Learn_Success > 9 && _Learn_Success < 15)
-                    Badges_Status[13] = 1;
+                {
+                    if (Badges_Status[13] == 0)
+                    {
+                        Badges_Status[13] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[1] += 1;
+                    }
+                }
                 else if (_Learn_Success > 14)
-                    Badges_Status[14] = 1;
+                {
+                    if (Badges_Status[14] == 0)
+                    {
+                        Badges_Status[14] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[1] += 1;
+                    }
+                }
                 break;
             case "Battle_Success":
                 if (_Battle_Success > 1 && _Battle_Success < 5)
-                    Badges_Status[15] = 1;
+                {
+                    if (Badges_Status[15] == 0)
+                    {
+                        Badges_Status[15] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[2] += 1;
+                    }
+                }
                 else if (_Battle_Success > 4 && _Battle_Success < 10)
-                    Badges_Status[16] = 1;
+                {
+                    if (Badges_Status[16] == 0)
+                    {
+                        Badges_Status[16] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[2] += 1;
+                    }
+                }
                 else if (_Battle_Success > 9)
-                    Badges_Status[17] = 1;
+                {
+                    if (Badges_Status[17] == 0)
+                    {
+                        Badges_Status[17] = 1;
+                        Badges_Num++;
+                        Badges_GetStatus[2] += 1;
+                    }
+                }
                 break;
             default:
                 break;

@@ -18,6 +18,7 @@ public class UI_Task : MonoBehaviour {
     public Button TaskLearn_btn, TaskBattle_btn; //Image
     public Button TaskContentCancel_btn;
     public Text[] Task_text = new Text[5];
+    public Text Info_text;
     #endregion
 
     #region Task Content
@@ -32,7 +33,7 @@ public class UI_Task : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        
+        Info_text.text = "點選圖案可顯示該類別下的任務\n點選學習圖示即顯示學習任務\n點選戰鬥圖示即顯示戰鬥任務";
         Score_text.text = Learner_Data.Learner_GetData("Score").ToString();
         switch (System_Data.Version)
         {
@@ -77,7 +78,7 @@ public class UI_Task : MonoBehaviour {
         {
             learn_temp[i] = Task_Data.Learn_Get(i);
             Task_text[i].text = learn_temp[i].GetTitle();
-            if (Learner_Data.Learner_GetData("Task_Num", i) > 0)
+            if (Learner_Data.Learner_GetData("Task_Num", i) > 1)
             {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
@@ -87,7 +88,9 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
 
-            }/*
+            }
+            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務";
+            /*
             switch (learn_temp[i].GetStatus())
             {
                 case 1: //未接
@@ -117,7 +120,7 @@ public class UI_Task : MonoBehaviour {
         {
             battle_temp[i] = Task_Data.Battle_Get(i);
             Task_text[i].text = battle_temp[i].GetTitle();
-            if(Learner_Data.Learner_GetData("Task_Num", i + 5) > 0)
+            if(Learner_Data.Learner_GetData("Task_Num", i + 5) > 1)
             {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
@@ -127,6 +130,7 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
+            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務";
             /*
             switch (battle_temp[i].GetStatus())
             {
@@ -267,11 +271,12 @@ public class UI_Task : MonoBehaviour {
         {
             switch (Learner_Data.Learner_GetData("Task_Num", n))
             {
-                case 0: //未接
+                case 0: //未完
+                case 1: //未完
                     Take_btn.interactable = true;
                     Take_btntext.text = "接受任務並開始";
                     break;
-                case 1: //完成
+                case 2: //完成
                     Take_btn.interactable = false;
                     Take_btntext.text = "已完成";
                     break;
@@ -283,11 +288,14 @@ public class UI_Task : MonoBehaviour {
         {
             switch (Learner_Data.Learner_GetData("Task_Num", 5+n))
             {
-                case 0: //未接
+                case 0: //未完
+                case 1: //未完
                     Take_btn.interactable = true;
+                    Take_btntext.text = "接受任務並開始";
                     break;
-                case 1: //完成
+                case 2: //完成
                     Take_btn.interactable = false;
+                    Take_btntext.text = "已完成";
                     break;
                 default:
                     break;

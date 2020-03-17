@@ -140,7 +140,7 @@ public class UI_Home : MonoBehaviour {
     #region Home PointerExit Function
     void Exit(BaseEventData data)
     {
-        Info_text.text = "請完成所有任務\n學習區可以練習題目\n戰鬥區可模擬跟電腦戰鬥的模式\n可至個人狀態查詢所持有的物品";
+        Info_text.text = "請完成所有任務\n學習可以練習題目及查看學習教材\n戰鬥可與電腦對戰\n可至個人狀態查詢所持有的物品";
     }
     #endregion
 

@@ -342,7 +342,7 @@ public class UI_Fight : MonoBehaviour {
                         break;
                     case 18:
                         Text_ATK_A_Num.text += "+ "+(card_temp[s].GetATK()).ToString();
-                        ATK_A += 4;
+                        ATK_A += 5;
                         break;
                     default:
                         break;
@@ -368,7 +368,7 @@ public class UI_Fight : MonoBehaviour {
                     break;
                 case 18:
                     Text_ATK_A_Num.text += "+ " + (card_temp[n].GetATK()).ToString();
-                    ATK_A += 4;
+                    ATK_A += 5;
                     break;
                 default:
                     break;
@@ -624,7 +624,7 @@ public class UI_Fight : MonoBehaviour {
                     ATK_B += 3;
                     break;
                 case 18:
-                    ATK_B += 4;
+                    ATK_B += 5;
                     break;
                 default:
                     break;

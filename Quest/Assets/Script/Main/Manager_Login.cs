@@ -193,6 +193,13 @@ public class Manager_Login{
             }
         }
         #endregion
+
+        Learner_Data.CheckBadges("Task_Num");
+        Learner_Data.CheckBadges("Learn_Num");
+        Learner_Data.CheckBadges("Battle_Num");
+        Learner_Data.CheckBadges("Task_Success");
+        Learner_Data.CheckBadges("Learn_Success");
+        Learner_Data.CheckBadges("Battle_Success");
     }
     public string GetDataValue(string data,string index)
     {

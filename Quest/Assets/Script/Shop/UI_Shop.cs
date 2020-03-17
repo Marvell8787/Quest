@@ -184,63 +184,54 @@ public class UI_Shop : MonoBehaviour {
         {
             case 0:
                 Learner_Data.Learner_ChangeCard_Status(17);
-                Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Score", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 1:
                 Learner_Data.Learner_ChangeCard_Status(18);
-                Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Score", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 2:
                 Learner_Data.Learner_ChangeCard_Status(10);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 3:
                 Learner_Data.Learner_ChangeCard_Status(11);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 4:
                 Learner_Data.Learner_ChangeCard_Status(12);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 5:
                 Learner_Data.Learner_ChangeCard_Status(13);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 6:
                 Learner_Data.Learner_ChangeCard_Status(14);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 7:
                 Learner_Data.Learner_ChangeCard_Status(20);
-                Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Crystal", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 break;
             case 8:
                 Learner_Data.Learner_ChangeCard_Status(21);
-                Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Crystal", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
