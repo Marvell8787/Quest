@@ -4,16 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-public class UI_Battle : MonoBehaviour {
+public class UI_Battle : MonoBehaviour
+{
 
     private int choose_n = 0;
+    private static Manager_log ml = new Manager_log();
 
     #region Variable Events
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
 
     public Button Back_btn;
-    public Text ItemContent_text,Point_text, Mistake_text;
+    public Text ItemContent_text, Point_text, Mistake_text;
     public Image Point_img, Mistake_img;
 
     #region SelectBattle_obj
@@ -36,7 +38,8 @@ public class UI_Battle : MonoBehaviour {
     public AudioSource choose, ok, cancel;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         switch (System_Data.Version)
         {
             case 0:
@@ -85,6 +88,7 @@ public class UI_Battle : MonoBehaviour {
         choose_n = 0;
         ShowContent(0);
         Content_obj.SetActive(true);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[1], Behaviour_Bank.GamingBehaviour_Battle[1] + "1" ));
     }
     void Fight2(BaseEventData data)
     {
@@ -92,6 +96,8 @@ public class UI_Battle : MonoBehaviour {
         choose_n = 1;
         ShowContent(1);
         Content_obj.SetActive(true);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[1], Behaviour_Bank.GamingBehaviour_Battle[1] + "2"));
+
     }
     #endregion
 
@@ -108,11 +114,12 @@ public class UI_Battle : MonoBehaviour {
         battle_temp = Battle_Data.Battle_Get(choose_n);
         int n3 = int.Parse(battle_temp.GetTime());
         ok.Play();
-        Question_Data.Question_Init(5+ choose_n, 1, 8, n3, 0);
+        Question_Data.Question_Init(5 + choose_n, 1, 8, n3, 0);
         Player_Data.Player_Init(choose_n);
         Player_Data.Shuffle(0);
         Player_Data.Shuffle(1);
         Player_Data.Deal();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[2], Behaviour_Bank.GamingBehaviour_Battle[2] + (choose_n+1).ToString()));
         SceneManager.LoadScene("Fight");
     }
     #endregion
@@ -134,5 +141,10 @@ public class UI_Battle : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass,string B1,string B2,string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

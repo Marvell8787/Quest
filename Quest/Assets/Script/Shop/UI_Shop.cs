@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UI_Shop : MonoBehaviour {
 
     #region Variable
+    private Manager_log ml = new Manager_log();
     private int choose_n = 10;
     private int[] check_n = new int[9];
     #endregion
@@ -67,6 +68,7 @@ public class UI_Shop : MonoBehaviour {
     #region Shop Item
     void Item1()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour,Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1]+"1"));
         choose.Play();
         choose_n = 0;
         Check();
@@ -79,6 +81,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item2()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "2"));
         choose.Play();
         choose_n = 1;
         Check();
@@ -91,6 +94,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item3()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "3"));
         choose.Play();
         choose_n = 2;
         Check();
@@ -103,6 +107,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item4()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "4"));
         choose.Play();
         choose_n = 3;
         Check();
@@ -115,6 +120,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item5()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "5"));
         choose.Play();
         choose_n = 4;
         Check();
@@ -127,6 +133,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item6()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "6"));
         choose.Play();
         choose_n = 5;
         Check();
@@ -139,6 +146,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item7()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "7"));
         choose.Play();
         choose_n = 6;
         Check();
@@ -151,6 +159,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item8()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "8"));
         choose.Play();
         choose_n = 7;
         Check();
@@ -163,6 +172,7 @@ public class UI_Shop : MonoBehaviour {
     }
     void Item9()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[1] + "9"));
         choose.Play();
         choose_n = 8;
         Check();
@@ -246,6 +256,7 @@ public class UI_Shop : MonoBehaviour {
         Have_text[1].text = Learner_Data.Learner_GetData("Coin").ToString();
         Have_text[2].text = Learner_Data.Learner_GetData("Crystal").ToString();
         Buy_btn.interactable = false;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[1], Behaviour_Bank.SupportingBehaviour_Shop[2] + (choose_n+1).ToString()));
     }
     void Check()
     {
@@ -286,5 +297,9 @@ public class UI_Shop : MonoBehaviour {
         ok.Play();
         SceneManager.LoadScene("Home");
     }
-
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
+    }
 }

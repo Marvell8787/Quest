@@ -148,41 +148,49 @@ public class UI_Home : MonoBehaviour {
     public void Click_Task()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[0]));
         SceneManager.LoadScene("Task");
     }
     public void Click_Learn()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Learn, Behaviour_Bank.LearningBehaviour_Learn, Behaviour_Bank.LearningBehaviour_Learn));
         SceneManager.LoadScene("Learn");
     }
     public void Click_Battle()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[0]));
         SceneManager.LoadScene("Battle");
     }
     public void Click_Guide()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[0]));
         SceneManager.LoadScene("Guide");
     }
     public void Click_Profile()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Profile[0], Behaviour_Bank.SupportingBehaviour_Profile[0], Behaviour_Bank.SupportingBehaviour_Profile[0]));
         SceneManager.LoadScene("Profile");
     }
     public void Click_Shop()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[0], Behaviour_Bank.SupportingBehaviour_Shop[0]));
         SceneManager.LoadScene("Shop");
     }
     public void Click_Deck()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[0]));
         SceneManager.LoadScene("Deck");
     }
     public void Click_Badges()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Badge[0], Behaviour_Bank.SupportingBehaviour_Badge[0], Behaviour_Bank.SupportingBehaviour_Badge[0]));
         switch (System_Data.Version)
         {
             case 0:
@@ -203,6 +211,7 @@ public class UI_Home : MonoBehaviour {
     public void Click_Rank()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Rank[0], Behaviour_Bank.SupportingBehaviour_Badge[0], Behaviour_Bank.SupportingBehaviour_Rank[0]));
         SceneManager.LoadScene("Rank");
     }
     #endregion
@@ -215,6 +224,11 @@ public class UI_Home : MonoBehaviour {
         Home_obj.SetActive(false);
         Save.enabled = false;
         StartCoroutine(Saving());
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
     IEnumerator Saving()
     {
@@ -266,8 +280,7 @@ public class UI_Home : MonoBehaviour {
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
         yield return new WaitForSeconds(0.1f);
-        StartCoroutine(ml.SetBehavior("LearnerLog_Behavior.php", "Learner_Behaviors", Learner_Data.Learner_Behavior_Get()));
-        yield return new WaitForSeconds(0.1f);
+
         for(int i = 0; i < 22; i++)
         { 
             StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_" + i.ToString(), Learner_Data.Learner_GetCard_Status(i)));

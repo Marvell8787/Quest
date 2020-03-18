@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UI_Level : MonoBehaviour {
 
     #region Variable
+    private Manager_log ml = new Manager_log();
     private int Level = 10;
     private int Task = 10; 
     private int Score = 0;
@@ -269,6 +270,10 @@ public class UI_Level : MonoBehaviour {
                     Flag.text = "任務成功";
                     Learner_Data.Learner_Add("Task_Success", Level, 1);
                     Learner_Data.Learner_Add("Task_Num", Level, 1);
+                    StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", Level)));
+                    StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", Level)));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[5], Behaviour_Bank.GamingBehaviour_Task[5] + (Level + 1).ToString()));
+
                 }
                 else if (Score < Task_Bank.Learn_Request_Score[Level]) //失敗
                 {
@@ -303,6 +308,9 @@ public class UI_Level : MonoBehaviour {
                     Flag.text = "任務失敗";
                     Learner_Data.Learner_Add("Task_Fail", Level, 1);
                     Learner_Data.Learner_Add("Task_Num", Level,1);
+                    StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Fail", Learner_Data.Learner_GetData("Task_Fail", Level)));
+                    StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", Level)));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[6], Behaviour_Bank.GamingBehaviour_Task[6] + (Level + 1).ToString()));
                 }
 
             }
@@ -339,6 +347,9 @@ public class UI_Level : MonoBehaviour {
                     Flag.text = "練習成功";
                     Learner_Data.Learner_Add("Learn_Num", Level, 1);
                     Learner_Data.Learner_Add("Learn_Success", Level, 1);
+                    StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Learn_Num", Level)));
+                    StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Success", Learner_Data.Learner_GetData("Learn_Success", Level)));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[3], Behaviour_Bank.LearningBehaviour_Level[3] + (Level + 1).ToString()));
                 }
                 else if (Score < 60) //失敗
                 {
@@ -371,6 +382,9 @@ public class UI_Level : MonoBehaviour {
                     Flag.text = "練習失敗";
                     Learner_Data.Learner_Add("Learn_Num", Level, 1);
                     Learner_Data.Learner_Add("Learn_Fail", Level, 1);
+                    StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Learn_Num", Level)));
+                    StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Fail", Learner_Data.Learner_GetData("Learn_Fail", Level)));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[4], Behaviour_Bank.LearningBehaviour_Level[4] + (Level + 1).ToString()));
                 }
             }
             //開始結算
@@ -616,5 +630,15 @@ public class UI_Level : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingLog(string item,int n)
+    {
+        StartCoroutine(ml.SetData("LearnerLog.php", item, n));
+        yield return new WaitForSeconds(0.1f);
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

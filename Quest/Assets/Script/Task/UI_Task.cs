@@ -8,6 +8,7 @@ public class UI_Task : MonoBehaviour {
 
 
     #region Variable
+    private Manager_log ml = new Manager_log();
     private string choose_s = "";
     private int choose_n = 0;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
@@ -213,6 +214,8 @@ public class UI_Task : MonoBehaviour {
 
         if (choose_s == "learn")
         {
+            ok.Play();
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[3], Behaviour_Bank.GamingBehaviour_Task[3] + (choose_n + 1).ToString()));
             Question_Data.Question_Init(choose_n, 1, 8, 5,1);
             SceneManager.LoadScene("Level");
         }
@@ -222,7 +225,7 @@ public class UI_Task : MonoBehaviour {
             Battle_Class battle_temp = new Battle_Class();
             battle_temp = Battle_Data.Battle_Get(choose_n);
             int n3 = int.Parse(battle_temp.GetTime());
-            ok.Play();
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[4], Behaviour_Bank.GamingBehaviour_Task[4] + (choose_n + 1).ToString()));
             Question_Data.Question_Init(5, 1, 10, n3, 1);
             Player_Data.Player_Init(choose_n);
             Player_Data.Shuffle(0);
@@ -234,10 +237,14 @@ public class UI_Task : MonoBehaviour {
     void ShowContent(int n)
     {
         Task_Class task_temp = new Task_Class();
-        if (choose_s == "learn")
+        if (choose_s == "learn") {
             task_temp = Task_Data.Learn_Get(n);
-        else if (choose_s == "battle")
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[1], Behaviour_Bank.GamingBehaviour_Task[1]+(n+1).ToString()));
+        }
+        else if (choose_s == "battle") {
             task_temp = Task_Data.Battle_Get(n);
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[2], Behaviour_Bank.GamingBehaviour_Task[2] + (n + 1).ToString()));
+        }
 
         Text_Request_Content.text = task_temp.GetRequest();
         Text_Reward_Content.text = task_temp.GetReward();
@@ -307,5 +314,10 @@ public class UI_Task : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

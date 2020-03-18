@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class UI_Guide : MonoBehaviour {
 
     private int Page = 1; //1 2 3
+    private Manager_log ml = new Manager_log();
     public GameObject Image_obj,R_obj,W_obj;
     public Text Info_text, Info2_text, Info3_text, PageUp_text, PageDown_text;
     public Button[] G_btn = new Button[5];
@@ -23,7 +24,15 @@ public class UI_Guide : MonoBehaviour {
         Back_btn.onClick.AddListener(Back);
         Left_btn.onClick.AddListener(Left);
         Right_btn.onClick.AddListener(Right);
-        Item();
+
+        Info_text.text = "1.遊戲中的道具共七個，分別為分數、金幣、水晶、卡牌、獎章、點數及失誤。\n\n"
+    + "2.可至\"狀態\"查看自己持有的道具狀態。\n\n"
+    + "3.分數可至任務中記載的獎勵獲得，若未記載則代表不會獲得，會因為任務失敗而減少。";
+        Info2_text.text = "4.金幣可至學習中記載的獎勵獲得，若未記載則代表不會獲得，會因為學習失敗而減少。";
+        Info3_text.text = "\n5.水晶可至戰鬥中記載的獎勵獲得，若未記載則代表不會獲得，會因為戰鬥失敗而減少。";
+        PageUp_text.text = "1";
+        PageDown_text.text = "2";
+
     }
     void Item()
     {
@@ -37,6 +46,7 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "1";
         PageDown_text.text = "2";
         Page = 1;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "1"));
     }
     void Item2()
     {
@@ -88,6 +98,7 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "5";
         PageDown_text.text = "6";
         Page = 5;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "2"));
     }
     void Learn()
     {
@@ -102,6 +113,8 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "7";
         PageDown_text.text = "8";
         Page = 7;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "3"));
+
     }
     void Battle()
     {
@@ -118,6 +131,8 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "9";
         PageDown_text.text = "10";
         Page = 9;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "4"));
+
     }
     void Image()
     {
@@ -144,6 +159,8 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "11";
         PageDown_text.text = "12";
         Page = 11;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "5"));
+
     }
     #region Item Function
     void Right()
@@ -152,6 +169,7 @@ public class UI_Guide : MonoBehaviour {
         if (Page == 13)
             Page = 1;
         ShowContent(Page);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[2], Behaviour_Bank.SupportingBehaviour_Guide[2] + "1"));
     }
     void Left()
     {
@@ -159,6 +177,7 @@ public class UI_Guide : MonoBehaviour {
         if (Page == -1)
             Page = 11;
         ShowContent(Page);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[2], Behaviour_Bank.SupportingBehaviour_Guide[2] + "2"));
     }
     void ShowContent(int n)
     {
@@ -194,5 +213,10 @@ public class UI_Guide : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

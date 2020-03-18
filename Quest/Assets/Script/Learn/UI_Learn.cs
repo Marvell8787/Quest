@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class UI_Learn : MonoBehaviour {
 
+    private Manager_log ml = new Manager_log();
     private int choose_n = 0;
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     public Button Back_btn;
@@ -77,10 +78,12 @@ public class UI_Learn : MonoBehaviour {
     }
     void GoMaterial(){
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[0]));
         SceneManager.LoadScene("Material");
     }
     void OpenLevel(){
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[0]));
         MaterialOrLevel_obj.gameObject.SetActive(false);
         SelectLevel_obj.SetActive(true);
         Level_Class[] level_temp = new Level_Class[5];
@@ -149,6 +152,7 @@ public class UI_Learn : MonoBehaviour {
                 Question_Data.Question_Init(choose_n, 1, 8, 5);
                 break;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[2], Behaviour_Bank.LearningBehaviour_Level[2] + (choose_n + 1).ToString()));
         SceneManager.LoadScene("Level");
     }
     #endregion
@@ -163,11 +167,17 @@ public class UI_Learn : MonoBehaviour {
         RewardContent_text.text = level_temp.GetReward();
         PunishmentContent_text.text = level_temp.GetPunishment();
         HighestScoreContent_text.text = level_temp.GetHighestScore();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[1], Behaviour_Bank.LearningBehaviour_Level[1] + (n+1).ToString()));
     }
 
     void Back() {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 
 }

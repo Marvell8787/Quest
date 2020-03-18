@@ -6,18 +6,20 @@ using UnityEngine.SceneManagement;
 public class UI_Material : MonoBehaviour {
 
     #region Variable 
+    private Manager_log ml = new Manager_log();
     private int No = 0; //0 1 2 3 4 5 6 7 8 9 10...
     #endregion
 
     #region Material
     public GameObject Vocabulary_obj,Phonics_obj,Setence_obj,Daily_obj;
     public Button Back_btn,Voice_btn;
+    public Button[] Voiceanother_btn = new Button[8];
     public Image Vocabulary_img;
     public Button[] Vocabular_Btn = new Button[11];
     public Text[] VocabularBtn_text = new Text[11];
     public Text Num_text, E_Name_text, C_Name_text, PartOfSpeech_text, Sentence_text, Info_text;
     public Button[] Direction = new Button[2]; //left right
-    public AudioSource[] voice = new AudioSource[Vocabulary_Bank.Vocabulary_Num];
+    public AudioSource[] voice = new AudioSource[Vocabulary_Bank.Vocabulary_Num+8];
     public AudioSource Ok, PageTurning;
     #endregion
 
@@ -45,6 +47,15 @@ public class UI_Material : MonoBehaviour {
         Vocabular_Btn[9].onClick.AddListener(Button_10);
         Vocabular_Btn[10].onClick.AddListener(Button_11);
 
+        Voiceanother_btn[0].onClick.AddListener(Voiceanother_btn1);
+        Voiceanother_btn[1].onClick.AddListener(Voiceanother_btn2);
+        Voiceanother_btn[2].onClick.AddListener(Voiceanother_btn3);
+        Voiceanother_btn[3].onClick.AddListener(Voiceanother_btn4);
+        Voiceanother_btn[4].onClick.AddListener(Voiceanother_btn5);
+        Voiceanother_btn[5].onClick.AddListener(Voiceanother_btn6);
+        Voiceanother_btn[6].onClick.AddListener(Voiceanother_btn7);
+        Voiceanother_btn[7].onClick.AddListener(Voiceanother_btn8);
+
         for (int i = 0; i < 8; i++)
         {
             Vocabulary_Class vocabulary_temp = new Vocabulary_Class();
@@ -69,6 +80,7 @@ public class UI_Material : MonoBehaviour {
         {
             No++;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[1], Behaviour_Bank.LearningBehaviour_Material[1]+"1"));
         ShowContent(No);
     }
     void Left()
@@ -82,12 +94,14 @@ public class UI_Material : MonoBehaviour {
         {
             No--;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[1], Behaviour_Bank.LearningBehaviour_Material[1] + "2"));
         ShowContent(No);
     }
     void Play()
     {
         if(No<8)
             voice[No].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (No+1).ToString()));
     }
     #endregion
 
@@ -95,57 +109,111 @@ public class UI_Material : MonoBehaviour {
     void Button_1()
     {
         No = 0;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "1"));
         ShowContent(No);
     }
     void Button_2()
     {
         No = 1;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "2"));
         ShowContent(No);
     }
     void Button_3()
     {
         No = 2;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "3"));
         ShowContent(No);
     }
     void Button_4()
     {
         No = 3;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "4"));
         ShowContent(No);
     }
     void Button_5()
     {
         No = 4;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "5"));
         ShowContent(No);
     }
     void Button_6()
     {
         No = 5;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "6"));
         ShowContent(No);
     }
     void Button_7()
     {
         No = 6;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "7"));
         ShowContent(No);
     }
     void Button_8()
     {
         No = 7;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "8"));
+
         ShowContent(No);
     }
     void Button_9()
     {
         No = 8;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "9"));
+
         ShowContent(No);
     }
     void Button_10()
     {
         No = 9;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "10"));
+
         ShowContent(No);
     }
     void Button_11()
     {
         No = 10;
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[3], Behaviour_Bank.LearningBehaviour_Material[3] + "11"));
         ShowContent(No);
+    }
+    void Voiceanother_btn1()
+    {
+        voice[8].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (9).ToString()));
+    }
+    void Voiceanother_btn2()
+    {
+        voice[9].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (10).ToString()));
+    }
+    void Voiceanother_btn3()
+    {
+        voice[10].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (11).ToString()));
+    }
+    void Voiceanother_btn4()
+    {
+        voice[11].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (12).ToString()));
+    }
+    void Voiceanother_btn5()
+    {
+        voice[12].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (13).ToString()));
+    }
+    void Voiceanother_btn6()
+    {
+        voice[13].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (14).ToString()));
+    }
+    void Voiceanother_btn7()
+    {
+        voice[14].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (15).ToString()));
+    }
+    void Voiceanother_btn8()
+    {
+        voice[15].Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Material[0], Behaviour_Bank.LearningBehaviour_Material[2], Behaviour_Bank.LearningBehaviour_Material[2] + (16).ToString()));
     }
     #endregion
 
@@ -192,5 +260,10 @@ public class UI_Material : MonoBehaviour {
     {
         Ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

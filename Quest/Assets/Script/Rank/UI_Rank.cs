@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UI_Rank : MonoBehaviour {
     Manager_Rank mr = new Manager_Rank();
+    Manager_log ml = new Manager_log();
     string choose_s;
     public GameObject btn_obj;
     public Button Back_btn,Task_btn,Learn_btn,Battle_btn;
@@ -29,6 +30,7 @@ public class UI_Rank : MonoBehaviour {
         choose_s = "Task";
         Info_text.text = "資料載入中";
         StartCoroutine(Loading());
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Rank[0], Behaviour_Bank.SupportingBehaviour_Rank[1], Behaviour_Bank.SupportingBehaviour_Rank[1] + "1"));
     }
     void Learn()
     {
@@ -37,6 +39,7 @@ public class UI_Rank : MonoBehaviour {
         choose_s = "Learn";
         Info_text.text = "資料載入中";
         StartCoroutine(Loading());
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Rank[0], Behaviour_Bank.SupportingBehaviour_Rank[1], Behaviour_Bank.SupportingBehaviour_Rank[1] + "2"));
     }
     void Battle()
     {
@@ -45,6 +48,7 @@ public class UI_Rank : MonoBehaviour {
         choose_s = "Battle";
         Info_text.text = "資料載入中";
         StartCoroutine(Loading());
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Rank[0], Behaviour_Bank.SupportingBehaviour_Rank[1], Behaviour_Bank.SupportingBehaviour_Rank[1] + "3"));
     }
     IEnumerator Loading()
     {
@@ -82,5 +86,10 @@ public class UI_Rank : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

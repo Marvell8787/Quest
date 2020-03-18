@@ -9,6 +9,7 @@ public class UI_Fight : MonoBehaviour {
 
     #region Variable
     private int time_int = 6;
+    private Manager_log ml = new Manager_log();
     private Player_Class Player = new Player_Class();
     private Player_Class Enemy = new Player_Class();
     //QurestionPhase
@@ -939,6 +940,10 @@ public class UI_Fight : MonoBehaviour {
             Flag.text = "任務失敗";
             Learner_Data.Learner_Add("Task_Fail", 5+hard, 1);
             Learner_Data.Learner_Add("Task_Num", 5+hard, 1);
+            StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Fail", Learner_Data.Learner_GetData("Task_Fail", 5+hard)));
+            StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5+hard)));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[8], Behaviour_Bank.GamingBehaviour_Task[8] + (5+hard+1).ToString()));
+
         }
         else if (Task == 1 && n == 1)
         {
@@ -969,8 +974,12 @@ public class UI_Fight : MonoBehaviour {
                     break;
             }
             Flag.text = "任務成功";
-            Learner_Data.Learner_Add("Task_Success",5+hard, 1);
-            Learner_Data.Learner_Add("Task_Num", 5+hard, 1);
+            Learner_Data.Learner_Add("Task_Success",5+hard+1, 1);
+            Learner_Data.Learner_Add("Task_Num", 5+hard+1, 1);
+            StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", 5+hard)));
+            StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5+hard)));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[7], Behaviour_Bank.GamingBehaviour_Task[7] + (5+hard+1).ToString()));
+
         }
         else if (Task == 0 && n == 0)
         {
@@ -1004,7 +1013,9 @@ public class UI_Fight : MonoBehaviour {
             Flag.text = "戰鬥失敗";
             Learner_Data.Learner_Add("Battle_Fail", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
-
+            StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Fail", Learner_Data.Learner_GetData("Battle_Fail", hard)));
+            StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[4], Behaviour_Bank.GamingBehaviour[4] + (hard + 1).ToString()));
         }
         else if (Task == 0 && n == 1)
         {
@@ -1039,7 +1050,9 @@ public class UI_Fight : MonoBehaviour {
             Flag.text = "戰鬥勝利";
             Learner_Data.Learner_Add("Battle_Success", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
-
+            StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Success", Learner_Data.Learner_GetData("Battle_Success", hard)));
+            StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[3], Behaviour_Bank.GamingBehaviour[3] + (hard+1).ToString()));
         }
 
         if (Question_Num < 6)
@@ -1130,6 +1143,16 @@ public class UI_Fight : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingLog(string item, int n)
+    {
+        StartCoroutine(ml.SetData("LearnerLog.php", item,n));
+        yield return new WaitForSeconds(0.1f);
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
     #endregion
 }

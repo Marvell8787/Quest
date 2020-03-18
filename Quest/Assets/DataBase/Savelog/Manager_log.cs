@@ -27,12 +27,14 @@ public class Manager_log{
             Debug.Log("error msg" + reg.error);
         }
     }
-    public IEnumerator SetBehavior(string fileName, string s, string behavior)
+    public IEnumerator SetBehaviour(string fileName, string Bclass, string B1, string B2, string B3)
     {
         WWWForm LearnerForm = new WWWForm();
-        LearnerForm.AddField("Username", System_Data.Username);
-        LearnerForm.AddField("Item", s);
-        LearnerForm.AddField("Num", behavior);
+        LearnerForm.AddField("Username", "behaviour" + System_Data.Username);
+        LearnerForm.AddField("behaviour_Class", Bclass);
+        LearnerForm.AddField("behaviour_1", B1);
+        LearnerForm.AddField("behaviour_2", B2);
+        LearnerForm.AddField("behaviour_3", B3);
         WWW reg = new WWW(serverlink + fileName, LearnerForm);
         yield return reg;
         //s_state = reg.ToString();

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 public class UI_Badges : MonoBehaviour {
 
     #region Variable
+    private Manager_log ml = new Manager_log();
     private int PageUp = 1;
-
     private int No = 0;
     private int Item = 0; //0 3
     private int Page = 0; //0 9
@@ -82,7 +82,7 @@ public class UI_Badges : MonoBehaviour {
             Page = 0;
             PageChage();
         }
-
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Badge[0], Behaviour_Bank.SupportingBehaviour_Badge[1], Behaviour_Bank.SupportingBehaviour_Badge[1] + "2"));
     }
     void Next()
     {
@@ -94,7 +94,7 @@ public class UI_Badges : MonoBehaviour {
             Page = 9;
             PageChage();
         }
-
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Badge[0], Behaviour_Bank.SupportingBehaviour_Badge[1], Behaviour_Bank.SupportingBehaviour_Badge[1]+"1"));
     }
     void PageChage()
     {
@@ -120,12 +120,17 @@ public class UI_Badges : MonoBehaviour {
                 Badges_btn[i].image.color = new Color32(60, 60, 60, 255);
         }
     }
-
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
+    }
     #region Badges Image
     void Badges_Output(int n)
     {
         choose.Play();
         Info_text.text = Badges_Bank.Badges_Description[n];
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Badge[0], Behaviour_Bank.SupportingBehaviour_Badge[2], Behaviour_Bank.SupportingBehaviour_Badge[2] + (n+1).ToString() ));
     }
     void Badges_0()
     {

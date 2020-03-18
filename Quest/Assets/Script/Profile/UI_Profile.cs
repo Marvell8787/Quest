@@ -8,6 +8,7 @@ public class UI_Profile : MonoBehaviour {
     #region Variable
     private int Status_Page = 1; //1 2 3
     private int Item_Page = 1; //1 2 3
+    private Manager_log ml = new Manager_log();
     #endregion
 
     public GameObject ui_RW, ui_R, ui_W;
@@ -81,6 +82,8 @@ public class UI_Profile : MonoBehaviour {
                 break;
             case 3:
                 Text_Item_PageDown.text = "1";
+                Button_Item_Left.gameObject.SetActive(false);
+                Button_Item_Right.gameObject.SetActive(false);
                 break;
             default:
                 break;
@@ -94,6 +97,7 @@ public class UI_Profile : MonoBehaviour {
         if (Status_Page == 4)
             Status_Page = 1;
         StatusShowContent(Status_Page);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Profile[0], Behaviour_Bank.SupportingBehaviour_Profile[1], Behaviour_Bank.SupportingBehaviour_Profile[1] + "2"));
     }
     void Status_PageDown()
     {
@@ -102,6 +106,7 @@ public class UI_Profile : MonoBehaviour {
         if (Status_Page == 0)
             Status_Page = 3;
         StatusShowContent(Status_Page);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Profile[0], Behaviour_Bank.SupportingBehaviour_Profile[1], Behaviour_Bank.SupportingBehaviour_Profile[1] + "1"));
     }
     void StatusShowContent(int n)
     {
@@ -183,6 +188,7 @@ public class UI_Profile : MonoBehaviour {
                 break;
         }
         ItemShowContent(Item_Page);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Profile[0], Behaviour_Bank.SupportingBehaviour_Profile[1], Behaviour_Bank.SupportingBehaviour_Profile[2]+ "1"));
     }
     void Left()
     {
@@ -208,8 +214,8 @@ public class UI_Profile : MonoBehaviour {
             default:
                 break;
         }
-
         ItemShowContent(Item_Page);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Profile[0], Behaviour_Bank.SupportingBehaviour_Profile[1], Behaviour_Bank.SupportingBehaviour_Profile[2] + "2"));
     }
     void ItemShowContent(int n)
     {
@@ -254,5 +260,10 @@ public class UI_Profile : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }

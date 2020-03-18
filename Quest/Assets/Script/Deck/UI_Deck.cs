@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class UI_Deck : MonoBehaviour {
 
+    Manager_log ml = new Manager_log();
+
     #region Variable Events
     EventTriggerType EPClick = EventTriggerType.PointerClick;
     #endregion
@@ -189,6 +191,8 @@ public class UI_Deck : MonoBehaviour {
         Text_Rarity_Content.text = card_temp.GetRarity();
         Text_ATK_Content.text = card_temp.GetATK().ToString();
         Text_Effect_Content.text = card_temp.GetEffect();
+
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[2], Behaviour_Bank.SupportingBehaviour_Deck[2]+(n+1).ToString() ));
     }
 
     #region VCSA
@@ -210,6 +214,8 @@ public class UI_Deck : MonoBehaviour {
                 WSupport_obj.SetActive(false);
                 break;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[1], Behaviour_Bank.SupportingBehaviour_Deck[1] + "1"));
+
     }
     void VCSA_C()
     {
@@ -229,6 +235,8 @@ public class UI_Deck : MonoBehaviour {
                 WSupport_obj.SetActive(false);
                 break;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[1], Behaviour_Bank.SupportingBehaviour_Deck[1] + "2"));
+
     }
     void VCSA_S()
     {
@@ -248,6 +256,8 @@ public class UI_Deck : MonoBehaviour {
                 WSupport_obj.SetActive(true);
                 break;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[1], Behaviour_Bank.SupportingBehaviour_Deck[1] + "3"));
+
     }
     void VCSA_A()
     {
@@ -267,6 +277,8 @@ public class UI_Deck : MonoBehaviour {
                 WSupport_obj.SetActive(true);
                 break;
         }
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Deck[0], Behaviour_Bank.SupportingBehaviour_Deck[1], Behaviour_Bank.SupportingBehaviour_Deck[1] + "4"));
+
     }
     #endregion
 
@@ -366,5 +378,11 @@ public class UI_Deck : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+
+    IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
+    {
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        yield return new WaitForSeconds(0.1f);
     }
 }
