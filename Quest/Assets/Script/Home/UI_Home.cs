@@ -267,24 +267,24 @@ public class UI_Home : MonoBehaviour {
         StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetBehavior("LearnerLog_Behavior.php", "Learner_Behaviors", Learner_Data.Learner_Behavior_Get()));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         for(int i = 0; i < 22; i++)
         { 
             StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_" + i.ToString(), Learner_Data.Learner_GetCard_Status(i)));
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.1f);
         }
         StartCoroutine(ml.SetData("Learner_PointSave.php", "Pointstatus_Task", Learner_Data.Learner_GetPoints_Status(0)));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("Learner_PointSave.php", "Pointstatus_Learn", Learner_Data.Learner_GetPoints_Status(1)));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("Learner_PointSave.php", "Pointstatus_Battle", Learner_Data.Learner_GetPoints_Status(2)));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("Learner_MistakeSave.php", "Mistake_RC", Learner_Data.Learner_GetMistakes_Status(2)));
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
 
 
         Home_obj.SetActive(true);
