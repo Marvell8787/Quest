@@ -84,13 +84,20 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
             }
+            else if(Learner_Data.Learner_GetData("Task_Num", i) == 1)
+            {
+                if(learn_temp[i].GetStatus()==1)
+                    Task_text[i].color = Color.red;
+                else if (learn_temp[i].GetStatus() == 2)
+                    Task_text[i].color = Color.green;
+                Task_text[i].fontStyle = FontStyle.Bold;
+            }
             else
             {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
-
             }
-            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務";
+            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行 綠字:成功但還可進行 灰字:完成任務";
             /*
             switch (learn_temp[i].GetStatus())
             {
@@ -126,12 +133,20 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
             }
+            else if (Learner_Data.Learner_GetData("Task_Num", i) == 1)
+            {
+                if (battle_temp[i].GetStatus() == 1)
+                    Task_text[i].color = Color.red;
+                else if (battle_temp[i].GetStatus() == 2)
+                    Task_text[i].color = Color.green;
+                Task_text[i].fontStyle = FontStyle.Bold;
+            }
             else
             {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
-            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務";
+            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行 綠字:成功但還可進行 灰字:完成任務";
             /*
             switch (battle_temp[i].GetStatus())
             {

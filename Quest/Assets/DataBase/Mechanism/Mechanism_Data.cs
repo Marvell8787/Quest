@@ -14,12 +14,17 @@ static class Mechanism_Data{
                 {
                     case "Task":                        
                         Learner_Data.Learner_Add("Score",0,Task_Bank.Task_Reward[n]);
+                        Learner_Data.Learner_Add("Score_Accumulation", 0, Task_Bank.Task_Reward[n]);
                         break;
                     case "Learn":
                         Learner_Data.Learner_Add("Coin", 0, Level_Bank.Level_Reward[n]);
+                        Learner_Data.Learner_Add("Coin_Accumulation", 0, Level_Bank.Level_Reward[n]);
+
                         break;
                    case "Battle":
                         Learner_Data.Learner_Add("Crystal",0, Battle_Bank.Battle_Reward[n]);
+                        Learner_Data.Learner_Add("Crystal_Accumulation", 0, Battle_Bank.Battle_Reward[n]);
+
                         break;
                     default:
                         break;

@@ -911,16 +911,17 @@ public class UI_Fight : MonoBehaviour {
 
         if (Task == 1 && n == 0)
         {
+            Task_Data.ChangeStatus("battle", hard, 1);
             switch (System_Data.Version)
             {
                 case 0:
                 case 2:
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
-                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetPoints_Status(0).ToString() + " -> ";
                     Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                     Mechanism_Data.Punishment("Task", 5 + hard);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
-                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetPoints_Status(0).ToString();
                     Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                     Point_img.gameObject.SetActive(true);
                     Mistake_img.gameObject.SetActive(true);
@@ -937,26 +938,38 @@ public class UI_Fight : MonoBehaviour {
                     Mistake_Num.gameObject.SetActive(false);
                     break;
             }
+            StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
             Flag.text = "任務失敗";
             Learner_Data.Learner_Add("Task_Fail", 5+hard, 1);
             Learner_Data.Learner_Add("Task_Num", 5+hard, 1);
+            for (int i = 0; i < 3; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            for (int i = 9; i < 12; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(0)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Fail", Learner_Data.Learner_GetData("Task_Fail", 5+hard)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5+hard)));
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[8], Behaviour_Bank.GamingBehaviour_Task[8] + (5+hard+1).ToString()));
-
+            StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
+            StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+            StartCoroutine(Saving("Learner_PointSave.php", "Pointstatus_Task", Learner_Data.Learner_GetPoints_Status(0)));
+            StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
+            StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
+            StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_RC", Learner_Data.Learner_GetMistakes_Status(2)));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[8], Behaviour_Bank.GamingBehaviour_Task[8] + (5 + hard + 1).ToString()));
         }
         else if (Task == 1 && n == 1)
         {
+            Task_Data.ChangeStatus("battle", hard, 1);
             switch (System_Data.Version)
             {
                 case 0:
                 case 2:
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Score").ToString() + " -> ";
-                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetPoints_Status(0).ToString() + " -> ";
                     Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                     Mechanism_Data.Reward("Task", 5 + hard);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Score").ToString();
-                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetPoints_Status(0).ToString();
                     Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                     Point_img.gameObject.SetActive(true);
                     Mistake_img.gameObject.SetActive(true);
@@ -974,8 +987,15 @@ public class UI_Fight : MonoBehaviour {
                     break;
             }
             Flag.text = "任務成功";
-            Learner_Data.Learner_Add("Task_Success",5+hard+1, 1);
-            Learner_Data.Learner_Add("Task_Num", 5+hard+1, 1);
+            Learner_Data.Learner_Add("Task_Success", 5 + hard + 1, 1);
+            Learner_Data.Learner_Add("Task_Num", 5 + hard + 1, 1);
+            StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
+            StartCoroutine(SavingLog("Learner_Score_Accumulation", Learner_Data.Learner_GetData("Score_Accumulation")));
+            for(int i=0;i<3;i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_"+ i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            for (int i = 9; i < 12; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(0)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", 5+hard)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5+hard)));
             StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[7], Behaviour_Bank.GamingBehaviour_Task[7] + (5+hard+1).ToString()));
@@ -988,16 +1008,20 @@ public class UI_Fight : MonoBehaviour {
                 case 0:
                 case 2:
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
-                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetPoints_Status(2).ToString() + " -> ";
                     Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                     Mechanism_Data.Punishment("Battle", hard);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
-                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetPoints_Status(2).ToString();
                     Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                     Point_img.gameObject.SetActive(true);
                     Mistake_img.gameObject.SetActive(true);
                     Point_Num.gameObject.SetActive(true);
                     Mistake_Num.gameObject.SetActive(true);
+                    StartCoroutine(Saving("Learner_PointSave.php", "Pointstatus_Battle", Learner_Data.Learner_GetPoints_Status(2)));
+                    StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
+                    StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
+                    StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_RC", Learner_Data.Learner_GetMistakes_Status(2)));
                     break;
                 default:
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
@@ -1009,13 +1033,22 @@ public class UI_Fight : MonoBehaviour {
                     Mistake_Num.gameObject.SetActive(false);
                     break;
             }
-
             Flag.text = "戰鬥失敗";
             Learner_Data.Learner_Add("Battle_Fail", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
+            for (int i = 6; i < 9; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            for (int i = 15; i < 18; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Battle", Learner_Data.Learner_GetBadges_GetStatus(2)));
+
+            StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
+            StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+            StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Fail", Learner_Data.Learner_GetData("Battle_Fail", hard)));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
             StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[4], Behaviour_Bank.GamingBehaviour[4] + (hard + 1).ToString()));
+ 
         }
         else if (Task == 0 && n == 1)
         {
@@ -1025,11 +1058,11 @@ public class UI_Fight : MonoBehaviour {
                 case 0:
                 case 2:
                     Text_ItemContent.text = Learner_Data.Learner_GetData("Crystal").ToString() + " -> ";
-                    Point_Num.text = Learner_Data.Learner_GetData("Points_Num").ToString() + " -> ";
+                    Point_Num.text = Learner_Data.Learner_GetPoints_Status(2).ToString() + " -> ";
                     Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                     Mechanism_Data.Reward("Battle", hard);
                     Text_ItemContent.text += Learner_Data.Learner_GetData("Crystal").ToString();
-                    Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                    Point_Num.text += Learner_Data.Learner_GetPoints_Status(2).ToString();
                     Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                     Point_img.gameObject.SetActive(true);
                     Mistake_img.gameObject.SetActive(true);
@@ -1046,10 +1079,16 @@ public class UI_Fight : MonoBehaviour {
                     Mistake_Num.gameObject.SetActive(false);
                     break;
             }
-
             Flag.text = "戰鬥勝利";
             Learner_Data.Learner_Add("Battle_Success", hard, 1);
             Learner_Data.Learner_Add("Battle_Num", hard, 1);
+            for (int i = 6; i < 9; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            for (int i = 15; i < 18; i++)
+                StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Battle", Learner_Data.Learner_GetBadges_GetStatus(2)));
+            StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
+            StartCoroutine(SavingLog("Learner_Crystal_Accumulation", Learner_Data.Learner_GetData("Crystal_Accumulation")));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Success", Learner_Data.Learner_GetData("Battle_Success", hard)));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
             StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[3], Behaviour_Bank.GamingBehaviour[3] + (hard+1).ToString()));
@@ -1143,6 +1182,11 @@ public class UI_Fight : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator Saving(string filename, string item, int n)
+    {
+        StartCoroutine(ml.SetData(filename, item, n));
+        yield return new WaitForSeconds(0.1f);
     }
     IEnumerator SavingLog(string item, int n)
     {

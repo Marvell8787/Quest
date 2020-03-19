@@ -197,54 +197,81 @@ public class UI_Shop : MonoBehaviour {
                 Learner_Data.Learner_Add("Score", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_17", Learner_Data.Learner_GetCard_Status(17)));
                 break;
             case 1:
                 Learner_Data.Learner_ChangeCard_Status(18);
                 Learner_Data.Learner_Add("Score", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_18", Learner_Data.Learner_GetCard_Status(18)));
                 break;
             case 2:
                 Learner_Data.Learner_ChangeCard_Status(10);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_10", Learner_Data.Learner_GetCard_Status(10)));
                 break;
             case 3:
                 Learner_Data.Learner_ChangeCard_Status(11);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_11", Learner_Data.Learner_GetCard_Status(11)));
                 break;
             case 4:
                 Learner_Data.Learner_ChangeCard_Status(12);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_12", Learner_Data.Learner_GetCard_Status(12)));
                 break;
             case 5:
                 Learner_Data.Learner_ChangeCard_Status(13);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_13", Learner_Data.Learner_GetCard_Status(13)));
                 break;
             case 6:
                 Learner_Data.Learner_ChangeCard_Status(14);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_14", Learner_Data.Learner_GetCard_Status(14)));
                 break;
             case 7:
                 Learner_Data.Learner_ChangeCard_Status(20);
                 Learner_Data.Learner_Add("Crystal", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_20", Learner_Data.Learner_GetCard_Status(20)));
                 break;
             case 8:
                 Learner_Data.Learner_ChangeCard_Status(21);
                 Learner_Data.Learner_Add("Crystal", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
+                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(ml.SetData("Learner_CardSave.php", "Cardstatus_21", Learner_Data.Learner_GetCard_Status(21)));
                 break;
 
             default:
@@ -296,6 +323,11 @@ public class UI_Shop : MonoBehaviour {
     {
         ok.Play();
         SceneManager.LoadScene("Home");
+    }
+    IEnumerator SavingLog(string item, int n)
+    {
+        StartCoroutine(ml.SetData("LearnerLog.php", item, n));
+        yield return new WaitForSeconds(0.1f);
     }
     IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
     {

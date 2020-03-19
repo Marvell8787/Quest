@@ -181,7 +181,10 @@ static class Learner_Data{
     {
         Badges_Status[n] = 1;
     }
-
+    public static void Learner_SetBadges_GetStatus(int n,int i) //Badges
+    {
+        Badges_GetStatus[n] = i;
+    }
     public static int Learner_GetBadges_GetStatus(int n)
     {
         return Badges_GetStatus[n];

@@ -151,6 +151,33 @@ public class Manager_Login{
             }
         }
         #endregion
+        #region Badges
+        WWWForm BadgesForm = new WWWForm();
+        BadgesForm.AddField("Username", user);
+        WWW badgesreg = new WWW(serverlink + "Learner_BadgesLoad.php", BadgesForm);
+        yield return cardreg;
+        string BadgesDatastring = badgesreg.text;
+        items = BadgesDatastring.Split(';');
+        foreach (string str in items)
+        {
+            int n = 0;
+            if (str != "")
+            {
+                for (int i = 0; i < 22; i++)
+                {
+                    n = int.Parse(GetDataValue(str, "Badges_" + (i) + ":"));
+                    if (n > 0)
+                        Learner_Data.Learner_ChangeBadges_Status(i);
+                }
+                n = int.Parse(GetDataValue(str, "Badges_Task:"));
+                Learner_Data.Learner_SetBadges_GetStatus(0, n);
+                n = int.Parse(GetDataValue(str, "Badges_Learn:"));
+                Learner_Data.Learner_SetBadges_GetStatus(1, n);
+                n = int.Parse(GetDataValue(str, "Badges_Battle:"));
+                Learner_Data.Learner_SetBadges_GetStatus(2, n);
+            }
+        }
+        #endregion
         #region  Points
         WWWForm PointsForm = new WWWForm();
         PointsForm.AddField("Username", user);
@@ -193,13 +220,13 @@ public class Manager_Login{
             }
         }
         #endregion
-
+        /*
         Learner_Data.CheckBadges("Task_Num");
         Learner_Data.CheckBadges("Learn_Num");
         Learner_Data.CheckBadges("Battle_Num");
         Learner_Data.CheckBadges("Task_Success");
         Learner_Data.CheckBadges("Learn_Success");
-        Learner_Data.CheckBadges("Battle_Success");
+        Learner_Data.CheckBadges("Battle_Success");*/
     }
     public string GetDataValue(string data,string index)
     {

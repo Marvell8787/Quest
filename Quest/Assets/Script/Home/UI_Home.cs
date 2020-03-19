@@ -260,7 +260,7 @@ public class UI_Home : MonoBehaviour {
             StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Battle" + (i + 1) + "_Fail", Learner_Data.Learner_GetData("Battle_Fail", i)));
             yield return new WaitForSeconds(0.1f);
         }
-        StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Score	", Learner_Data.Learner_GetData("Score")));
+        StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Score", Learner_Data.Learner_GetData("Score")));
         yield return new WaitForSeconds(0.1f);
         StartCoroutine(ml.SetData("LearnerLog.php", "Learner_Score_Accumulation", Learner_Data.Learner_GetData("Score_Accumulation")));
         yield return new WaitForSeconds(0.1f);
