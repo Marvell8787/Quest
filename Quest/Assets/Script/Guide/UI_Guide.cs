@@ -16,11 +16,11 @@ public class UI_Guide : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Image_obj.SetActive(false);
-        G_btn[0].onClick.AddListener(Task);
-        G_btn[1].onClick.AddListener(Learn);
-        G_btn[2].onClick.AddListener(Battle);
-        G_btn[3].onClick.AddListener(Item);
-        G_btn[4].onClick.AddListener(Image);
+        G_btn[0].onClick.AddListener(B_Task);
+        G_btn[1].onClick.AddListener(B_Learn);
+        G_btn[2].onClick.AddListener(B_Battle);
+        G_btn[3].onClick.AddListener(B_Item);
+        G_btn[4].onClick.AddListener(B_Image);
         Back_btn.onClick.AddListener(Back);
         Left_btn.onClick.AddListener(Left);
         Right_btn.onClick.AddListener(Right);
@@ -34,6 +34,31 @@ public class UI_Guide : MonoBehaviour {
         PageDown_text.text = "2";
 
     }
+    void B_Item()
+    {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "1"));
+        Item();
+    }
+    void B_Task()
+    {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "2"));
+        Task();
+    }
+    void B_Learn()
+    {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "3"));
+        Learn();
+    }
+    void B_Battle()
+    {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "4"));
+        Battle();
+    }
+    void B_Image()
+    {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "5"));
+        Image();
+    }
     void Item()
     {
         Image_obj.SetActive(false);
@@ -46,7 +71,6 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "1";
         PageDown_text.text = "2";
         Page = 1;
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "1"));
     }
     void Item2()
     {
@@ -98,7 +122,6 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "5";
         PageDown_text.text = "6";
         Page = 5;
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "2"));
     }
     void Learn()
     {
@@ -113,8 +136,6 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "7";
         PageDown_text.text = "8";
         Page = 7;
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "3"));
-
     }
     void Battle()
     {
@@ -131,8 +152,6 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "9";
         PageDown_text.text = "10";
         Page = 9;
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "4"));
-
     }
     void Image()
     {
@@ -159,8 +178,6 @@ public class UI_Guide : MonoBehaviour {
         PageUp_text.text = "11";
         PageDown_text.text = "12";
         Page = 11;
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.SupportingBehaviour, Behaviour_Bank.SupportingBehaviour_Guide[0], Behaviour_Bank.SupportingBehaviour_Guide[1], Behaviour_Bank.SupportingBehaviour_Guide[1] + "5"));
-
     }
     #region Item Function
     void Right()
@@ -216,7 +233,7 @@ public class UI_Guide : MonoBehaviour {
     }
     IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
     {
-        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behaviour.php", Bclass, B1, B2, B3));
         yield return new WaitForSeconds(0.1f);
     }
 }

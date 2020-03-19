@@ -155,7 +155,7 @@ public class Manager_Login{
         WWWForm BadgesForm = new WWWForm();
         BadgesForm.AddField("Username", user);
         WWW badgesreg = new WWW(serverlink + "Learner_BadgesLoad.php", BadgesForm);
-        yield return cardreg;
+        yield return badgesreg;
         string BadgesDatastring = badgesreg.text;
         items = BadgesDatastring.Split(';');
         foreach (string str in items)

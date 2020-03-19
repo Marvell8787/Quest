@@ -263,7 +263,7 @@ public class UI_Material : MonoBehaviour {
     }
     IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
     {
-        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behaviour.php", Bclass, B1, B2, B3));
         yield return new WaitForSeconds(0.1f);
     }
 }

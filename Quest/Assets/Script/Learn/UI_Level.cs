@@ -249,7 +249,7 @@ public class UI_Level : MonoBehaviour {
                             Mistake_Num.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString() + " ->";
                             Mechanism_Data.Reward("Task", Level);
                             ItemContent_text.text += Learner_Data.Learner_GetData("Score").ToString();
-                            Point_Num.text += Learner_Data.Learner_GetData("Points_Num").ToString();
+                            Point_Num.text += Learner_Data.Learner_GetPoints_Status(0).ToString();
                             Mistake_Num.text += Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                             Point_img.gameObject.SetActive(true);
                             Mistake_img.gameObject.SetActive(true);
@@ -685,7 +685,7 @@ public class UI_Level : MonoBehaviour {
     }
     IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
     {
-        StartCoroutine(ml.SetBehaviour("LearnerLog_Behavior.php", Bclass, B1, B2, B3));
+        StartCoroutine(ml.SetBehaviour("LearnerLog_Behaviour.php", Bclass, B1, B2, B3));
         yield return new WaitForSeconds(0.1f);
     }
 }
