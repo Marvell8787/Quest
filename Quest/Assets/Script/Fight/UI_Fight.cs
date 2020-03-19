@@ -995,6 +995,7 @@ public class UI_Fight : MonoBehaviour {
                 StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_"+ i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
             for (int i = 9; i < 12; i++)
                 StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
+            StartCoroutine(SavingLog("Learner_Badges", Learner_Data.Learner_GetData("Badges_Num")));
             StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(0)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", 5+hard)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5+hard)));
@@ -1087,11 +1088,13 @@ public class UI_Fight : MonoBehaviour {
             for (int i = 15; i < 18; i++)
                 StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
             StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Battle", Learner_Data.Learner_GetBadges_GetStatus(2)));
+            StartCoroutine(SavingLog("Learner_Badges", Learner_Data.Learner_GetData("Badges_Num")));
             StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
             StartCoroutine(SavingLog("Learner_Crystal_Accumulation", Learner_Data.Learner_GetData("Crystal_Accumulation")));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Success", Learner_Data.Learner_GetData("Battle_Success", hard)));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[3], Behaviour_Bank.GamingBehaviour[3] + (hard+1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[3], Behaviour_Bank.GamingBehaviour_Battle[3] + (hard+1).ToString()));
+            
         }
 
         if (Question_Num < 6)
@@ -1183,6 +1186,7 @@ public class UI_Fight : MonoBehaviour {
         ok.Play();
         SceneManager.LoadScene("Home");
     }
+    
     IEnumerator Saving(string filename, string item, int n)
     {
         StartCoroutine(ml.SetData(filename, item, n));
