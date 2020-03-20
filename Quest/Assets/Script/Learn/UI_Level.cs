@@ -147,6 +147,7 @@ public class UI_Level : MonoBehaviour {
     void Readapaper()
     {
         ok.Play();
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[5], Behaviour_Bank.LearningBehaviour_Level[5]));
         ui_paper.SetActive(true);
     }
     void ReadCancel()
@@ -174,12 +175,14 @@ public class UI_Level : MonoBehaviour {
             Question_Data.ChangeFeedBack("O", Question_Num);
             FeedBack_text.text = "O";
             Score += (100 / Question_total);
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[6], Behaviour_Bank.LearningBehaviour_Level[6] + (Level + 1).ToString()));
         }
         else
         {
             wro.Play();
             Question_Data.ChangeFeedBack("X", Question_Num);
             FeedBack_text.text = "X";
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[7], Behaviour_Bank.LearningBehaviour_Level[7] + (Level + 1).ToString()));
         }
         ScoreContent_text.text = Score.ToString();
 
@@ -280,8 +283,7 @@ public class UI_Level : MonoBehaviour {
                     StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(0)));
                     StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", Level)));
                     StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", Level)));
-                    StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[5], Behaviour_Bank.GamingBehaviour_Task[5] + (Level + 1).ToString()));
-
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[7], Behaviour_Bank.GamingBehaviour_Task[7] + (Level + 1).ToString()));
                 }
                 else if (Score < Task_Bank.Learn_Request_Score[Level]) //失敗
                 {
@@ -331,7 +333,7 @@ public class UI_Level : MonoBehaviour {
                     StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(0)));
                     StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Fail", Learner_Data.Learner_GetData("Task_Fail", Level)));
                     StartCoroutine(SavingLog("Learner_Task" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", Level)));
-                    StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[6], Behaviour_Bank.GamingBehaviour_Task[6] + (Level + 1).ToString()));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[8], Behaviour_Bank.GamingBehaviour_Task[8] + (Level + 1).ToString()));
                 }
 
             }
@@ -374,10 +376,10 @@ public class UI_Level : MonoBehaviour {
                         StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
                     for (int i = 12; i < 15; i++)
                         StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
-                    StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(1)));
+                    StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Learn", Learner_Data.Learner_GetBadges_GetStatus(1)));
                     StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Learn_Num", Level)));
                     StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Success", Learner_Data.Learner_GetData("Learn_Success", Level)));
-                    StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[3], Behaviour_Bank.LearningBehaviour_Level[3] + (Level + 1).ToString()));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[8], Behaviour_Bank.LearningBehaviour_Level[8] + (Level + 1).ToString()));
                 }
                 else if (Score < 60) //失敗
                 {
@@ -422,10 +424,10 @@ public class UI_Level : MonoBehaviour {
                         StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
                     for (int i = 12; i < 15; i++)
                         StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
-                    StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(1)));
+                    StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Learn", Learner_Data.Learner_GetBadges_GetStatus(1)));
                     StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Num", Learner_Data.Learner_GetData("Learn_Num", Level)));
                     StartCoroutine(SavingLog("Learner_Learn" + (Level + 1) + "_Fail", Learner_Data.Learner_GetData("Learn_Fail", Level)));
-                    StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[4], Behaviour_Bank.LearningBehaviour_Level[4] + (Level + 1).ToString()));
+                    StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[9], Behaviour_Bank.LearningBehaviour_Level[9] + (Level + 1).ToString()));
 
                 }
             }
@@ -550,6 +552,7 @@ public class UI_Level : MonoBehaviour {
 
     void VoicePlay()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[4], Behaviour_Bank.LearningBehaviour_Level[4]));
         if (Level == 0)
             Play();
         else if(Level == 4)

@@ -29,10 +29,10 @@ public class UI_Learn : MonoBehaviour {
     #endregion
 
     #region Content_obj
-    public GameObject Content_obj;
+    public GameObject Content_obj, ContentInfo_obj;
     public Button ContentCancel_btn;
     public Text QuestionTypeContent_text, RangeContent_text, RewardContent_text, PunishmentContent_text, HighestScoreContent_text;
-    public Button Start_btn;
+    public Button Start_btn,Info_btn;
     #endregion
 
     public AudioSource choose, ok, cancel;
@@ -44,7 +44,7 @@ public class UI_Learn : MonoBehaviour {
         {
             case 0:
             case 2:
-                Point_text.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                Point_text.text = Learner_Data.Learner_GetPoints_Status(1).ToString();
                 Mistake_text.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                 break;
             default:
@@ -137,6 +137,7 @@ public class UI_Learn : MonoBehaviour {
     {
         cancel.Play();
         Content_obj.SetActive(false);
+        ContentInfo_obj.SetActive(false);
     }
     void Practice(){
         ok.Play();
@@ -152,13 +153,18 @@ public class UI_Learn : MonoBehaviour {
                 Question_Data.Question_Init(choose_n, 1, 8, 5);
                 break;
         }
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[2], Behaviour_Bank.LearningBehaviour_Level[2] + (choose_n + 1).ToString()));
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[3], Behaviour_Bank.LearningBehaviour_Level[3] + (choose_n + 1).ToString()));
         SceneManager.LoadScene("Level");
     }
     #endregion
-
+    void Info()
+    {
+        ContentInfo_obj.SetActive(true);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[2], Behaviour_Bank.LearningBehaviour_Level[2] + (choose_n + 1).ToString()));
+    }
     void ShowContent(int n)
     {
+        ContentInfo_obj.SetActive(false);
         Level_Class level_temp = new Level_Class();
         level_temp = Level_Data.Level_Get(n);
         Content_obj.SetActive(true);

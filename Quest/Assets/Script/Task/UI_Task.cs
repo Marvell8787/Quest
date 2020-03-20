@@ -15,7 +15,7 @@ public class UI_Task : MonoBehaviour {
     #endregion
 
     #region Task 
-    public GameObject ui_Task, ui_Task_Content;
+    public GameObject ui_Task, ui_Task_Content, ui_Task_ContentInfo;
     public Button TaskLearn_btn, TaskBattle_btn; //Image
     public Button TaskContentCancel_btn;
     public Text[] Task_text = new Text[5];
@@ -24,7 +24,7 @@ public class UI_Task : MonoBehaviour {
 
     #region Task Content
     public Text Text_Request_Content, Text_Reward_Content, Text_Punishment_Content, Take_btntext;
-    public Button Take_btn;
+    public Button Take_btn,Info_btn;
     #endregion
     public Text Score_text, Point_text, Mistake_text;
     public Image Point_img, Mistake_img;
@@ -40,7 +40,7 @@ public class UI_Task : MonoBehaviour {
         {
             case 0:
             case 2:
-                Point_text.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                Point_text.text = Learner_Data.Learner_GetPoints_Status(0).ToString();
                 Mistake_text.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                 break;
             default:
@@ -50,8 +50,10 @@ public class UI_Task : MonoBehaviour {
                 Mistake_text.gameObject.SetActive(false);
                 break;
         }
+        TaskContentCancel_btn.onClick.AddListener(CancelContent);
         Back_btn.onClick.AddListener(Back);
         Take_btn.onClick.AddListener(Take);
+        Info_btn.onClick.AddListener(Info);
         for (int i = 0; i < 5; i++)
         {
             Task_text[i].text = "";
@@ -97,7 +99,7 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
-            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行 綠字:成功但還可進行 灰字:完成任務";
+            Info_text.text = "每項任務僅能進行兩次\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行\n綠字:成功但還可進行 灰字:完成任務";
             /*
             switch (learn_temp[i].GetStatus())
             {
@@ -146,7 +148,7 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
-            Info_text.text = "每項任務僅能進行兩次\n不論成功或失敗皆視為完成任務\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行 綠字:成功但還可進行 灰字:完成任務";
+            Info_text.text = "每項任務僅能進行兩次\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行\n綠字:成功但還可進行 灰字:完成任務";
             /*
             switch (battle_temp[i].GetStatus())
             {
@@ -221,6 +223,13 @@ public class UI_Task : MonoBehaviour {
         }
     }
     #endregion
+    void CancelContent()
+    {
+        cancel.Play();
+        ui_Task_Content.SetActive(false);
+        ui_Task_ContentInfo.SetActive(false);
+    }
+
     void Take()
     {
         ok.Play();
@@ -230,7 +239,7 @@ public class UI_Task : MonoBehaviour {
         if (choose_s == "learn")
         {
             ok.Play();
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[3], Behaviour_Bank.GamingBehaviour_Task[3] + (choose_n + 1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[5], Behaviour_Bank.GamingBehaviour_Task[5] + (choose_n + 1).ToString()));
             Question_Data.Question_Init(choose_n, 1, 8, 5,1);
             SceneManager.LoadScene("Level");
         }
@@ -240,7 +249,7 @@ public class UI_Task : MonoBehaviour {
             Battle_Class battle_temp = new Battle_Class();
             battle_temp = Battle_Data.Battle_Get(choose_n);
             int n3 = int.Parse(battle_temp.GetTime());
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[4], Behaviour_Bank.GamingBehaviour_Task[4] + (choose_n + 1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[6], Behaviour_Bank.GamingBehaviour_Task[6] + (choose_n + 1).ToString()));
             Question_Data.Question_Init(5, 1, 10, n3, 1);
             Player_Data.Player_Init(choose_n);
             Player_Data.Shuffle(0);
@@ -249,8 +258,21 @@ public class UI_Task : MonoBehaviour {
             SceneManager.LoadScene("Fight");
         }
     }
+    void Info()
+    {
+        ui_Task_ContentInfo.SetActive(true);
+        if (choose_s == "learn")
+        {
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[3], Behaviour_Bank.GamingBehaviour_Task[3] + (choose_n + 1).ToString()));
+        }
+        else if (choose_s == "battle")
+        {
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[4], Behaviour_Bank.GamingBehaviour_Task[4] + (choose_n + 1).ToString()));
+        }
+    }
     void ShowContent(int n)
     {
+        ui_Task_ContentInfo.SetActive(false);
         Task_Class task_temp = new Task_Class();
         if (choose_s == "learn") {
             task_temp = Task_Data.Learn_Get(n);

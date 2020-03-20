@@ -196,6 +196,8 @@ static class Learner_Data{
 
     public static void CheckBadges(string s)
     {
+        if (System_Data.Version == 2 || System_Data.Version == 3)
+            return;
         int _Task_Nums = 0, _Learn_Nums = 0, _Battle_Nums = 0;
         int _Task_Success =0, _Learn_Success=0, _Battle_Success = 0;
         for (int i = 0; i < 7; i++)

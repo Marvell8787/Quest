@@ -24,10 +24,10 @@ public class UI_Battle : MonoBehaviour
     #endregion
 
     #region Content_obj
-    public GameObject Content_obj;
+    public GameObject Content_obj, ContentInfo_obj;
     public Button ContentCancel_btn;
     public Text QuestionTypeContent_text, RangeContent_text, TimeContent_text, LPContent_text, DeckContent_text, RewardContent_text, PunishmentContent_text;
-    public Button Start_btn;
+    public Button Start_btn,Info_btn;
     #endregion
 
     #region Learner_obj
@@ -44,7 +44,7 @@ public class UI_Battle : MonoBehaviour
         {
             case 0:
             case 2:
-                Point_text.text = Learner_Data.Learner_GetData("Points_Num").ToString();
+                Point_text.text = Learner_Data.Learner_GetPoints_Status(2).ToString();
                 Mistake_text.text = Learner_Data.Learner_GetData("Mistakes_Num").ToString();
                 break;
             default:
@@ -56,6 +56,7 @@ public class UI_Battle : MonoBehaviour
         }
         ItemContent_text.text = Learner_Data.Learner_GetData("Crystal").ToString();
         Back_btn.onClick.AddListener(Back);
+        Info_btn.onClick.AddListener(Info);
         LearnerDeckContent_text.text = Learner_Data.Learner_GetData("Cards_Num").ToString();
         Battle_Class[] battle_temp = new Battle_Class[2];
         for (int i = 0; i < 2; i++)
@@ -106,6 +107,7 @@ public class UI_Battle : MonoBehaviour
     {
         cancel.Play();
         Content_obj.SetActive(false);
+        ContentInfo_obj.SetActive(false);
     }
     void Practice()
     {
@@ -119,13 +121,19 @@ public class UI_Battle : MonoBehaviour
         Player_Data.Shuffle(0);
         Player_Data.Shuffle(1);
         Player_Data.Deal();
-        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[2], Behaviour_Bank.GamingBehaviour_Battle[2] + (choose_n+1).ToString()));
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[3], Behaviour_Bank.GamingBehaviour_Battle[3] + (choose_n+1).ToString()));
         SceneManager.LoadScene("Fight");
+    }
+    void Info()
+    {
+        ContentInfo_obj.SetActive(true);
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[2], Behaviour_Bank.GamingBehaviour_Battle[2] + (choose_n + 1).ToString()));
     }
     #endregion
 
     void ShowContent(int n)
     {
+        ContentInfo_obj.SetActive(false);
         Battle_Class battle_temp = new Battle_Class();
         battle_temp = Battle_Data.Battle_Get(n);
         Content_obj.SetActive(true);
@@ -142,6 +150,7 @@ public class UI_Battle : MonoBehaviour
         ok.Play();
         SceneManager.LoadScene("Home");
     }
+
     IEnumerator SavingBehaviours(string Bclass,string B1,string B2,string B3)
     {
         StartCoroutine(ml.SetBehaviour("LearnerLog_Behaviour.php", Bclass, B1, B2, B3));

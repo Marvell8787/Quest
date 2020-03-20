@@ -107,7 +107,7 @@ public class UI_Fight : MonoBehaviour {
         Text_LP_B_Num.text = Enemy.GetLP().ToString();
         Text_Deck_B_Num.text = (Enemy.GetDeck_Num() - 5).ToString();
         Enemy.DecDeck_Num(5);
-
+        ui_HandPlay.SetActive(false);
         //QuestionPhase
         Question_total = Question_Data.GetQtotal();
         Text_ATK_A_Num.text = "0 ";
@@ -221,6 +221,7 @@ public class UI_Fight : MonoBehaviour {
             Question_Data.ChangeFeedBack("O", Question_Num);
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
             Text_ROW.text = "答對了！";
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[5], Behaviour_Bank.GamingBehaviour_Battle[5] + (Question_Num + 1).ToString()));
             ans.Play();
         }
         else
@@ -229,6 +230,7 @@ public class UI_Fight : MonoBehaviour {
             Text_Answer.text = "Ans： " + question_temp.GetAnswer_r_Content();
             Text_ROW.text = "答錯了！！";
             dmg.Play();
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[6], Behaviour_Bank.GamingBehaviour_Battle[6] + (Question_Num + 1).ToString()));
             Player.ChangeLP(Player.GetLP() - 3);
             Text_LP_A_Num.text = Player.GetLP().ToString();
         }
@@ -249,6 +251,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void Play()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[4], Behaviour_Bank.GamingBehaviour_Battle[4].ToString()));
         VoicePlay(Question_Num);
     }
     void VoicePlay(int n)
@@ -291,6 +294,7 @@ public class UI_Fight : MonoBehaviour {
         Button_Start.interactable = false;
         ui_Question.SetActive(false);
         Button_Surrender.interactable = true;
+        ui_HandPlay.SetActive(true);
         Text_Message.text = "請出牌！";
         ShowHand(0);
         //ShowHand(1);
@@ -310,6 +314,7 @@ public class UI_Fight : MonoBehaviour {
         Button_Next.gameObject.SetActive(true);
         Button_Next.interactable = true;
         loseflag = 1; //舉白旗
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[12], Behaviour_Bank.GamingBehaviour_Battle[12]));
     }
     void Summon()
     {
@@ -349,6 +354,7 @@ public class UI_Fight : MonoBehaviour {
                         break;
                 }
             }
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[8], Behaviour_Bank.GamingBehaviour_Battle[8]));
         }
         else if (TypeChooseA == 2)
         {
@@ -374,10 +380,12 @@ public class UI_Fight : MonoBehaviour {
                 default:
                     break;
             }
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[9], Behaviour_Bank.GamingBehaviour_Battle[9]));
         }
         else if (TypeChooseA == 3)
         {
             Support_A = n;
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[10], Behaviour_Bank.GamingBehaviour_Battle[10]));
         }
 
         //Debug.Log(card_temp[Player.GetHand_Status(BattleCheck.HandChoose)].GetPicture());
@@ -456,6 +464,7 @@ public class UI_Fight : MonoBehaviour {
     }
     void CheckUSE(int s)
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[7], Behaviour_Bank.GamingBehaviour_Battle[7]+ (HandChooseA+1).ToString()));
         int n = Player.GetHand_Status(s);
 
         if (Player.GetHand_Status(s) > 21)
@@ -526,6 +535,8 @@ public class UI_Fight : MonoBehaviour {
     #region Battle BattlePhase Function
     void FIGHT()
     {
+        StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[11], Behaviour_Bank.GamingBehaviour_Battle[11]));
+
         TypeChooseA = 0;
         HandChooseA = 0;
 
@@ -694,17 +705,21 @@ public class UI_Fight : MonoBehaviour {
             Enemy.DecLP((aatk - batk));
             Text_Message.text += "\n" + "敵方 LP - " + (aatk - batk);
             slash.Play();
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[13], Behaviour_Bank.GamingBehaviour[13] + (Question_Num + 1).ToString()));
         }
         else if (batk > aatk)
         {
             Player.DecLP((batk - aatk));
             Text_Message.text += "\n" + "我方 LP - " + (batk - aatk);
             dmg.Play();
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[14], Behaviour_Bank.GamingBehaviour[14] + (Question_Num + 1).ToString()));
+
         }
         else
         {
             draw.Play();
             Text_Message.text += "\n" + "平手";
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[15], Behaviour_Bank.GamingBehaviour[15] + (Question_Num + 1).ToString()));
         }
         Text_LP_A_Num.text = Player.GetLP().ToString();
         Text_LP_B_Num.text = Enemy.GetLP().ToString();
@@ -955,7 +970,7 @@ public class UI_Fight : MonoBehaviour {
             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_RC", Learner_Data.Learner_GetMistakes_Status(2)));
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[8], Behaviour_Bank.GamingBehaviour_Task[8] + (5 + hard + 1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[10], Behaviour_Bank.GamingBehaviour_Task[10] + (5 + hard + 1).ToString()));
         }
         else if (Task == 1 && n == 1)
         {
@@ -995,11 +1010,12 @@ public class UI_Fight : MonoBehaviour {
                 StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_"+ i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
             for (int i = 9; i < 12; i++)
                 StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
-            StartCoroutine(SavingLog("Learner_Badges", Learner_Data.Learner_GetData("Badges_Num")));
             StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Task", Learner_Data.Learner_GetBadges_GetStatus(0)));
+            StartCoroutine(SavingLog("Learner_Badges", Learner_Data.Learner_GetData("Badges_Num")));
+
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Success", Learner_Data.Learner_GetData("Task_Success", 5+hard)));
             StartCoroutine(SavingLog("Learner_Task" + (5+hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5+hard)));
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[7], Behaviour_Bank.GamingBehaviour_Task[7] + (5+hard+1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[9], Behaviour_Bank.GamingBehaviour_Task[9] + (5+hard+1).ToString()));
 
         }
         else if (Task == 0 && n == 0)
@@ -1042,14 +1058,13 @@ public class UI_Fight : MonoBehaviour {
             for (int i = 15; i < 18; i++)
                 StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_" + i.ToString(), Learner_Data.Learner_GetBadges_Status(i)));
             StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Battle", Learner_Data.Learner_GetBadges_GetStatus(2)));
-
+            StartCoroutine(SavingLog("Learner_Badges", Learner_Data.Learner_GetData("Badges_Num")));
             StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
             StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
             StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Fail", Learner_Data.Learner_GetData("Battle_Fail", hard)));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[4], Behaviour_Bank.GamingBehaviour[4] + (hard + 1).ToString()));
- 
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[17], Behaviour_Bank.GamingBehaviour[17] + (hard + 1).ToString()));
         }
         else if (Task == 0 && n == 1)
         {
@@ -1093,7 +1108,7 @@ public class UI_Fight : MonoBehaviour {
             StartCoroutine(SavingLog("Learner_Crystal_Accumulation", Learner_Data.Learner_GetData("Crystal_Accumulation")));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Success", Learner_Data.Learner_GetData("Battle_Success", hard)));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[3], Behaviour_Bank.GamingBehaviour_Battle[3] + (hard+1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[16], Behaviour_Bank.GamingBehaviour_Battle[16] + (hard+1).ToString()));
             
         }
 
