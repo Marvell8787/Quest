@@ -74,6 +74,7 @@ public class UI_Learn : MonoBehaviour {
         #region Content_obj
         ContentCancel_btn.onClick.AddListener(CancelContent);
         Start_btn.onClick.AddListener(Practice);
+        Info_btn.onClick.AddListener(Info);
         #endregion
     }
     void GoMaterial(){
@@ -100,6 +101,7 @@ public class UI_Learn : MonoBehaviour {
         MaterialOrLevel_obj.gameObject.SetActive(true);
         SelectLevel_obj.SetActive(false);
         Content_obj.SetActive(false);
+        ContentInfo_obj.SetActive(false);
     }
     void Level1(BaseEventData data){
         ok.Play();
@@ -159,6 +161,7 @@ public class UI_Learn : MonoBehaviour {
     #endregion
     void Info()
     {
+        ok.Play();
         ContentInfo_obj.SetActive(true);
         StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[2], Behaviour_Bank.LearningBehaviour_Level[2] + (choose_n + 1).ToString()));
     }

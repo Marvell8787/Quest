@@ -30,6 +30,23 @@ public class Manager_log{
     public IEnumerator SetBehaviour(string fileName, string Bclass, string B1, string B2, string B3)
     {
         WWWForm LearnerForm = new WWWForm();
+        switch (System_Data.Version)
+        {
+            case 0:
+                LearnerForm.AddField("dbname", "questbehaviour_a");
+                break;
+            case 1:
+                LearnerForm.AddField("dbname", "questbehaviour_b");
+                break;
+            case 2:
+                LearnerForm.AddField("dbname", "questbehaviour_c");
+                break;
+            case 3:
+                LearnerForm.AddField("dbname", "questbehaviour_d");
+                break;
+            default:
+                break;
+        }
         LearnerForm.AddField("Username", "behaviour" + System_Data.Username);
         LearnerForm.AddField("behaviour_Class", Bclass);
         LearnerForm.AddField("behaviour_1", B1);

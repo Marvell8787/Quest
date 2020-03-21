@@ -175,14 +175,14 @@ public class UI_Level : MonoBehaviour {
             Question_Data.ChangeFeedBack("O", Question_Num);
             FeedBack_text.text = "O";
             Score += (100 / Question_total);
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[6], Behaviour_Bank.LearningBehaviour_Level[6] + (Level + 1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[6], Behaviour_Bank.LearningBehaviour_Level[6] + (Question_Num + 1).ToString()));
         }
         else
         {
             wro.Play();
             Question_Data.ChangeFeedBack("X", Question_Num);
             FeedBack_text.text = "X";
-            StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[7], Behaviour_Bank.LearningBehaviour_Level[7] + (Level + 1).ToString()));
+            StartCoroutine(SavingBehaviours(Behaviour_Bank.LearningBehaviour, Behaviour_Bank.LearningBehaviour_Level[0], Behaviour_Bank.LearningBehaviour_Level[7], Behaviour_Bank.LearningBehaviour_Level[7] + (Question_Num + 1).ToString()));
         }
         ScoreContent_text.text = Score.ToString();
 

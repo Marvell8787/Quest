@@ -70,6 +70,7 @@ public class UI_Task : MonoBehaviour {
     void Task_Learn()
     {
         ui_Task_Content.SetActive(false);
+        ui_Task_ContentInfo.SetActive(false);
         for (int i = 0; i < 5; i++)
         {
             Task_text[i].text = "";
@@ -119,6 +120,7 @@ public class UI_Task : MonoBehaviour {
     void Task_Battle()
     {
         ui_Task_Content.SetActive(false);
+        ui_Task_ContentInfo.SetActive(false);
         for (int i = 0; i < 5; i++)
         {
             Task_text[i].text = "";
@@ -260,6 +262,7 @@ public class UI_Task : MonoBehaviour {
     }
     void Info()
     {
+        ok.Play();
         ui_Task_ContentInfo.SetActive(true);
         if (choose_s == "learn")
         {

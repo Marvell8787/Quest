@@ -56,7 +56,6 @@ public class UI_Battle : MonoBehaviour
         }
         ItemContent_text.text = Learner_Data.Learner_GetData("Crystal").ToString();
         Back_btn.onClick.AddListener(Back);
-        Info_btn.onClick.AddListener(Info);
         LearnerDeckContent_text.text = Learner_Data.Learner_GetData("Cards_Num").ToString();
         Battle_Class[] battle_temp = new Battle_Class[2];
         for (int i = 0; i < 2; i++)
@@ -73,6 +72,7 @@ public class UI_Battle : MonoBehaviour
         #region Content_obj
         ContentCancel_btn.onClick.AddListener(CancelContent);
         Start_btn.onClick.AddListener(Practice);
+        Info_btn.onClick.AddListener(Info);
         #endregion
 
         for (int i = 0; i < 2; i++)
@@ -111,7 +111,6 @@ public class UI_Battle : MonoBehaviour
     }
     void Practice()
     {
-        ok.Play();
         Battle_Class battle_temp = new Battle_Class();
         battle_temp = Battle_Data.Battle_Get(choose_n);
         int n3 = int.Parse(battle_temp.GetTime());
@@ -126,6 +125,7 @@ public class UI_Battle : MonoBehaviour
     }
     void Info()
     {
+        ok.Play();
         ContentInfo_obj.SetActive(true);
         StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Battle[0], Behaviour_Bank.GamingBehaviour_Battle[2], Behaviour_Bank.GamingBehaviour_Battle[2] + (choose_n + 1).ToString()));
     }
