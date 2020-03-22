@@ -48,7 +48,7 @@ public class UI_Home : MonoBehaviour {
         }*/
 
         #region Home PointerEnter
-        AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPEnter, Enter_Task);
+       /* AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPEnter, Enter_Task);
         AddEvents.AddTriggersListener(HomeIcon[1].gameObject, EPEnter, Enter_Learn);
         AddEvents.AddTriggersListener(HomeIcon[2].gameObject, EPEnter, Enter_Battle);
         AddEvents.AddTriggersListener(HomeIcon[3].gameObject, EPEnter, Enter_Guide);
@@ -56,11 +56,11 @@ public class UI_Home : MonoBehaviour {
         AddEvents.AddTriggersListener(HomeIcon[5].gameObject, EPEnter, Enter_Shop);
         AddEvents.AddTriggersListener(HomeIcon[6].gameObject, EPEnter, Enter_Deck);
         AddEvents.AddTriggersListener(HomeIcon[7].gameObject, EPEnter, Enter_Badges);
-        AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPEnter, Enter_Rank);
+        AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPEnter, Enter_Rank);*/
         #endregion
 
         #region Home PointerExit
-        AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPExit, Exit);
+        /*AddEvents.AddTriggersListener(HomeIcon[0].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[1].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[2].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[3].gameObject, EPExit, Exit);
@@ -68,7 +68,7 @@ public class UI_Home : MonoBehaviour {
         AddEvents.AddTriggersListener(HomeIcon[5].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[6].gameObject, EPExit, Exit);
         AddEvents.AddTriggersListener(HomeIcon[7].gameObject, EPExit, Exit);
-        AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPExit, Exit);
+        AddEvents.AddTriggersListener(HomeIcon[8].gameObject, EPExit, Exit);*/
         #endregion
 
         #region Home PointerClick

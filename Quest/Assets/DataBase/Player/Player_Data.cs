@@ -51,13 +51,15 @@ static class Player_Data{
                 }
                 break;
             case 1:
-                Player[1] = new Player_Class(20, 20, 0, 5);
+                Player[1] = new Player_Class(17, 16, 0, 5);
                 for (int i = 0; i < 22; i++)
                 {
-                    if (i < 18)
+                    if (i < 13)
                         Player[1].ChangeDeck_Status(i, 1); //0~17
-                    else if(i>18 && i<21)
-                        Player[1].ChangeDeck_Status(i, 1); //19~20
+                    else if (i > 14 && i < 17)
+                        Player[1].ChangeDeck_Status(i, 1); //19
+                    else if(i>18 && i<20)
+                        Player[1].ChangeDeck_Status(i, 1); //19
                     else
                     {
                         Player[1].ChangeDeck_Status(i, 0); //12~14 17~21

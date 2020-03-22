@@ -111,7 +111,7 @@ public class Manager_Login{
                 Learner_Data.Learner_SetData("Crystal_Accumulation", 0, n);
 
                 n = int.Parse(GetDataValue(str, "Learner_Cards:"));
-                Learner_Data.Learner_SetData("Card_Num", 0, n);
+                Learner_Data.Learner_SetData("Cards_Num", 0, n);
                 n = int.Parse(GetDataValue(str, "Learner_Badges:"));
                 Learner_Data.Learner_SetData("Badges_Num", 0, n);
                 n = int.Parse(GetDataValue(str, "Learner_Points:"));

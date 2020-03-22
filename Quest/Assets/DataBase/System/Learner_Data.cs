@@ -30,7 +30,7 @@ static class Learner_Data{
     private static int Badges_Num = 0; //獎章數量
 
     //Card
-    private static int Cards_Num = 10; //卡片數量
+    private static int Cards_Num = 13; //卡片數量
     private static int[] Cards_GetStatus = new int[3] { 9, 1, 0 }; //卡牌種類持有狀態 前鋒 中鋒 支援
     private static int[] Card_Status = new int[22] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }; //卡片持有狀態 0:無 1~22:有
     //private static int[] Card_Status = new int[22] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0 }; //卡片持有狀態 0:無 1~22:有

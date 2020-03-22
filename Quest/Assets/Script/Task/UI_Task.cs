@@ -137,7 +137,7 @@ public class UI_Task : MonoBehaviour {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
             }
-            else if (Learner_Data.Learner_GetData("Task_Num", i) == 1)
+            else if (Learner_Data.Learner_GetData("Task_Num", i+5) == 1)
             {
                 if (battle_temp[i].GetStatus() == 1)
                     Task_text[i].color = Color.red;

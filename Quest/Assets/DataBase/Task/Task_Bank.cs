@@ -23,6 +23,6 @@ static class Task_Bank
     public static int[] Task_Reward = new int[7] {  30, 50, 30, 50, 100, 50, 100 };
     public static int[] Task_Punishment = new int[7] {  -30, -50, -30, -50, -100, -500, -100 };
     //狀態
-    public static int[] Learn_Status = new int[5] { 1, 1, 1, 1, 1 };
-    public static int[] Battle_Status = new int[2] { 1, 1};
+    public static int[] Learn_Status = new int[5] { 0, 0, 0, 0, 0 };
+    public static int[] Battle_Status = new int[2] { 0, 0};
 }

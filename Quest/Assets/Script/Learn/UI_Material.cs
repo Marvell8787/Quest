@@ -26,7 +26,7 @@ public class UI_Material : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Info_text.text = "點擊上方按鈕或旁邊箭頭可切換單字及查看應用例句\n點擊喇叭圖示可聽該單字發音";
+        Info_text.text = "點擊上方按鈕或旁邊箭頭可切換單字、字母拼讀、句型及日常用語\n點擊喇叭圖示可聽該單字或句子發音";
 
         Back_btn.onClick.AddListener(Back);
         Voice_btn.onClick.AddListener(Play);

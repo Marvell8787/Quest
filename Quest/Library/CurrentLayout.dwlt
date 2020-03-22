@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 8}
-  m_MinSize: {x: 950, y: 471}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -67,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 818
     height: 947
-  m_MinSize: {x: 202, y: 421}
-  m_MaxSize: {x: 4002, y: 8021}
+  m_MinSize: {x: 202, y: 442}
+  m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
   controlID: 22
 --- !u!114 &4
@@ -144,10 +144,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 917, y: 421}
+  m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 71
+  controlID: 21
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 0
     width: 818
     height: 492
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -335,19 +335,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Script/Fight
+    - Assets/Scene
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Script/Fight
+  - Assets/Scene
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\user\Documents\GitHub\Quest\Quest
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 7}
-    m_SelectedIDs: a8250000
-    m_LastClickedID: 9640
-    m_ExpandedIDs: 000000001c250000a025000006260000ae2600003c2700008e27000000ca9a3bffffff7f
+    m_SelectedIDs: 30270000
+    m_LastClickedID: 10032
+    m_ExpandedIDs: 000000007a250000fe25000064260000042700009a270000ec27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -375,7 +375,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000001c250000a025000006260000ae2600003c2700008e270000
+    m_ExpandedIDs: 000000007a250000fe25000064260000042700009a270000ec270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -427,7 +427,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 458.00098}
     m_GridSize: 96
   m_DirectoriesAreaWidth: 176
 --- !u!114 &14
@@ -491,23 +491,23 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 9e060000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 90fafeffaefbfeff5efcfeff64fcfeff6afcfeff70fcfeff76fcfeff7cfcfeff82fcfeff88fcfeff8efcfeff94fcfeffa6fcfeffaefcfeffb2fcfeff1c03ffff5234ffff8e41ffff1a49ffffc8a8ffff5cc6ffff74ccffffc2cfffff58daffff26dcffff1cdeffff40e2ffffb4ecffffdaeeffffb2efffff4af1ffffb4f8ffffe2fbffff00000000e434000078390000504c0000544c0000e84c0000724f0000aa6500003e660000be960000ec96000078970000a2970000dcc2000084c300003cc600009ac90000aec90000
+    m_ExpandedIDs: f859ffff1a5bffffca5bffffd05bffffd65bffffdc5bffffe25bffffe85bffffee5bfffff45bfffffa5bffff005cffff125cffff1a5cffff1e5cffff20a1ffff66a8ffff1aaeffffbab0ffffeab6ffff00b8ffffb0b8ffffb6b8ffffbcb8ffffc2b8ffffc8b8ffffceb8ffffd4b8ffffdab8ffffe0b8ffffe6b8fffff8b8ffff00b9ffff04b9ffffc0c1ffffd4c2ffff88c3ffff92c3ffff9cc3ffffa6c3ffffb0c3ffffbac3ffffc4c3ffffcec3ffffd8c3ffffe2c3fffff8c3ffff04c4ffff0cc4ffffaafaffff000000003ecd00006acd00003ed20000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Canvas
-      m_OriginalName: Canvas
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 20338
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 5}
     m_SearchString: 
