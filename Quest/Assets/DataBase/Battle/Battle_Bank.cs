@@ -9,7 +9,7 @@ static class Battle_Bank{
     public static string[] Battle_Range = new string[2] { "3個母音", "句型、日常用語"};
 
     public static string[] Battle_Time = new string[2] { "5", "5"};
-    public static string[] Battle_LP = new string[2] { "15", "17" };
+    public static string[] Battle_LP = new string[2] { "15", "15" };
     public static string[] Battle_Deck = new string[2] { "14","16" };
 
     //獎

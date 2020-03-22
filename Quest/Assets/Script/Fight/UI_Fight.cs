@@ -110,8 +110,8 @@ public class UI_Fight : MonoBehaviour {
         ui_HandPlay.SetActive(false);
         //QuestionPhase
         Question_total = Question_Data.GetQtotal();
-        Text_ATK_A_Num.text = "0 ";
-        Text_ATK_B_Num.text = "0 ";
+        Text_ATK_A_Num.text = "0";
+        Text_ATK_B_Num.text = "0";
         Text_ROW.text = "";
         InvokeRepeating("timer", 1, 1);
         Voice.onClick.AddListener(Play);
@@ -327,7 +327,7 @@ public class UI_Fight : MonoBehaviour {
         if (TypeChooseA == 1)
         {
             Vanguard_A = n;
-            Text_ATK_A_Num.text = (card_temp[n].GetATK()) + " ";
+            Text_ATK_A_Num.text = (card_temp[n].GetATK()).ToString();
             ATK_A = card_temp[n].GetATK();
             if (Center_A < 22)
             {
@@ -335,19 +335,19 @@ public class UI_Fight : MonoBehaviour {
                 switch (s)
                 {
                     case 15:
-                        Text_ATK_A_Num.text += "+ " + (card_temp[s].GetATK());
+                        Text_ATK_A_Num.text += " + " + (card_temp[s].GetATK());
                         ATK_A += 1;
                         break;
                     case 16:
-                        Text_ATK_A_Num.text += "+ " + (card_temp[s].GetATK());
+                        Text_ATK_A_Num.text += " + " + (card_temp[s].GetATK());
                         ATK_A += 2;
                         break;
                     case 17:
-                        Text_ATK_A_Num.text += "+ "+(card_temp[s].GetATK()).ToString();
+                        Text_ATK_A_Num.text += " + "+(card_temp[s].GetATK()).ToString();
                         ATK_A += 3;
                         break;
                     case 18:
-                        Text_ATK_A_Num.text += "+ "+(card_temp[s].GetATK()).ToString();
+                        Text_ATK_A_Num.text += " + "+(card_temp[s].GetATK()).ToString();
                         ATK_A += 5;
                         break;
                     default:
@@ -975,8 +975,8 @@ public class UI_Fight : MonoBehaviour {
 
             StartCoroutine(SavingLog("Learner_Task" + (5 + hard + 1) + "_Fail", Learner_Data.Learner_GetData("Task_Fail", 5 + hard)));
             StartCoroutine(SavingLog("Learner_Task" + (5 + hard + 1) + "_Num", Learner_Data.Learner_GetData("Task_Num", 5 + hard)));
-            StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
-            StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+            StartCoroutine(SavingLog("Learner_Points", Learner_Data.Learner_GetData("Points_Num")));
+            StartCoroutine(SavingLog("Learner_Mistakes", Learner_Data.Learner_GetData("Mistakes_Num")));
             StartCoroutine(Saving("Learner_PointSave.php", "Pointstatus_Task", Learner_Data.Learner_GetPoints_Status(0)));
             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
@@ -1071,8 +1071,8 @@ public class UI_Fight : MonoBehaviour {
             StartCoroutine(Saving("Learner_BadgesSave.php", "Badges_Battle", Learner_Data.Learner_GetBadges_GetStatus(2)));
             StartCoroutine(SavingLog("Learner_Badges", Learner_Data.Learner_GetData("Badges_Num")));
 
-            StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
-            StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+            StartCoroutine(SavingLog("Learner_Points", Learner_Data.Learner_GetData("Points_Num")));
+            StartCoroutine(SavingLog("Learner_Mistakes", Learner_Data.Learner_GetData("Mistakes_Num")));
             StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Fail", Learner_Data.Learner_GetData("Battle_Fail", hard)));
             StartCoroutine(SavingLog("Learner_Battle" + (hard + 1) + "_Num", Learner_Data.Learner_GetData("Battle_Num", hard)));

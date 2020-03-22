@@ -51,7 +51,7 @@ static class Player_Data{
                 }
                 break;
             case 1:
-                Player[1] = new Player_Class(17, 16, 0, 5);
+                Player[1] = new Player_Class(15, 16, 0, 5);
                 for (int i = 0; i < 22; i++)
                 {
                     if (i < 13)

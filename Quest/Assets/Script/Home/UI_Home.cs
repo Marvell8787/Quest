@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class UI_Home : MonoBehaviour {
 
     #region Variable Events
-    EventTriggerType EPEnter = EventTriggerType.PointerEnter;
-    EventTriggerType EPExit = EventTriggerType.PointerExit;
+    /*EventTriggerType EPEnter = EventTriggerType.PointerEnter;
+    EventTriggerType EPExit = EventTriggerType.PointerExit;*/
     #endregion
 
     #region Home_obj
@@ -85,7 +85,7 @@ public class UI_Home : MonoBehaviour {
     }
 
     #region Home PointerEnter Function
-    void Enter_Task(BaseEventData data)
+/*    void Enter_Task(BaseEventData data)
     {
         choose.Play();
         Info_text.text = "任務區，請玩家完成所有任務!";
@@ -134,14 +134,14 @@ public class UI_Home : MonoBehaviour {
     {
         choose.Play();
         Info_text.text = "任務目標區，顯示個人目前完成的任務數量";
-    }
+    }*/
     #endregion
 
     #region Home PointerExit Function
-    void Exit(BaseEventData data)
+/*    void Exit(BaseEventData data)
     {
         Info_text.text = "請完成所有任務\n學習可以練習題目及查看學習教材\n戰鬥可與電腦對戰\n可至個人狀態查詢所持有的物品";
-    }
+    }*/
     #endregion
 
     #region Home PointerClick Function

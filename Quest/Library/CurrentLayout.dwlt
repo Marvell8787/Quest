@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 8}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 492}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -40,8 +40,8 @@ MonoBehaviour:
     y: 492
     width: 818
     height: 455
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 22
+  controlID: 43
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 21
+  controlID: 65
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 0
     width: 818
     height: 492
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -344,10 +344,10 @@ MonoBehaviour:
   m_LastProjectPath: C:\Users\user\Documents\GitHub\Quest\Quest
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 7}
-    m_SelectedIDs: 30270000
-    m_LastClickedID: 10032
-    m_ExpandedIDs: 000000007a250000fe25000064260000042700009a270000ec27000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: be260000
+    m_LastClickedID: 9918
+    m_ExpandedIDs: 00000000082500008c250000f225000092260000282700007a27000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -375,7 +375,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007a250000fe25000064260000042700009a270000ec270000
+    m_ExpandedIDs: 00000000082500008c250000f225000092260000282700007a270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -427,9 +427,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 458.00098}
+    m_ScrollPosition: {x: 0, y: 239.0039}
     m_GridSize: 96
-  m_DirectoriesAreaWidth: 176
+  m_DirectoriesAreaWidth: 216
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -491,9 +491,9 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: 54270000
     m_LastClickedID: 0
-    m_ExpandedIDs: f859ffff1a5bffffca5bffffd05bffffd65bffffdc5bffffe25bffffe85bffffee5bfffff45bfffffa5bffff005cffff125cffff1a5cffff1e5cffff20a1ffff66a8ffff1aaeffffbab0ffffeab6ffff00b8ffffb0b8ffffb6b8ffffbcb8ffffc2b8ffffc8b8ffffceb8ffffd4b8ffffdab8ffffe0b8ffffe6b8fffff8b8ffff00b9ffff04b9ffffc0c1ffffd4c2ffff88c3ffff92c3ffff9cc3ffffa6c3ffffb0c3ffffbac3ffffc4c3ffffcec3ffffd8c3ffffe2c3fffff8c3ffff04c4ffff0cc4ffffaafaffff000000003ecd00006acd00003ed20000
+    m_ExpandedIDs: 5a9cffff00a2ffffe4fbffff0000000046010100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

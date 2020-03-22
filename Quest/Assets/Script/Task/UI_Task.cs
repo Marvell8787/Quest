@@ -89,9 +89,9 @@ public class UI_Task : MonoBehaviour {
             }
             else if(Learner_Data.Learner_GetData("Task_Num", i) == 1)
             {
-                if(learn_temp[i].GetStatus()==1)
+                if(Learner_Data.Learner_GetData("Task_Fail", i) == 1)
                     Task_text[i].color = Color.red;
-                else if (learn_temp[i].GetStatus() == 2)
+                else if (Learner_Data.Learner_GetData("Task_Success", i) == 1)
                     Task_text[i].color = Color.green;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
@@ -139,9 +139,9 @@ public class UI_Task : MonoBehaviour {
             }
             else if (Learner_Data.Learner_GetData("Task_Num", i+5) == 1)
             {
-                if (battle_temp[i].GetStatus() == 1)
+                if (Learner_Data.Learner_GetData("Task_Fail", i + 5) == 1)
                     Task_text[i].color = Color.red;
-                else if (battle_temp[i].GetStatus() == 2)
+                else if (Learner_Data.Learner_GetData("Task_Success", i + 5) == 1)
                     Task_text[i].color = Color.green;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }

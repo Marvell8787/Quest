@@ -303,8 +303,8 @@ public class UI_Level : MonoBehaviour {
                             Mistake_img.gameObject.SetActive(true);
                             Point_Num.gameObject.SetActive(true);
                             Mistake_Num.gameObject.SetActive(true);
-                            StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
-                            StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+                            StartCoroutine(SavingLog("Learner_Points", Learner_Data.Learner_GetData("Points_Num")));
+                            StartCoroutine(SavingLog("Learner_Mistakes", Learner_Data.Learner_GetData("Mistakes_Num")));
                             StartCoroutine(Saving("Learner_PointSave.php", "Pointstatus_Task", Learner_Data.Learner_GetPoints_Status(0)));
                             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
                             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
@@ -399,8 +399,8 @@ public class UI_Level : MonoBehaviour {
                             Point_Num.gameObject.SetActive(true);
                             Mistake_Num.gameObject.SetActive(true);
 
-                            StartCoroutine(SavingLog("Learner_Points_Num", Learner_Data.Learner_GetData("Points_Num")));
-                            StartCoroutine(SavingLog("Learner_Mistakes_Num", Learner_Data.Learner_GetData("Mistakes_Num")));
+                            StartCoroutine(SavingLog("Learner_Points", Learner_Data.Learner_GetData("Points_Num")));
+                            StartCoroutine(SavingLog("Learner_Mistakes", Learner_Data.Learner_GetData("Mistakes_Num")));
                             StartCoroutine(Saving("Learner_PointSave.php", "Pointstatus_Learn", Learner_Data.Learner_GetPoints_Status(1)));
                             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_Warning", Learner_Data.Learner_GetMistakes_Status(0)));
                             StartCoroutine(Saving("Learner_MistakeSave.php", "Mistake_YC", Learner_Data.Learner_GetMistakes_Status(1)));
