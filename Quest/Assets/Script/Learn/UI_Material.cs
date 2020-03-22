@@ -259,7 +259,7 @@ public class UI_Material : MonoBehaviour {
     void Back()
     {
         Ok.Play();
-        SceneManager.LoadScene("Home");
+        SceneManager.LoadScene("Learn");
     }
     IEnumerator SavingBehaviours(string Bclass, string B1, string B2, string B3)
     {
