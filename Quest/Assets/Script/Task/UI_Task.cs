@@ -82,25 +82,25 @@ public class UI_Task : MonoBehaviour {
         {
             learn_temp[i] = Task_Data.Learn_Get(i);
             Task_text[i].text = learn_temp[i].GetTitle();
-            if (Learner_Data.Learner_GetData("Task_Num", i) > 1)
+            if (Learner_Data.Learner_GetData("Task_Num", i) > 0)
             {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
             }
-            else if(Learner_Data.Learner_GetData("Task_Num", i) == 1)
+            /*else if(Learner_Data.Learner_GetData("Task_Num", i) == 1)
             {
                 if(Learner_Data.Learner_GetData("Task_Fail", i) == 1)
                     Task_text[i].color = Color.red;
                 else if (Learner_Data.Learner_GetData("Task_Success", i) == 1)
                     Task_text[i].color = Color.green;
                 Task_text[i].fontStyle = FontStyle.Bold;
-            }
+            }*/
             else
             {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
-            Info_text.text = "每項任務僅能進行兩次\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行\n綠字:成功但還可進行 灰字:完成任務";
+            Info_text.text = "每項任務僅能進行一次\n學習任務的關卡與\"學習\"所設定的關卡相同\n可先至學習練習關卡後再來完成任務\n黑字:還未進行任務\n灰字:完成任務";
             /*
             switch (learn_temp[i].GetStatus())
             {
@@ -132,25 +132,25 @@ public class UI_Task : MonoBehaviour {
         {
             battle_temp[i] = Task_Data.Battle_Get(i);
             Task_text[i].text = battle_temp[i].GetTitle();
-            if(Learner_Data.Learner_GetData("Task_Num", i + 5) > 1)
+            if(Learner_Data.Learner_GetData("Task_Num", i + 5) > 0)
             {
                 Task_text[i].color = Color.gray;
                 Task_text[i].fontStyle = FontStyle.Italic;
             }
-            else if (Learner_Data.Learner_GetData("Task_Num", i+5) == 1)
+            /*else if (Learner_Data.Learner_GetData("Task_Num", i+5) == 1)
             {
                 if (Learner_Data.Learner_GetData("Task_Fail", i + 5) == 1)
                     Task_text[i].color = Color.red;
                 else if (Learner_Data.Learner_GetData("Task_Success", i + 5) == 1)
                     Task_text[i].color = Color.green;
                 Task_text[i].fontStyle = FontStyle.Bold;
-            }
+            }*/
             else
             {
                 Task_text[i].color = Color.black;
                 Task_text[i].fontStyle = FontStyle.Bold;
             }
-            Info_text.text = "每項任務僅能進行兩次\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務\n黑字:還未進行任務 紅字:失敗但還可進行\n綠字:成功但還可進行 灰字:完成任務";
+            Info_text.text = "每項任務僅能進行一次\n戰鬥任務的電腦與\"戰鬥\"所設定的電腦相同\n可先至戰鬥練習對戰後再來完成任務\n黑字:還未進行任務\n灰字:完成任務";
             /*
             switch (battle_temp[i].GetStatus())
             {
@@ -319,11 +319,10 @@ public class UI_Task : MonoBehaviour {
             switch (Learner_Data.Learner_GetData("Task_Num", n))
             {
                 case 0: //未完
-                case 1: //未完
                     Take_btn.interactable = true;
                     Take_btntext.text = "接受任務並開始";
                     break;
-                case 2: //完成
+                case 1: //完成
                     Take_btn.interactable = false;
                     Take_btntext.text = "已完成";
                     break;
@@ -336,11 +335,10 @@ public class UI_Task : MonoBehaviour {
             switch (Learner_Data.Learner_GetData("Task_Num", 5+n))
             {
                 case 0: //未完
-                case 1: //未完
                     Take_btn.interactable = true;
                     Take_btntext.text = "接受任務並開始";
                     break;
-                case 2: //完成
+                case 1: //完成
                     Take_btn.interactable = false;
                     Take_btntext.text = "已完成";
                     break;

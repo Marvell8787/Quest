@@ -73,10 +73,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 0;
         Check();
         Item_btn[0].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 200 分數才可購買";
-        if (check_n[0] == 1 || Learner_Data.Learner_GetData("Score") < 200)
+        ShopInfo_text.text = "需要 150 分數才可購買";
+        if (check_n[0] == 1 || Learner_Data.Learner_GetData("Score") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[0] == 0 && Learner_Data.Learner_GetData("Score") >= 200)
+        else if (check_n[0] == 0 && Learner_Data.Learner_GetData("Score") >= 150)
             Buy_btn.interactable = true;
     }
     void Item2()
@@ -86,10 +86,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 1;
         Check();
         Item_btn[1].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 300 分數才可購買";
-        if (check_n[1] == 1 || Learner_Data.Learner_GetData("Score") < 300)
+        ShopInfo_text.text = "需要 200 分數才可購買";
+        if (check_n[1] == 1 || Learner_Data.Learner_GetData("Score") < 200)
             Buy_btn.interactable = false;
-        else if (check_n[1] == 0 && Learner_Data.Learner_GetData("Score") >= 300)
+        else if (check_n[1] == 0 && Learner_Data.Learner_GetData("Score") >= 200)
             Buy_btn.interactable = true;
     }
     void Item3()
@@ -99,10 +99,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 2;
         Check();
         Item_btn[2].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 金幣才可購買";
-        if (check_n[2] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
+        ShopInfo_text.text = "需要 100 金幣才可購買";
+        if (check_n[2] == 1 || Learner_Data.Learner_GetData("Coin") < 100)
             Buy_btn.interactable = false;
-        else if (check_n[2] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
+        else if (check_n[2] == 0 && Learner_Data.Learner_GetData("Coin") >= 100)
             Buy_btn.interactable = true;
     }
     void Item4()
@@ -112,10 +112,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 3;
         Check();
         Item_btn[3].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 150 金幣才可購買";
-        if (check_n[3] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
+        ShopInfo_text.text = "需要 100 金幣才可購買";
+        if (check_n[3] == 1 || Learner_Data.Learner_GetData("Coin") < 100)
             Buy_btn.interactable = false;
-        else if (check_n[3] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
+        else if (check_n[3] == 0 && Learner_Data.Learner_GetData("Coin") >= 100)
             Buy_btn.interactable = true;
     }
     void Item5()
@@ -125,10 +125,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 4;
         Check();
         Item_btn[4].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 200 金幣才可購買";
-        if (check_n[4] == 1 || Learner_Data.Learner_GetData("Coin") < 200)
+        ShopInfo_text.text = "需要 150 金幣才可購買";
+        if (check_n[4] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[4] == 0 && Learner_Data.Learner_GetData("Coin") >= 200)
+        else if (check_n[4] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item6()
@@ -138,10 +138,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 5;
         Check();
         Item_btn[5].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 200 金幣才可購買";
-        if (check_n[5] == 1 || Learner_Data.Learner_GetData("Coin") < 200)
+        ShopInfo_text.text = "需要 150 金幣才可購買";
+        if (check_n[5] == 1 || Learner_Data.Learner_GetData("Coin") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[5] == 0 && Learner_Data.Learner_GetData("Coin") >= 200)
+        else if (check_n[5] == 0 && Learner_Data.Learner_GetData("Coin") >= 150)
             Buy_btn.interactable = true;
     }
     void Item7()
@@ -151,10 +151,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 6;
         Check();
         Item_btn[6].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 300 金幣才可購買";
-        if (check_n[6] == 1 || Learner_Data.Learner_GetData("Coin") < 300)
+        ShopInfo_text.text = "需要 200 金幣才可購買";
+        if (check_n[6] == 1 || Learner_Data.Learner_GetData("Coin") < 200)
             Buy_btn.interactable = false;
-        else if (check_n[6] == 0 && Learner_Data.Learner_GetData("Coin") >= 300)
+        else if (check_n[6] == 0 && Learner_Data.Learner_GetData("Coin") >= 200)
             Buy_btn.interactable = true;
     }
     void Item8()
@@ -164,10 +164,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 7;
         Check();
         Item_btn[7].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 200 水晶才可購買";
-        if (check_n[7] == 1 || Learner_Data.Learner_GetData("Crystal") < 200)
+        ShopInfo_text.text = "需要 150 水晶才可購買";
+        if (check_n[7] == 1 || Learner_Data.Learner_GetData("Crystal") < 150)
             Buy_btn.interactable = false;
-        else if (check_n[7] == 0 && Learner_Data.Learner_GetData("Crystal") >= 200)
+        else if (check_n[7] == 0 && Learner_Data.Learner_GetData("Crystal") >= 150)
             Buy_btn.interactable = true;
     }
     void Item9()
@@ -177,10 +177,10 @@ public class UI_Shop : MonoBehaviour {
         choose_n = 8;
         Check();
         Item_btn[8].image.color = new Color32(255, 0, 0, 255);
-        ShopInfo_text.text = "需要 300 水晶才可購買";
-        if (check_n[8] == 1 || Learner_Data.Learner_GetData("Crystal") < 300)
+        ShopInfo_text.text = "需要 200 水晶才可購買";
+        if (check_n[8] == 1 || Learner_Data.Learner_GetData("Crystal") < 200)
             Buy_btn.interactable = false;
-        else if (check_n[8] == 0 && Learner_Data.Learner_GetData("Crystal") >= 300)
+        else if (check_n[8] == 0 && Learner_Data.Learner_GetData("Crystal") >= 200)
             Buy_btn.interactable = true;
     }
 
@@ -194,86 +194,94 @@ public class UI_Shop : MonoBehaviour {
         {
             case 0:
                 Learner_Data.Learner_ChangeCard_Status(17);
+                Learner_Data.Learner_Add("Score", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(1);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_17", Learner_Data.Learner_GetCard_Status(17)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_C", Learner_Data.Learner_GetCardsGet_Status(1)));
+                break;
+            case 1:
+                Learner_Data.Learner_ChangeCard_Status(18);
                 Learner_Data.Learner_Add("Score", 0, -200);
                 Learner_Data.Learner_ChangeCardsGet_Status(1);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
-                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_17", Learner_Data.Learner_GetCard_Status(17)));
-                break;
-            case 1:
-                Learner_Data.Learner_ChangeCard_Status(18);
-                Learner_Data.Learner_Add("Score", 0, -300);
-                Learner_Data.Learner_ChangeCardsGet_Status(1);
-                Learner_Data.Learner_Add("Cards_Num", 0, 1);
-                StartCoroutine(SavingLog("Learner_Score", Learner_Data.Learner_GetData("Score")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
                 StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_18", Learner_Data.Learner_GetCard_Status(18)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_C", Learner_Data.Learner_GetCardsGet_Status(1)));
                 break;
             case 2:
                 Learner_Data.Learner_ChangeCard_Status(10);
-                Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_Add("Coin", 0, -100);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
                 StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_10", Learner_Data.Learner_GetCard_Status(10)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_V", Learner_Data.Learner_GetCardsGet_Status(0)));
                 break;
             case 3:
                 Learner_Data.Learner_ChangeCard_Status(11);
+                Learner_Data.Learner_Add("Coin", 0, -100);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_11", Learner_Data.Learner_GetCard_Status(11)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_V", Learner_Data.Learner_GetCardsGet_Status(0)));
+                break;
+            case 4:
+                Learner_Data.Learner_ChangeCard_Status(12);
                 Learner_Data.Learner_Add("Coin", 0, -150);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
-                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_11", Learner_Data.Learner_GetCard_Status(11)));
-                break;
-            case 4:
-                Learner_Data.Learner_ChangeCard_Status(12);
-                Learner_Data.Learner_Add("Coin", 0, -200);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
-                Learner_Data.Learner_Add("Cards_Num", 0, 1);
-                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
                 StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_12", Learner_Data.Learner_GetCard_Status(12)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_V", Learner_Data.Learner_GetCardsGet_Status(0)));
                 break;
             case 5:
                 Learner_Data.Learner_ChangeCard_Status(13);
+                Learner_Data.Learner_Add("Coin", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(0);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_13", Learner_Data.Learner_GetCard_Status(13)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_V", Learner_Data.Learner_GetCardsGet_Status(0)));
+                break;
+            case 6:
+                Learner_Data.Learner_ChangeCard_Status(14);
                 Learner_Data.Learner_Add("Coin", 0, -200);
                 Learner_Data.Learner_ChangeCardsGet_Status(0);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
-                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_13", Learner_Data.Learner_GetCard_Status(13)));
-                break;
-            case 6:
-                Learner_Data.Learner_ChangeCard_Status(14);
-                Learner_Data.Learner_Add("Coin", 0, -300);
-                Learner_Data.Learner_ChangeCardsGet_Status(0);
-                Learner_Data.Learner_Add("Cards_Num", 0, 1);
-                StartCoroutine(SavingLog("Learner_Coin", Learner_Data.Learner_GetData("Coin")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
                 StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_14", Learner_Data.Learner_GetCard_Status(14)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_V", Learner_Data.Learner_GetCardsGet_Status(0)));
                 break;
             case 7:
                 Learner_Data.Learner_ChangeCard_Status(20);
+                Learner_Data.Learner_Add("Crystal", 0, -150);
+                Learner_Data.Learner_ChangeCardsGet_Status(2);
+                Learner_Data.Learner_Add("Cards_Num", 0, 1);
+                StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_20", Learner_Data.Learner_GetCard_Status(20)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_S", Learner_Data.Learner_GetCardsGet_Status(1)));
+                break;
+            case 8:
+                Learner_Data.Learner_ChangeCard_Status(21);
                 Learner_Data.Learner_Add("Crystal", 0, -200);
                 Learner_Data.Learner_ChangeCardsGet_Status(2);
                 Learner_Data.Learner_Add("Cards_Num", 0, 1);
                 StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
-                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_20", Learner_Data.Learner_GetCard_Status(20)));
-                break;
-            case 8:
-                Learner_Data.Learner_ChangeCard_Status(21);
-                Learner_Data.Learner_Add("Crystal", 0, -300);
-                Learner_Data.Learner_ChangeCardsGet_Status(2);
-                Learner_Data.Learner_Add("Cards_Num", 0, 1);
-                StartCoroutine(SavingLog("Learner_Crystal", Learner_Data.Learner_GetData("Crystal")));
-                StartCoroutine(SavingLog("Learner_Cards_Num", Learner_Data.Learner_GetData("Cards_Num")));
+                StartCoroutine(SavingLog("Learner_Cards", Learner_Data.Learner_GetData("Cards_Num")));
                 StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_21", Learner_Data.Learner_GetCard_Status(21)));
+                StartCoroutine(Saving("Learner_CardSave.php", "Cardstatus_S", Learner_Data.Learner_GetCardsGet_Status(1)));
                 break;
-
             default:
                 break;
         }

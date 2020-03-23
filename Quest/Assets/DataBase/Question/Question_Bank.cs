@@ -22,7 +22,7 @@ static class Question_Bank {
     ,{"Zac: Winnie, what are you (1) ?\nWinnie: I’m eating beef noodles. Do you want (2) ? \nZac: Yes, (3). Mmm, they taste good.\nWinnie: Are you eating fried rice, Zac?\nZac: Yes, I am. It (4) yummy, too.","doing","some","please","is" }};
     public static string[,,] Question_Level5_BtnAns = new string[2, 4, 3]{{
     {"rice","soup","hambuger"},{"want","wants","wanting"},{"for","to","in"},{"yuck","yummy","happy"}},
-    {{"doing","do","does"},{"a","some","the"},{"good","please","OK"},{"does","are","is"}}
+    {{"doing","do","does"},{"a","some","the"},{"good","please","ok"},{"does","are","is"}}
     };
 
     public static int Question_Battl_Num = 8;
