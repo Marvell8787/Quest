@@ -252,7 +252,7 @@ public class UI_Task : MonoBehaviour {
             battle_temp = Battle_Data.Battle_Get(choose_n);
             int n3 = int.Parse(battle_temp.GetTime());
             StartCoroutine(SavingBehaviours(Behaviour_Bank.GamingBehaviour, Behaviour_Bank.GamingBehaviour_Task[0], Behaviour_Bank.GamingBehaviour_Task[6], Behaviour_Bank.GamingBehaviour_Task[6] + (choose_n + 1).ToString()));
-            Question_Data.Question_Init(5, 1, 10, n3, 1);
+            Question_Data.Question_Init(5+ choose_n, 1, 10, n3, 1);
             Player_Data.Player_Init(choose_n);
             Player_Data.Shuffle(0);
             Player_Data.Shuffle(1);

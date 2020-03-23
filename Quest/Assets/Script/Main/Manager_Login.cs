@@ -163,7 +163,7 @@ public class Manager_Login{
             int n = 0;
             if (str != "")
             {
-                for (int i = 0; i < 22; i++)
+                for (int i = 0; i < 18; i++)
                 {
                     n = int.Parse(GetDataValue(str, "Badges_" + (i) + ":"));
                     if (n > 0)
