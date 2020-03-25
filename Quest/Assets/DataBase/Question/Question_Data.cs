@@ -329,7 +329,30 @@ static class Question_Data{
         
         for (int i = 0; i < Question_Bank.Question_Level5_QuestionNum; i++)
         {
-            Question[i] = "";
+            if (randtopaper == 2)
+            {
+                switch (i)
+                {
+                    case 0:
+                        Question[i] = "What does Vivan want for lunch?";
+                        break;
+                    case 1:
+                        Question[i] = "What does Harry want for lunch?";
+                        break;
+                    case 2:
+                        Question[i] = "What does Wendy want for lunch?";
+                        break;
+                    case 3:
+                        Question[i] = "What does Daniel want for lunch?";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                Question[i] = "";
+            }
             Answer_r_Content[i] = Question_Bank.Question_Level5[randtopaper, i+1];
             for (int j = 0; j < 3; j++)
                 Question_BtnAns_Level5[i, j] = BtnAns_Level5[i, j];

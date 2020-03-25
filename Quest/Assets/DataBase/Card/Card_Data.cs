@@ -8,7 +8,7 @@ static class Card_Data{
     private static string[] Card_Picture = new string[22] { "fool", "magician", "high-priestess", "empress", "emperor", "hierophant", "lovers", "chariot", "strength", "hermit", "fortune-wheel", "justice", "hanged-man", "death", "temperance", "devil", "tower", "stars", "moon", "sun", "judgement", "world" };
     private static string[] Card_Name = new string[22];
     private static string[] Card_Rarity = new string[22] { "N","N","N","N","N","N","N","R", "R", "R","R", "R", "SR", "SR" ,"SSR", "R", "R", "SR", "SSR", "SR", "SR", "SSR" };
-    private static int[] Card_ATK = new int[22] { 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5,5,6,1,2,3,5,0,0,0 };
+    private static int[] Card_ATK = new int[22] { 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5,5,6,1,2,3,5,0,0,0 };
     private static string[] Card_Effect = new string[22];
 
     private static Card_Class[] card_temp = new Card_Class[22];
@@ -26,7 +26,7 @@ static class Card_Data{
                 case 1: Card_Effect[i] = "ATK = 2"; break;
                 case 2: Card_Effect[i] = "ATK = 2"; break;
                 case 3: Card_Effect[i] = "ATK = 2"; break;
-                case 4: Card_Effect[i] = "ATK = 3"; break;
+                case 4: Card_Effect[i] = "ATK = 2"; break;
                 case 5: Card_Effect[i] = "ATK = 3"; break;
                 case 6: Card_Effect[i] = "ATK = 3"; break;
                 case 7: Card_Effect[i] = "ATK = 3"; break;

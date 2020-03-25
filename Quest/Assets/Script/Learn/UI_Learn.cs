@@ -167,6 +167,7 @@ public class UI_Learn : MonoBehaviour {
     }
     void ShowContent(int n)
     {
+        Info_text.text = "點選查看內容可查看更詳細的資訊，點選開始會開始練習";
         ContentInfo_obj.SetActive(false);
         Level_Class level_temp = new Level_Class();
         level_temp = Level_Data.Level_Get(n);

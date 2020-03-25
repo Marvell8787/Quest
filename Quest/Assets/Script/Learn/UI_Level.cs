@@ -25,7 +25,7 @@ public class UI_Level : MonoBehaviour {
     public GameObject ui_Title, ui_Level, ui_Overall, ui_Settlement,ui_reading,ui_paper;
     public Text QuestionNum_text,Description_text, Input_text;
     public Text QuestionTypeContent_text, LevelContent_text, AnswerContent_text, ScoreContent_text, FeedBack_text, Question_text, Next_text, ENDContent_text;
-    public Text paper_text;
+    public Text paper_text,sign_text;
     public Text[] Ans_text = new Text[3];
     public Button Submit_btn, Next_btn,Read_btn,ReadCancel_btn;
     public Button[] Button_Ans = new Button[3];
@@ -63,6 +63,8 @@ public class UI_Level : MonoBehaviour {
         ENDContent_text.text = "";
         FeedBack_text.text = "";
         AnswerContent_text.text = "";
+
+        sign_text.gameObject.SetActive(false);
 
         Level_Class level_temp = new Level_Class();
         Question_Class question_temp = new Question_Class();
@@ -112,7 +114,13 @@ public class UI_Level : MonoBehaviour {
                 Question_text.text = question_temp.GetQuestion();
                 ui_Overall.SetActive(true);*/
                 Question_btn.gameObject.SetActive(false);
-                Question_text.text = "閱讀短文並根據題號回答該題號所指向的正確答案";
+                if(question_temp.GetQuestion() == "")
+                    Question_text.text = "閱讀短文並根據題號回答該題號所指向的正確答案";
+                else
+                {
+                    Question_text.text = question_temp.GetQuestion();
+                    sign_text.gameObject.SetActive(true);
+                }
                 paper_text.text = Question_Data.Getpaper();
                 Question_Data.Button_Ans_Set(Level, Question_Num);
                 for (int i = 0; i < 3; i++)
@@ -227,6 +235,7 @@ public class UI_Level : MonoBehaviour {
 
         if (Question_Num == Question_total - 1)
         {
+            sign_text.gameObject.SetActive(false);
             ui_Title.SetActive(false);
             ui_Level.SetActive(false);
             ui_reading.SetActive(false);
@@ -479,7 +488,12 @@ public class UI_Level : MonoBehaviour {
                     Question_text.text = question_temp.GetQuestion();
                     break;
                 case 4: //Overall
-                    Question_text.text = "閱讀短文並根據題號回答該題號所指向的正確答案";
+                    if (question_temp.GetQuestion() == "")
+                        Question_text.text = "閱讀短文並根據題號回答該題號所指向的正確答案";
+                    else
+                    {
+                        Question_text.text = question_temp.GetQuestion();
+                    }
                     break;
                 default:
                     break;

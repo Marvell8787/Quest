@@ -17,6 +17,7 @@ public class UI_Battle : MonoBehaviour
     public Button Back_btn;
     public Text ItemContent_text, Point_text, Mistake_text;
     public Image Point_img, Mistake_img;
+    public Text Battle_Info;
 
     #region SelectBattle_obj
     public GameObject SelectFight_obj;
@@ -137,6 +138,7 @@ public class UI_Battle : MonoBehaviour
         Battle_Class battle_temp = new Battle_Class();
         battle_temp = Battle_Data.Battle_Get(n);
         Content_obj.SetActive(true);
+        Battle_Info.text = "點選查看內容可查看更詳細的資訊，點選開始會開始戰鬥";
         QuestionTypeContent_text.text = battle_temp.GetQuestionType();
         RangeContent_text.text = battle_temp.GetRange();
         RewardContent_text.text = battle_temp.GetReward();

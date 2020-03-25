@@ -16,13 +16,15 @@ static class Question_Bank {
     public static string[,] Question_Level4 = new string[10,2] {{ "I want a sandwich _ dinner.", "for" },{ "I want _ noodles.", "some" },{ "Sarah _ some want.","wants" }, { "What _ Danny want for breakfast.","does" }, {"Dad wants some _ for lunch.","rice" }, { "Danny _  to school every day.", "walks" }, { "Dino _  basketball at 2:00.", "plays" }, { "My sister and I _ in the bedroom .", "sleep" }, { "I _ two hamburgers.", "eat" }, { "Wow! We are _ Japan.", "in" } };
     public static string[,] Question_Level4_BtnAns = new string[10, 3] { { "with", "for", "to" }, { "a", "this", "some" }, { "want", "wants", "wanting" }, { "do", "does", "are" }, { "a rice", "rice", "rices" }, { "walks", "walk", "walking" }, { "plays", "play", "playing" }, { "sleep", "sleeps", "sleeping" }, { "eat", "eats", "eating" }, { "in", "on", "under" } };
 
-    public static int Question_Level5_Num = 2; //雖然2題 但實際上輸出只會有1題
+    public static int Question_Level5_Num = 3; //雖然2題 但實際上輸出只會有1題
     public static int Question_Level5_QuestionNum = 4; //每1閱讀分為4小題
-    public static string[,] Question_Level5 = new string[2, 5]{ {"It’s lunch time.\n Today, I want a (1) and Tim (2) some salad (3) lunch.\n We are very hungry.\n Mmm, the food looks good.\n Wow! The food is really (4).\n We love it! ","hambuger","wants","for","yummy" }
-    ,{"Zac: Winnie, what are you (1) ?\nWinnie: I’m eating beef noodles. Do you want (2) ? \nZac: Yes, (3). Mmm, they taste good.\nWinnie: Are you eating fried rice, Zac?\nZac: Yes, I am. It (4) yummy, too.","doing","some","please","is" }};
-    public static string[,,] Question_Level5_BtnAns = new string[2, 4, 3]{{
+    public static string[,] Question_Level5 = new string[3, 5]{ {"It’s lunch time.\n Today, I want a (1) and Tim (2) some salad (3) lunch.\n We are very hungry.\n Mmm, the food looks good.\n Wow! The food is really (4).\n We love it! ","hambuger","wants","for","yummy" }
+    ,{"Zac: Winnie, what are you (1) ?\nWinnie: I’m eating beef noodles. Do you want (2) ? \nZac: Yes, (3). Mmm, they taste good.\nWinnie: Are you eating fried rice, Zac?\nZac: Yes, I am. It (4) yummy, too.","doing","some","please","is" }
+    ,{"It’s twelve o’clock. Time for lunch. Harry and his family are hungry. Harry wants a hamburger. His sister, Wendy, wants a hot dog. His brother, Daniel, wants some rice. Harry’s father, Rick, wants some noodles. Vivian is Harry’s mother. She is a vegetarian. She just wants some salad.＊　vegetarian 素食主義者  just 只","salad","a hamburger","a hot dog","rice" }};
+    public static string[,,] Question_Level5_BtnAns = new string[3, 4, 3]{{
     {"rice","soup","hambuger"},{"want","wants","wanting"},{"for","to","in"},{"yuck","yummy","happy"}},
-    {{"doing","do","does"},{"a","some","the"},{"good","please","ok"},{"does","are","is"}}
+    {{"doing","do","does"},{"a","some","the"},{"good","please","ok"},{"does","are","is"}},
+    {{"salad","a hamburger","rice"},{"rice","a hot dog","a hamburger"},{"salad","a hot dog","rice"},{"a hamburger","rice","salad"}}
     };
 
     public static int Question_Battl_Num = 8;
